@@ -21,4 +21,8 @@ class ClassFeeVoucher extends Model
     {
         return $this->belongsTo(Admissionform::class, 'student_id');
     }
+    public function students_add()
+    {
+        return $this->belongsTo(Admissionform::class, 'gr_number', 'gr_number');
+    }
 }

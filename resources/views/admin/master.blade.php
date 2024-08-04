@@ -453,6 +453,9 @@
                                     <a class="side-nav-link ps-4" href="classfeesgenerate">Class Fees Generate</a>
                                 </li>
                                 <li>
+                                    <a class="side-nav-link ps-4" href="showclassfees">Show Class Fees</a>
+                                </li>
+                                <li>
                                     <a class="side-nav-link ps-4" href="specialfeesgenerate">Special Fees Generate</a>
                                 </li>
                             </ul>

@@ -30,27 +30,27 @@ position: relative;">
                     font-weight: 100;
                     font-size: 14px;
                     color: black;
-                    font-family: sans-serif;">GRNo.</p>
+                    font-family: sans-serif;">GRNo.</p>{{$voucher->gr_number}}
                     <p style="margin: 0;
                     font-weight: 100;
                     font-size: 14px;
                     color: black;
-                    font-family: sans-serif;">Student Name</p>
+                    font-family: sans-serif;">Student Name</p>{{$voucher->students_add->student_name}}
                     <p style="margin: 0;
                     font-weight: 100;
                     font-size: 14px;
                     color: black;
-                    font-family: sans-serif;">Father Name</p>
+                    font-family: sans-serif;">Father Name</p>{{$voucher->students_add->father_name}}
                     <p style="margin: 0;
                     font-weight: 100;
                     font-size: 14px;
                     color: black;
-                    font-family: sans-serif;">Class</p>
+                    font-family: sans-serif;">Class</p>{{$voucher->class}}
                     <p cstyle="margin: 0;
                     font-weight: 100;
                     font-size: 14px;
                     color: black;
-                    font-family: sans-serif;">Section</p>
+                    font-family: sans-serif;">Section</p>{{$voucher->section}}
                 </div>
 
                 
@@ -63,27 +63,27 @@ position: relative;">
                     font-weight: 100;
                     font-size: 14px;
                     color: black;
-                    font-family: sans-serif;">Transaction</p>
+                    font-family: sans-serif;">Transaction</p>{{$voucher->transaction_date}}
                     <p style="margin: 0;
                     font-weight: 100;
                     font-size: 14px;
                     color: black;
-                    font-family: sans-serif;">Issued</p>
+                    font-family: sans-serif;">Issued</p>{{$voucher->issued_date}}
                     <p style="margin: 0;
                     font-weight: 100;
                     font-size: 14px;
                     color: black;
-                    font-family: sans-serif;">Due On</p>
+                    font-family: sans-serif;">Due On</p>{{$voucher->due_date}}
                     <p style="margin: 0;
                     font-weight: 100;
                     font-size: 14px;
                     color: black;
-                    font-family: sans-serif;">Session</p>
+                    font-family: sans-serif;">Session</p>{{$voucher->session}}
                     <p style="margin: 0;
                     font-weight: 100;
                     font-size: 14px;
                     color: black;
-                    font-family: sans-serif;">Month</p>
+                    font-family: sans-serif;">Month</p>{{$voucher->month_year}}
                 </div>
             </div>
         </div>
@@ -113,17 +113,17 @@ position: relative;">
                     </thead>
                     <tbody>
                         <tr style="text-align: center">
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
+                            <td>{{$voucher->admission}}</td>
+                            <td>{{$voucher->tution}}</td>
+                            <td>{{$voucher->annual}}</td>
+                            <td>{{$voucher->exam_fee}}</td>
+                            <td>{{$voucher->lab_charges}}</td>
+                            <td>{{$voucher->late_fee}}</td>
+                            <td>{{$voucher->pre_dues}}</td>
+                            <td>{{$voucher->id_card}}</td>
+                            <td>{{$voucher->board_fee}}</td>
+                            <td>{{$voucher->stationary}}</td>
+                            <td>{{$voucher->total}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -150,17 +150,17 @@ position: relative;">
                 font-weight: 100;
                 font-size: 14px;
                 color: black;
-                font-family: sans-serif;">Previous Dues</p>
+                font-family: sans-serif;">Previous Dues</p>{{$voucher->previous_dues}}
                 <p style="margin: 0;
                 font-weight: 100;
                 font-size: 14px;
                 color: black;
-                font-family: sans-serif;">Total Payable (Within due Date)</p>
+                font-family: sans-serif;">Total Payable (Within due Date)</p>{{$voucher->total_payable_within_due_date}}
                 <p style="margin: 0;
                 font-weight: 100;
                 font-size: 14px;
                 color: black;
-                font-family: sans-serif;">Total Payable (After due Date)</p>
+                font-family: sans-serif;">Total Payable (After due Date)</p>{{$voucher->total_payable_after_due_date}}
 
 </div>
 
@@ -183,7 +183,7 @@ position: relative;">
                     font-weight: 100;
                     font-size: 14px;
                     color: black;
-                    font-family: sans-serif;">GRNo.</p>
+                    font-family: sans-serif;">GRNo.</p>{{$voucher->gr_number}}
                     <p style="margin: 0;
                     font-weight: 100;
                     font-size: 14px;
