@@ -462,6 +462,14 @@
                         </div>
                     </li>
 
+                    <li class="side-nav-item mb-1">
+                        <a href="{{ url('showFeeReceipts') }}" class="side-nav-link">
+                            <i class="ri-book-3-line"></i>
+
+                            <span> Fee Receipts </span>
+                        </a>
+                    </li>
+
 
 
 

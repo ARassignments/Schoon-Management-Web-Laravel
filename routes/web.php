@@ -9,6 +9,7 @@ use App\Http\Controllers\User_Controller;
 use Illuminate\Support\Facades\Route;
 use App\Models\Classes;
 use App\Http\Controllers\ClassFeeVoucherController;
+use App\Http\Controllers\FeeReceiptsController;
 use App\Http\Controllers\Special_Fees_Generate_Controller;
 
 Route::get('/', function() {
@@ -96,6 +97,11 @@ Route::get('/classfeesgenerate', [ClassFeeVoucherController::class, 'class_fees_
 Route::post('/storeclassvoucher', [ClassFeeVoucherController::class, 'store_class_voucher'])->name('store_class_voucher');
 Route::get('/get-gr-number', [ClassFeeVoucherController::class, 'getGrNumber']);
 Route::get('/specialfeesgenerate', [Special_Fees_Generate_Controller::class, 'special_fees_generate']);
+
+//---------------------fee receipts--------------------//
+
+
+Route::get('/showFeeReceipts', [FeeReceiptsController::class, 'showFeeReceipts'])->name('showFeeReceipts');
 
 //---------------------contactform--------------------//
 

@@ -1,23 +1,21 @@
 @extends('admin.master')
 @section('content')
-    <div style=" background-color: rgb(161, 161, 161);" class="d-flex align-items-center justify-content-center">
+<div style=" background-color: rgb(161, 161, 161);" class="d-flex align-items-center justify-content-center flex-column">
+        <button onclick="printElement('printableArea')" class="btn btn-primary mt-3">Print</button>
 
-
-
-        <div class="my-5 page" size="A4"
+        <div class="my-3 page pb-3 mb-5" size="A4" id="printableArea"
             style="   width: 21cm;
-height: 29.7cm;
 overflow: hidden; background: white;
 display: block;
 position: relative;">
+{{-- height: 29.7cm; --}}
 
+<svg id="barcode" class="d-none"></svg>
             <!-- ===============================================================Voucher-1-Start=============================================================== -->
-
-
 
             <div class="p-2">
                 <div style="text-align: center; margin: 1%;">
-                    <img src="/code-bar.png" height="60px" width="70px">
+                    <img src="/code-bar.png" id="barcodeImg1" height="60px" width="130px">
                 </div>
                 <div class="container">
                     <div class="row">
@@ -161,7 +159,7 @@ position: relative;">
 
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-md-6">
                         <div class="due-date">
                             <p
                                 style="margin: 0;
@@ -172,7 +170,7 @@ position: relative;">
                                 100/-Rs will be charged after due date.</p>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-md-6">
 
                         <div class="d-flex justify-content-between">
                             <p style="margin: 0;
@@ -210,7 +208,7 @@ position: relative;">
 
             <div class="p-2">
                 <div style="text-align: center; margin: 1%;">
-                    <img src="/code-bar.png" height="60px" width="70px">
+                    <img src="/code-bar.png" id="barcodeImg2" height="60px" width="130px">
                 </div>
 
                 <div class="container">
@@ -350,7 +348,7 @@ position: relative;">
 
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-md-6">
                         <div>
                             <p
                                 style="margin: 0;
@@ -361,7 +359,7 @@ position: relative;">
                                 100/-Rs will be charged after due date.</p>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-md-6">
 
                         <div class="d-flex justify-content-between">
                             <p style="margin: 0;
@@ -398,7 +396,7 @@ position: relative;">
 
             <div class="p-2">
                 <div style="text-align: center; margin: 1%;">
-                    <img src="/code-bar.png" height="60px" width="70px">
+                    <img src="/code-bar.png" id="barcodeImg3" height="60px" width="130px">
                 </div>
                 <div class="container">
                     <div class="row">
@@ -537,7 +535,7 @@ position: relative;">
 
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-md-6">
                         <div>
                             <p
                                 style="margin: 0;
@@ -548,7 +546,7 @@ position: relative;">
                                 100/-Rs will be charged after due date.</p>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-md-6">
                         <div class="d-flex justify-content-between">
                             <p style="margin: 0;
                                 font-weight: 100;
@@ -583,4 +581,51 @@ position: relative;">
 
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const barcodeValue = "{{ $voucher->gr_number }}"; // Example barcode value
+
+        // Generate barcode in SVG
+        JsBarcode("#barcode", barcodeValue, {
+            format: "CODE128",
+            displayValue: true,
+            width: 2,
+            height: 50
+        });
+
+        // document.querySelector("#barcode").with = "100%"
+
+        // // Convert SVG to PNG image
+        const svgElement = document.getElementById("barcode");
+        const svgData = new XMLSerializer().serializeToString(svgElement);
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const img = document.createElement("img");
+
+        img.onload = function() {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+            const pngData = canvas.toDataURL("image/png");
+            document.getElementById("barcodeImg1").src = pngData;
+            document.getElementById("barcodeImg2").src = pngData;
+            document.getElementById("barcodeImg3").src = pngData;
+        };
+
+        img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+    });
+
+    function printElement(elementId) {
+            var printContents = document.getElementById(elementId).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+</script>
 @endsection
