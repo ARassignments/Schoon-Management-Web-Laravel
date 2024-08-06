@@ -9,13 +9,13 @@ use App\Http\Controllers\User_Controller;
 use Illuminate\Support\Facades\Route;
 use App\Models\Classes;
 use App\Http\Controllers\ClassFeeVoucherController;
+use App\Http\Controllers\FeeReceiptsController;
 use App\Http\Controllers\Special_Fees_Generate_Controller;
 
 Route::get('/', function() {
     return view('welcome');
 });
 Route::get('/dashboard', [admin_controller::class, 'index']);
-Route::get('/voucherform', [admin_controller::class, 'voucher']);
 
 //------------admission management------------//
 Route::get('/show-addmissionform', [admin_controller::class, 'addmissionform']);
@@ -91,10 +91,17 @@ Route::get('/deleteclass/{id}', [Classes_Controller::class, 'destroycalsses']);
 
 
 
+Route::get('/showclassfees', [ClassFeeVoucherController::class, 'showvoucher'])->name('showvoucher');
+Route::get('/voucherform/{id}', [ClassFeeVoucherController::class, 'viewvoucher'])->name('voucherform');
 Route::get('/classfeesgenerate', [ClassFeeVoucherController::class, 'class_fees_generate'])->name('class_fees_generate');
 Route::post('/storeclassvoucher', [ClassFeeVoucherController::class, 'store_class_voucher'])->name('store_class_voucher');
 Route::get('/get-gr-number', [ClassFeeVoucherController::class, 'getGrNumber']);
 Route::get('/specialfeesgenerate', [Special_Fees_Generate_Controller::class, 'special_fees_generate']);
+
+//---------------------fee receipts--------------------//
+
+
+Route::get('/showFeeReceipts', [FeeReceiptsController::class, 'showFeeReceipts'])->name('showFeeReceipts');
 
 //---------------------contactform--------------------//
 

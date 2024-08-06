@@ -103,7 +103,20 @@ class ClassFeeVoucherController extends Controller
             'contacts'
         ));
     }
-
+    public function showvoucher()
+    {
+        $notificationCount = contactfom::where('is_new', true)->count();
+        $contacts = contactfom::all();
+        $voucher = ClassFeeVoucher::all();
+        return view('admin.showclassvoucher',compact('notificationCount','contacts','voucher'));
+    }
+    public function viewvoucher($id)
+    {
+        $notificationCount = contactfom::where('is_new', true)->count();
+        $contacts = contactfom::all();
+        $voucher = ClassFeeVoucher::with('students_add')->where('id',$id)->firstorfail();
+        return view('admin.voucher-class-fees',compact('notificationCount','contacts','voucher'));
+    }
 
 
     // public function store_class_voucher(Request $request)
