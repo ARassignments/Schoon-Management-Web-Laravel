@@ -90,6 +90,7 @@ Route::middleware(['auth','isadmin'])->group(function () {
 
 
 Route::get('/showFeeReceipts', [FeeReceiptsController::class, 'showFeeReceipts'])->name('showFeeReceipts');
+Route::post('/createFeeReceipts', [FeeReceiptsController::class, 'createFeeReceipts'])->name('createFeeReceipts');
 
 //---------------------contactform--------------------//
 

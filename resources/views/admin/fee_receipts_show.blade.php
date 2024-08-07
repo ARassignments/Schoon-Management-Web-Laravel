@@ -53,6 +53,13 @@
                 <button class="addbtn-container rounded row mb-3 scanBarCodeBtn"> <a href="#" class="add-btn2 "><span
                             class="spn2">Scan Voucher</span></a>
                 </button>
+
+                <form id="feeReceiptForm">
+                    @csrf
+                    <input type="number" name="gr_number" id="gr_number" placeholder="GR Number Here..." required>
+                    <button type="submit">Add Receipt</button>
+                </form>
+
                 <div class="row">
                     <div class="col-xl-12 ">
                         <!-- Todo-->
@@ -65,15 +72,16 @@
 
                                     <!-- Searchbar Start -->
                                     <!-- <div class="app-search ms-3">
-                                                <form>
-                                                    <div class="input-group">
-                                                        <input type="search" class="form-control" placeholder="Search...">
-                                                        <span class="ri-search-line search-icon text-muted"></span>
-                                                    </div>
-                                                </form>
-                                            </div> -->
+                                                                        <form>
+                                                                            <div class="input-group">
+                                                                                <input type="search" class="form-control" placeholder="Search...">
+                                                                                <span class="ri-search-line search-icon text-muted"></span>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div> -->
                                     <form class="app-search" action="" method="GET">
-                                        {{-- <input class="search-input" name="search" placeholder="Search..." type="search" value="{{ $search }}"> --}}
+                                        <input class="search-input" name="search" placeholder="Search..." type="search"
+                                            value="">
 
                                     </form>
                                     <!-- Searchbar End -->
@@ -124,50 +132,66 @@
                                                 </thead>
                                                 <tbody>
 
-                                                    <tr class="text-center">
-                                                        <td>1</td>
-                                                        <td>475</td>
-                                                        <td>25/8/2024</td>
-                                                        <td>00793</td>
-                                                        <td>Abdur Rehman -- SEVEN -- A</td>
-                                                        <td>700</td>
-                                                        <td>
-                                                            <select class="form-select form-control-sm fs-5">
-                                                                <option selected disabled value=""></option>
-                                                                <option value="bank">Bank</option>
-                                                                <option value="cash">Cash</option>
-                                                            </select>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text"
-                                                                class="form-control form-control-sm fs-5 text-center m-auto"
-                                                                style="width:80px" value="0" maxlength="2"
-                                                                onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text"
-                                                                class="form-control form-control-sm fs-5 text-center m-auto"
-                                                                style="width:80px" value="700" maxlength="2"
-                                                                onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                                                        </td>
-                                                        <td>
-                                                            <input type="text"
-                                                                class="form-control form-control-sm fs-5 text-center m-auto"
-                                                                style="width:80px" value="0" maxlength="2"
-                                                                onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                                                        </td>
-                                                        <td>
-                                                            <a href="#" class="btn btn-primary btn-sm">View</a>
-                                                        </td>
+                                                    @php
+                                                        $count = 1;
+                                                    @endphp
+                                                    @if ($feeReceipt->count() > 0)
+                                                        @foreach ($feeReceipt as $receipt)
+                                                            <tr class="text-center">
+                                                                <td>{{ $count++ }}</td>
+                                                                <td>{{ $receipt->voucher_id }}</td>
+                                                                <td>{{ $receipt->date }}</td>
+                                                                <td>{{ $receipt->gr_number }}</td>
+                                                                <td>Abdur Rehman -- {{ $receipt->class }} --
+                                                                    {{ $receipt->section }}</td>
+                                                                <td>{{ $receipt->total }}</td>
+                                                                <td>
+                                                                    <select class="form-select form-control-sm fs-5">
+                                                                        <option selected disabled value=""></option>
+                                                                        <option value="bank">Bank</option>
+                                                                        <option value="cash">Cash</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text"
+                                                                        class="form-control form-control-sm fs-5 text-center m-auto"
+                                                                        style="width:80px" value="{{ $receipt->discount }}"
+                                                                        maxlength="2"
+                                                                        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text"
+                                                                        class="form-control form-control-sm fs-5 text-center m-auto"
+                                                                        style="width:80px" value="{{ $receipt->receipts }}"
+                                                                        maxlength="2"
+                                                                        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text"
+                                                                        class="form-control form-control-sm fs-5 text-center m-auto"
+                                                                        style="width:80px" value="{{ $receipt->balance }}"
+                                                                        maxlength="2"
+                                                                        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                                                                </td>
+                                                                <td>
+                                                                    <a href="#"
+                                                                        class="btn btn-primary btn-sm">View</a>
+                                                                </td>
 
-                                                    </tr>
+                                                            </tr>
+                                                        @endforeach
+                                                    @else
+                                                        <tr>
+                                                            <td colspan="11">
+                                                                <h1 class="text-center display-4 fs-1 text-uppercase mt-2">
+                                                                    data
+                                                                    not found</h1>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
 
-                                                    <tr>
-                                                        <td colspan="11">
-                                                            <h1 class="text-center display-4 fs-1 text-uppercase mt-2">data
-                                                                not found</h1>
-                                                        </td>
-                                                    </tr>
+
+
 
                                                     {{-- @foreach ($voucher as $vouc)
                                                         <tr class="text-center">
@@ -363,6 +387,49 @@
 
     <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $('#feeReceiptForm').on('submit', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('createFeeReceipts') }}',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        console.log(response);
+                        document.querySelector("#gr_number").value = null;
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        let data = response.message;
+                        if (data) {
+                            Toast.fire({
+                                icon: "error",
+                                title: data
+                            });
+                        } else {
+                            Toast.fire({
+                                icon: "success",
+                                title: "Fee Receipt Added Successfully"
+                            });
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+
+
         document.addEventListener("DOMContentLoaded", function() {
             const resultElement = document.getElementById('result');
             const scannerContainer = document.getElementById('interactive');
