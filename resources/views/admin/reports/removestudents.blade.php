@@ -58,7 +58,7 @@
                                 <div
                                     class="card-body-container p-3 d-flex align-items-center justify-content-end shadow rounded mt-4">
 
-                                    <h5 class="header-title mb-0 me-auto text-white">Students Reports</h5>
+                                    <h5 class="header-title mb-0 me-auto text-white">Removed Students Reports</h5>
 
                                 </div>
                                 @if (session('success'))
@@ -96,9 +96,20 @@
                                                         <th>GR Number</th>
                                                         <th>Student Name</th>
                                                         <th>Father Name</th>
+                                                        <th>Student Age</th>
+                                                        <th>Mobile Number</th>
+                                                        <th>Class</th>
+                                                        <th>Current Class</th>
+                                                        <th>Section</th>
+                                                        <th>Last Institute</th>
+                                                        <th>Fees</th>
+                                                        <th>Date Of Addmission</th>
+                                                        <th>Date Of Birth</th>
+                                                        <th>Religion</th>
                                                         <th>Address</th>
                                                         <th>Created Date</th>
                                                         <th>Updated Date</th>
+                                                        <th>Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -112,7 +123,18 @@
                                                             <td>{{ $addmission->gr_number }}</td>
                                                             <td>{{ $addmission->student_name }}</td>
                                                             <td>{{ $addmission->father_name }}</td>
+                                                            <td>{{ $addmission->student_age }}</td>
+                                                            <td>{{ $addmission->mobile_number }}</td>
+                                                            <td>{{ $addmission->class }}</td>
+                                                            <td>{{ $addmission->current_class }}</td>
+                                                            <td>{{ $addmission->section }}</td>
+                                                            <td>{{ $addmission->last_institute }}</td>
+                                                            <td>{{ $addmission->fees }}</td>
+                                                            <td>{{ $addmission->date_of_addmission }}</td>
+                                                            <td>{{ $addmission->date_of_birth }}</td>
+                                                            <td>{{ $addmission->religion }}</td>
                                                             <td>{{ $addmission->address }}</td>
+                                                            <td>{{ $addmission->Status }}</td>
                                                             <td>{{ $addmission->created_at }}</td>
                                                             <td>{{ $addmission->updated_at }}</td>
                                                         </tr>

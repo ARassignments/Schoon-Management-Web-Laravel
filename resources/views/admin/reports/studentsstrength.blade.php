@@ -58,7 +58,7 @@
                                 <div
                                     class="card-body-container p-3 d-flex align-items-center justify-content-end shadow rounded mt-4">
 
-                                    <h5 class="header-title mb-0 me-auto text-white">Students Reports</h5>
+                                    <h5 class="header-title mb-0 me-auto text-white">Students Strength Reports</h5>
 
                                 </div>
                                 @if (session('success'))
@@ -93,12 +93,9 @@
                                                 <thead>
                                                     <tr class="text-center">
                                                         <th>Id</th>
-                                                        <th>GR Number</th>
-                                                        <th>Student Name</th>
-                                                        <th>Father Name</th>
-                                                        <th>Address</th>
-                                                        <th>Created Date</th>
-                                                        <th>Updated Date</th>
+                                                        <th>Class</th>
+                                                        <th>Total Students</th>
+                                                       
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -109,12 +106,8 @@
                                                     @foreach ($add as $addmission)
                                                         <tr class="text-center">
                                                             <td>{{ $i++}}</td>
-                                                            <td>{{ $addmission->gr_number }}</td>
-                                                            <td>{{ $addmission->student_name }}</td>
-                                                            <td>{{ $addmission->father_name }}</td>
-                                                            <td>{{ $addmission->address }}</td>
-                                                            <td>{{ $addmission->created_at }}</td>
-                                                            <td>{{ $addmission->updated_at }}</td>
+                                                            <td>{{ $addmission->class }}</td>
+                                                            <td>{{ $addmission->total }}</td>
                                                         </tr>
                                                     @endforeach
 
