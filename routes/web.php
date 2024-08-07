@@ -10,6 +10,7 @@ use App\Http\Controllers\User_Controller;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FeeReceiptsController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\Special_Fees_Generate_Controller;
 
 Route::get('/', function () {
@@ -83,6 +84,12 @@ Route::middleware(['auth','isadmin'])->group(function () {
     Route::get('/students-report', [ReportsController::class, 'studentsreport']);
     Route::get('/removed-students', [ReportsController::class, 'removestudents']);
     Route::get('/notremoved-students', [ReportsController::class, 'notremovedstudents']);
+    Route::get('/all-students', [ReportsController::class, 'strengthstudents']);
+    Route::get('/class-students', [ReportsController::class, 'classstrength']);
+    Route::get('/all-students-record', [ReportsController::class, 'allstudentsreport']);
+    Route::get('/left-students-record', [ReportsController::class, 'leftstudentsreport']);
+    Route::get('/pass-students-record', [ReportsController::class, 'passstudentsreport']);
+    Route::get('/current-students-record', [ReportsController::class, 'currentstudentsreport']);
     
 });
 
