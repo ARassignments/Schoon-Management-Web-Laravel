@@ -462,10 +462,25 @@
                         </div>
                     </li>
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#sidebarExtendedUI2" class="side-nav-link side-nav-link-dropdown">
+                        <a data-bs-toggle="collapse" href="#sidebarExtendedUI3" class="side-nav-link side-nav-link-dropdown">
                             <i class="ri-compasses-2-line"></i>
                             <span>Reports</span>
                             <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarExtendedUI3" data-bs-parent="#sidebarMenu3">
+                            <ul class="side-nav-item">
+                                <li>
+                                    <a class="side-nav-link ps-4" href="classfeesgenerate">Class Fees Generate</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="showclassfees">Show Class Fees</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="specialfeesgenerate">Special Fees Generate</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
                     <li class="side-nav-item mb-1">
                         <a href="{{ url('showFeeReceipts') }}" class="side-nav-link">
