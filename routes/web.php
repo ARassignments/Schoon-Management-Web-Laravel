@@ -81,6 +81,8 @@ Route::middleware(['auth','isadmin'])->group(function () {
     
     // Reports
     Route::get('/students-report', [ReportsController::class, 'studentsreport']);
+    Route::get('/removed-students', [ReportsController::class, 'removestudents']);
+    Route::get('/notremoved-students', [ReportsController::class, 'notremovedstudents']);
     
 });
 

@@ -10,4 +10,12 @@ class ReportsController extends Controller
     {
         return view('admin.reports.studentsreport');
     }
+    public function removestudents()
+    {
+        return view('admin.reports.removestudents');
+    }
+    public function notremovestudents()
+    {
+        return view('admin.reports.notremovestudents');
+    }
 }
