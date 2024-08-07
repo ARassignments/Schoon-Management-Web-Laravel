@@ -102,6 +102,7 @@ Route::get('/specialfeesgenerate', [Special_Fees_Generate_Controller::class, 'sp
 
 
 Route::get('/showFeeReceipts', [FeeReceiptsController::class, 'showFeeReceipts'])->name('showFeeReceipts');
+Route::post('/createFeeReceipts', [FeeReceiptsController::class, 'createFeeReceipts'])->name('createFeeReceipts');
 
 //---------------------contactform--------------------//
 
