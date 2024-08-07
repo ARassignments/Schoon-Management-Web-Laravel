@@ -6,10 +6,12 @@ use App\Http\Controllers\Fees_Allocation;
 use App\Http\Controllers\Stdpromotion;
 use App\Http\Controllers\Classes_Controller;
 use App\Http\Controllers\ClassFeeVoucherController;
+use App\Http\Controllers\contactform;
 use App\Http\Controllers\User_Controller;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FeeReceiptsController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\Special_Fees_Generate_Controller;
 
 Route::get('/', function () {
@@ -89,6 +91,12 @@ Route::middleware(['auth','isadmin'])->group(function () {
 
 Route::get('/showFeeReceipts', [FeeReceiptsController::class, 'showFeeReceipts'])->name('showFeeReceipts');
 Route::post('/createFeeReceipts', [FeeReceiptsController::class, 'createFeeReceipts'])->name('createFeeReceipts');
+Route::get('/showSearchedFeeReceipts/{search?}', [FeeReceiptsController::class, 'showSearchedFeeReceipts'])->name('showSearchedFeeReceipts');
+Route::post('/updatePayTypeFeeReceipts', [FeeReceiptsController::class, 'updatePayTypeFeeReceipts'])->name('updatePayTypeFeeReceipts');
+Route::post('/updateDiscountFeeReceipts', [FeeReceiptsController::class, 'updateDiscountFeeReceipts'])->name('updateDiscountFeeReceipts');
+Route::post('/updateReceiptsFeeReceipts', [FeeReceiptsController::class, 'updateReceiptsFeeReceipts'])->name('updateReceiptsFeeReceipts');
+Route::post('/updateBalanceFeeReceipts', [FeeReceiptsController::class, 'updateBalanceFeeReceipts'])->name('updateBalanceFeeReceipts');
+Route::get('/deleteFeeReceipts/{id}', [FeeReceiptsController::class, 'deleteFeeReceipts'])->name('deleteFeeReceipts');
 
 //---------------------contactform--------------------//
 

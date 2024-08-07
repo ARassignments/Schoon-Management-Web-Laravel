@@ -24,7 +24,7 @@
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
     <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet" type="text/css" id="app-style" />
 
-    <link rel="stylesheet" href="_sidenav.scss">
+    {{-- <link rel="stylesheet" href="_sidenav.scss"> --}}
 
     <!-- Icons css -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
@@ -33,7 +33,7 @@
     <!-------------------- form link --------------->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
 
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    {{-- <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css"> --}}
 
     <link rel="stylesheet" href="{{ asset('assets/css/adminlte.min2167.css') }}">
 
@@ -764,14 +764,14 @@
     <script src="{{asset('assets/vendor/daterangepicker/daterangepicker.js')}}"></script>
 
     <!-- Apex Charts js -->
-    <script src="{{asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
+    {{-- <script src="{{asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script> --}}
 
     <!-- Vector Map js -->
     <script src="{{asset('assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
     <script src="{{asset('assets/vendor/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js')}}"></script>
 
     <!-- Dashboard App js -->
-    <script src="{{asset('assets/js/pages/dashboard.js')}}"></script>
+    {{-- <script src="{{asset('assets/js/pages/dashboard.js')}}"></script> --}}
 
 
     <!-- App js -->

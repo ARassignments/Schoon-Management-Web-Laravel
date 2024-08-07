@@ -50,14 +50,16 @@
                 </div>
                 <p id="result"></p>
 
-                <button class="addbtn-container rounded row mb-3 scanBarCodeBtn"> <a href="#" class="add-btn2 "><span
-                            class="spn2">Scan Voucher</span></a>
-                </button>
-
-                <form id="feeReceiptForm">
+                <form id="feeReceiptForm" class="d-flex align-items-center gap-2 col-md-4">
                     @csrf
-                    <input type="number" name="gr_number" id="gr_number" placeholder="GR Number Here..." required>
-                    <button type="submit">Add Receipt</button>
+                    <input type="number" name="gr_number" id="gr_number" maxlength="10"
+                        class="form-control form-control-lg col-md-8" placeholder="GR Number Here..." required>
+                    <button type="submit" class="add-btn2 col-md-5">
+                        <span class="spn2">Add Receipt</span>
+                    </button>
+                    <button class="add-btn2 scanBarCodeBtn col-md-5" type="button">
+                        <span class="spn2">Scan Voucher</span>
+                    </button>
                 </form>
 
                 <div class="row">
@@ -72,16 +74,18 @@
 
                                     <!-- Searchbar Start -->
                                     <!-- <div class="app-search ms-3">
-                                                                        <form>
-                                                                            <div class="input-group">
-                                                                                <input type="search" class="form-control" placeholder="Search...">
-                                                                                <span class="ri-search-line search-icon text-muted"></span>
-                                                                            </div>
-                                                                        </form>
-                                                                    </div> -->
+                                                                                                            <form>
+                                                                                                                <div class="input-group">
+                                                                                                                    <input type="search" class="form-control" placeholder="Search...">
+                                                                                                                    <span class="ri-search-line search-icon text-muted"></span>
+                                                                                                                </div>
+                                                                                                            </form>
+                                                                                                        </div> -->
                                     <form class="app-search" action="" method="GET">
-                                        <input class="search-input" name="search" placeholder="Search..." type="search"
-                                            value="">
+                                        <input class="search-input" name="search" placeholder="Search GR Number..."
+                                            type="text" maxlength="10" value="" onkeyup="fetchData(this.value)"
+                                            onchange="fetchData(this.value)"
+                                            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
 
                                     </form>
                                     <!-- Searchbar End -->
@@ -130,97 +134,15 @@
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="feeReceiptContainer">
 
-                                                    @php
-                                                        $count = 1;
-                                                    @endphp
-                                                    @if ($feeReceipt->count() > 0)
-                                                        @foreach ($feeReceipt as $receipt)
-                                                            <tr class="text-center">
-                                                                <td>{{ $count++ }}</td>
-                                                                <td>{{ $receipt->voucher_id }}</td>
-                                                                <td>{{ $receipt->date }}</td>
-                                                                <td>{{ $receipt->gr_number }}</td>
-                                                                <td>Abdur Rehman -- {{ $receipt->class }} --
-                                                                    {{ $receipt->section }}</td>
-                                                                <td>{{ $receipt->total }}</td>
-                                                                <td>
-                                                                    <select class="form-select form-control-sm fs-5">
-                                                                        <option selected disabled value=""></option>
-                                                                        <option value="bank">Bank</option>
-                                                                        <option value="cash">Cash</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text"
-                                                                        class="form-control form-control-sm fs-5 text-center m-auto"
-                                                                        style="width:80px" value="{{ $receipt->discount }}"
-                                                                        maxlength="2"
-                                                                        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text"
-                                                                        class="form-control form-control-sm fs-5 text-center m-auto"
-                                                                        style="width:80px" value="{{ $receipt->receipts }}"
-                                                                        maxlength="2"
-                                                                        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text"
-                                                                        class="form-control form-control-sm fs-5 text-center m-auto"
-                                                                        style="width:80px" value="{{ $receipt->balance }}"
-                                                                        maxlength="2"
-                                                                        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
-                                                                </td>
-                                                                <td>
-                                                                    <a href="#"
-                                                                        class="btn btn-primary btn-sm">View</a>
-                                                                </td>
-
-                                                            </tr>
-                                                        @endforeach
-                                                    @else
-                                                        <tr>
-                                                            <td colspan="11">
-                                                                <h1 class="text-center display-4 fs-1 text-uppercase mt-2">
-                                                                    data
-                                                                    not found</h1>
-                                                            </td>
-                                                        </tr>
-                                                    @endif
-
-
-
-
-                                                    {{-- @foreach ($voucher as $vouc)
-                                                        <tr class="text-center">
-                                                            <td>{{ $vouc->id }}</td>
-                                                            <td>{{ $vouc->gr_number }}</td>
-                                                            <td>{{ $vouc->month_year }}</td>
-                                                            <td>{{ $vouc->transaction_date }}</td>
-                                                            <td>{{ $vouc->issued_date }}</td>
-                                                            <td>{{ $vouc->due_date }}</td>
-                                                            <td>{{ $vouc->session }}</td>
-                                                            <td>{{ $vouc->admission }}</td>
-                                                            <td>{{ $vouc->tution }}</td>
-                                                            <td>{{ $vouc->annual }}</td>
-                                                            <td>{{ $vouc->exam_fee }}</td>
-                                                            <td>{{ $vouc->lab_charges }}</td>
-                                                            <td>{{ $vouc->late_fee }}</td>
-                                                            <td>{{ $vouc->pre_dues }}</td>
-                                                            <td>{{ $vouc->id_card }}</td>
-                                                            <td>{{ $vouc->board_fee }}</td>
-                                                            <td>{{ $vouc->stationary }}</td>
-                                                            <td>{{ $vouc->total }}</td>
-                                                            <td>{{ $vouc->class }}</td>
-                                                            <td>{{ $vouc->section }}</td>
-                                                            <td>
-                                                                <a href="{{url('voucherform',$vouc->id)}}" class="btn btn-primary">View</a>
-                                                            </td>
-
-                                                        </tr>
-                                                    @endforeach --}}
+                                                    <tr>
+                                                        <td colspan="11">
+                                                            <h1 class="text-center display-4 fs-1 text-uppercase mt-2">
+                                                                data
+                                                                not found</h1>
+                                                        </td>
+                                                    </tr>
 
                                                     <style>
                                                         /* Modal Styles */
@@ -402,7 +324,7 @@
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
-                            timer: 3000,
+                            timer: 2000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
                                 toast.onmouseenter = Swal.stopTimer;
@@ -429,9 +351,291 @@
             });
         });
 
+        fetchData("");
+
+        function fetchData(searchValue) {
+            $.ajax({
+                type: 'get',
+                url: "showSearchedFeeReceipts/" + (searchValue ? searchValue : ''),
+                success: function(response) {
+                    if (response.length > 0) {
+                        document.querySelector("#feeReceiptContainer").innerHTML = "";
+                        for (var i = 0; i < response.length; i++) {
+                            let selectedPaymentMethod = response[i].paytype;
+                            document.querySelector("#feeReceiptContainer").innerHTML += `
+                            <tr class="text-center">
+                                <td>${i+1}</td>
+                                <td>${response[i].voucher_id}</td>
+                                <td>${response[i].date}</td>
+                                <td>${response[i].gr_number}</td>
+                                <td>${response[i].student_name} -- ${response[i].class} --
+                                    ${response[i].section}</td>
+                                <td>${response[i].total}</td>
+                                <td>
+                                    <select class="form-select form-control-sm fs-5 m-auto"
+                                        style="width:80px" id="paymentMethod${i}" onchange="updatePayType('paymentMethod${i}',${response[i].id})">
+                                        <option selected ${!selectedPaymentMethod ? 'selected' : ''} value=""></option>
+                                        <option value="bank" ${selectedPaymentMethod === 'bank' ? 'selected' : ''}>Bank</option>
+                                        <option value="cash" ${selectedPaymentMethod === 'cash' ? 'selected' : ''}>Cash</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text"
+                                        class="form-control form-control-sm fs-5 text-center m-auto"
+                                        style="width:80px" value="${response[i].discount}" id="discount${i}"
+                                        maxlength="2"
+                                        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateDiscount('discount${i}',${response[i].id})">
+                                </td>
+                                <td>
+                                    <input type="text"
+                                        class="form-control form-control-sm fs-5 text-center m-auto"
+                                        style="width:80px" value="${response[i].receipts}" id="receipt${i}"
+                                        maxlength="5"
+                                        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateReceipt('receipt${i}',${response[i].id})">
+                                </td>
+                                <td>
+                                    <input type="text"
+                                        class="form-control form-control-sm fs-5 text-center m-auto" id="balance${i}"
+                                        style="width:80px" value="${response[i].balance}"
+                                        maxlength="5"
+                                        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateBalance('balance${i}',${response[i].id})">
+                                </td>
+                                <td>
+                                    <a href="#"
+                                        class="btn btn-danger btn-sm" onclick="deleteFeeReceipts(${response[i].id})">Delete</a>
+                                </td>
+                            </tr>
+                        `;
+                        }
+                    } else {
+                        document.querySelector("#feeReceiptContainer").innerHTML = `
+                        <tr>
+                            <td colspan="11">
+                                <h1 class="text-center display-4 fs-1 text-uppercase mt-2">
+                                    data
+                                    not found</h1>
+                            </td>
+                        </tr>
+                        `;
+                    }
+
+                }
+            });
+        }
+
+        function updatePayType(elementId, id) {
+            let selectedValue = document.querySelector('#' + elementId).value;
+            $.ajax({
+                type: 'post',
+                url: 'updatePayTypeFeeReceipts',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id,
+                    paytype: selectedValue
+                },
+                success: function(response) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    let data = response.message;
+                    if (data) {
+                        Toast.fire({
+                            icon: "error",
+                            title: data
+                        });
+                    } else {
+                        Toast.fire({
+                            icon: "success",
+                            title: "Pay Type Updated Successfully"
+                        });
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function updateDiscount(elementId, id) {
+            let discountValue = document.querySelector('#' + elementId).value;
+            $.ajax({
+                type: 'post',
+                url: 'updateDiscountFeeReceipts',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id,
+                    discount: discountValue
+                },
+                success: function(response) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    let data = response.message;
+                    if (data) {
+                        Toast.fire({
+                            icon: "error",
+                            title: data
+                        });
+                    } else {
+                        Toast.fire({
+                            icon: "success",
+                            title: "Discount Updated Successfully"
+                        });
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function updateReceipt(elementId, id) {
+            let receiptsValue = document.querySelector('#' + elementId).value;
+            $.ajax({
+                type: 'post',
+                url: 'updateReceiptsFeeReceipts',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id,
+                    receipts: receiptsValue
+                },
+                success: function(response) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    let data = response.message;
+                    if (data) {
+                        Toast.fire({
+                            icon: "error",
+                            title: data
+                        });
+                    } else {
+                        Toast.fire({
+                            icon: "success",
+                            title: "Receipt Updated Successfully"
+                        });
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function updateBalance(elementId, id) {
+            let balanceValue = document.querySelector('#' + elementId).value;
+            $.ajax({
+                type: 'post',
+                url: 'updateBalanceFeeReceipts',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id,
+                    balance: balanceValue
+                },
+                success: function(response) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    let data = response.message;
+                    if (data) {
+                        Toast.fire({
+                            icon: "error",
+                            title: data
+                        });
+                    } else {
+                        Toast.fire({
+                            icon: "success",
+                            title: "Balance Updated Successfully"
+                        });
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function deleteFeeReceipts(id) {
+            Swal.fire({
+                title: "Are you sure?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'get',
+                        url: 'deleteFeeReceipts/' + id,
+                        success: function(response) {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                }
+                            });
+                            let data = response.message;
+                            if (data) {
+                                Toast.fire({
+                                    icon: "error",
+                                    title: data
+                                });
+                            } else {
+                                fetchData("");
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Fee Receipts Delete Successfully"
+                                });
+                            }
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+        }
 
         document.addEventListener("DOMContentLoaded", function() {
-            const resultElement = document.getElementById('result');
+            const resultElement = document.getElementById('gr_number');
             const scannerContainer = document.getElementById('interactive');
 
             document.querySelector(".scanBarCodeBtn").onclick = () => {
@@ -455,7 +659,7 @@
                             toast: true,
                             position: "top-end",
                             showConfirmButton: false,
-                            timer: 3000,
+                            timer: 2000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
                                 toast.onmouseenter = Swal.stopTimer;
@@ -475,14 +679,14 @@
 
             Quagga.onDetected(function(result) {
                 if (result && result.codeResult && result.codeResult.code) {
-                    resultElement.innerText = `Scan result: ${result.codeResult.code}`;
+                    resultElement.value = `${result.codeResult.code}`;
                     Quagga.stop();
                     scannerContainer.style.display = 'none';
                     const Toast = Swal.mixin({
                         toast: true,
                         position: "top-end",
                         showConfirmButton: false,
-                        timer: 3000,
+                        timer: 2000,
                         timerProgressBar: true,
                         didOpen: (toast) => {
                             toast.onmouseenter = Swal.stopTimer;
