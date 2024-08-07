@@ -338,6 +338,7 @@
                                 title: data
                             });
                         } else {
+                            fetchData("");
                             Toast.fire({
                                 icon: "success",
                                 title: "Fee Receipt Added Successfully"
