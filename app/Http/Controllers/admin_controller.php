@@ -6,6 +6,7 @@ use App\Models\Admissionform;
 // use Illuminate\Support\Facades\Validator;
 use App\Models\Classes;
 use App\Models\contactfom;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -278,4 +279,9 @@ class admin_controller extends Controller
         $addmission->delete();
         return back()->with('successdelete',  "Record of student $studentName, son of $fatherName deleted successfully!");
     }
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/login');
+      }
+      
 }
