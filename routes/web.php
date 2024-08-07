@@ -9,6 +9,8 @@ use App\Http\Controllers\ClassFeeVoucherController;
 use App\Http\Controllers\User_Controller;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FeeReceiptsController;
+use App\Http\Controllers\Special_Fees_Generate_Controller;
 
 Route::get('/', function () {
     return view('welcome');
@@ -81,6 +83,11 @@ Route::middleware(['auth','isadmin'])->group(function () {
     Route::get('/students-report', [ReportsController::class, 'studentsreport']);
     
 });
+
+//---------------------fee receipts--------------------//
+
+
+Route::get('/showFeeReceipts', [FeeReceiptsController::class, 'showFeeReceipts'])->name('showFeeReceipts');
 
 //---------------------contactform--------------------//
 

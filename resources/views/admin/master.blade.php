@@ -466,6 +466,25 @@
                             <i class="ri-compasses-2-line"></i>
                             <span>Reports</span>
                             <span class="menu-arrow"></span>
+
+                    <li class="side-nav-item mb-1">
+                        <a href="{{ url('showFeeReceipts') }}" class="side-nav-link">
+                            <i class="ri-book-3-line"></i>
+
+                            <span> Fee Receipts </span>
+                        </a>
+                    </li>
+
+
+
+
+
+                    {{-- <li class="side-nav-item mb-1">
+                        <a data-bs-toggle="collapse" href="#sidebarLayouts" aria-expanded="false"
+                            aria-controls="sidebarLayouts" class="side-nav-link">
+                            <i class="ri-layout-line"></i>
+
+                            <span> Student ledger </span>
                         </a>
                         <div class="collapse" id="sidebarExtendedUI2" data-bs-parent="#sidebarMenu2">
                             <ul class="side-nav-item">
