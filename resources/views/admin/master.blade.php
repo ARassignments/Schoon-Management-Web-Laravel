@@ -309,7 +309,7 @@
                     <li class="dropdown">
                         <a class="nav-link dropdown-toggle arrow-none nav-user" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <span class="account-user-avatar">
-                                <img src="assets/images/users/avatar-1.jpg" alt="user-image" width="32" class="rounded-circle">
+                                <img src="{{asset('assets/images/users/avatar-1.jpg')}}" alt="user-image" width="32" class="rounded-circle">
                             </span>
                             <span class="d-lg-block d-none">
                                 <h5 class="my-0 fw-normal">MedAir Tech</h5>
@@ -346,7 +346,7 @@
                             </a>
 
                             <!-- item-->
-                            <a href="auth-logout-2.html" class="dropdown-item">
+                            <a href="{{route('logout')}}" class="dropdown-item">
                                 <i class="ri-logout-box-line fs-18 align-middle me-1"></i>
                                 <span>Logout</span>
                             </a>
@@ -399,7 +399,7 @@
                     <li class="side-nav-item mb-1">
                         <a href="{{ url('show-addmissionform') }}" class="side-nav-link">
                             <i class="ri-dashboard-3-line"></i>
-                            <span> Addmission Form </span>
+                            <span> Admission Form </span>
                         </a>
                     </li>
 
@@ -461,6 +461,11 @@
                             </ul>
                         </div>
                     </li>
+                    <li class="side-nav-item">
+                        <a data-bs-toggle="collapse" href="#sidebarExtendedUI2" class="side-nav-link side-nav-link-dropdown">
+                            <i class="ri-compasses-2-line"></i>
+                            <span>Reports</span>
+                            <span class="menu-arrow"></span>
 
                     <li class="side-nav-item mb-1">
                         <a href="{{ url('showFeeReceipts') }}" class="side-nav-link">
@@ -481,10 +486,25 @@
 
                             <span> Student ledger </span>
                         </a>
-                        <div class="collapse" id="sidebarLayouts">
-
+                        <div class="collapse" id="sidebarExtendedUI2" data-bs-parent="#sidebarMenu2">
+                            <ul class="side-nav-item">
+                                <li>
+                                    <a class="side-nav-link ps-4" href="students-report">All Students</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="showclassfees">Show Class Fees</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="specialfeesgenerate">Special Fees Generate</a>
+                                </li>
+                            </ul>
                         </div>
                     </li>
+
+
+
+
+                    {{-- 
 
 
                     <li class="side-nav-item mb-1">
