@@ -458,6 +458,9 @@
                                 <li>
                                     <a class="side-nav-link ps-4" href="specialfeesgenerate">Special Fees Generate</a>
                                 </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="showSpecialFees">Show Special Fees</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -530,12 +533,12 @@
                         </div>
                     </li>
                     <li class="side-nav-item mb-1">
-                        <a data-bs-toggle="collapse" href="#sidebarExtendedUI4" class="side-nav-link side-nav-link-dropdown">
+                        <a data-bs-toggle="collapse" href="#sidebarExtendedUI5" class="side-nav-link side-nav-link-dropdown">
                             <i class="ri-compasses-2-line"></i>
                             <span>All Record Reports</span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarExtendedUI4" data-bs-parent="#sidebarMenu2">
+                        <div class="collapse" id="sidebarExtendedUI5" data-bs-parent="#sidebarMenu2">
                             <ul class="side-nav-item">
                                 <li>
                                     <a class="side-nav-link ps-4" href="defaulter-students">Defaulters</a>
