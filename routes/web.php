@@ -27,7 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::middleware(['auth','isadmin'])->group(function () {
+
+Route::middleware(['auth', 'isadmin'])->group(function () {
     Route::get('/dashboard', [admin_controller::class, 'index']);
     //------------admission management------------//
     Route::get('/show-addmissionform', [admin_controller::class, 'addmissionform']);
@@ -80,7 +81,10 @@ Route::middleware(['auth','isadmin'])->group(function () {
     Route::post('/storeclassvoucher', [ClassFeeVoucherController::class, 'store_class_voucher'])->name('store_class_voucher');
     Route::get('/get-gr-number', [ClassFeeVoucherController::class, 'getGrNumber']);
     Route::get('/specialfeesgenerate', [Special_Fees_Generate_Controller::class, 'special_fees_generate']);
-    
+    Route::post('/storeSpecialFeesVoucher', [Special_Fees_Generate_Controller::class, 'storeSpecialFeesVoucher'])->name('storeSpecialFeesVoucher');
+    Route::get('/showSpecialFees', [Special_Fees_Generate_Controller::class, 'showSpecialFees'])->name('showSpecialFees');
+    Route::get('/viewSpecialFeesVoucher/{id}', [Special_Fees_Generate_Controller::class, 'viewSpecialFeesVoucher'])->name('viewSpecialFeesVoucher');
+
     // Reports
     Route::get('/students-report', [ReportsController::class, 'studentsreport']);
     Route::get('/removed-students', [ReportsController::class, 'removestudents']);
@@ -98,29 +102,31 @@ Route::middleware(['auth','isadmin'])->group(function () {
     Route::get('/receipt-details', [ReportsController::class, 'receiptdetails']);
     Route::get('/receipt-reports', [ReportsController::class, 'receiptreports']);
     
+
+
+    //---------------------fee receipts--------------------//
+
+
+    Route::get('/showFeeReceipts', [FeeReceiptsController::class, 'showFeeReceipts'])->name('showFeeReceipts');
+    Route::post('/createFeeReceipts', [FeeReceiptsController::class, 'createFeeReceipts'])->name('createFeeReceipts');
+    Route::get('/showSearchedFeeReceipts/{search?}', [FeeReceiptsController::class, 'showSearchedFeeReceipts'])->name('showSearchedFeeReceipts');
+    Route::post('/updatePayTypeFeeReceipts', [FeeReceiptsController::class, 'updatePayTypeFeeReceipts'])->name('updatePayTypeFeeReceipts');
+    Route::post('/updateDiscountFeeReceipts', [FeeReceiptsController::class, 'updateDiscountFeeReceipts'])->name('updateDiscountFeeReceipts');
+    Route::post('/updateReceiptsFeeReceipts', [FeeReceiptsController::class, 'updateReceiptsFeeReceipts'])->name('updateReceiptsFeeReceipts');
+    Route::post('/updateBalanceFeeReceipts', [FeeReceiptsController::class, 'updateBalanceFeeReceipts'])->name('updateBalanceFeeReceipts');
+    Route::get('/deleteFeeReceipts/{id}', [FeeReceiptsController::class, 'deleteFeeReceipts'])->name('deleteFeeReceipts');
+
+
+    //---------------------contactform--------------------//
+
+
+    Route::get('/ContactForm', [contactform::class, 'index']);
+    Route::post('/submit-form', [contactform::class, 'store'])->name('contact.store');
+    Route::post('/send-reply', [contactform::class, 'sendReply'])->name('send.reply');
+    Route::post('/clear-notification', [contactform::class, 'clearNotification'])->name('clear-notification');
+    Route::post('/clear-all-notifications', [contactform::class, 'clearAllNotifications'])->name('clear-all-notifications');
+
 });
-
-//---------------------fee receipts--------------------//
-
-
-Route::get('/showFeeReceipts', [FeeReceiptsController::class, 'showFeeReceipts'])->name('showFeeReceipts');
-Route::post('/createFeeReceipts', [FeeReceiptsController::class, 'createFeeReceipts'])->name('createFeeReceipts');
-Route::get('/showSearchedFeeReceipts/{search?}', [FeeReceiptsController::class, 'showSearchedFeeReceipts'])->name('showSearchedFeeReceipts');
-Route::post('/updatePayTypeFeeReceipts', [FeeReceiptsController::class, 'updatePayTypeFeeReceipts'])->name('updatePayTypeFeeReceipts');
-Route::post('/updateDiscountFeeReceipts', [FeeReceiptsController::class, 'updateDiscountFeeReceipts'])->name('updateDiscountFeeReceipts');
-Route::post('/updateReceiptsFeeReceipts', [FeeReceiptsController::class, 'updateReceiptsFeeReceipts'])->name('updateReceiptsFeeReceipts');
-Route::post('/updateBalanceFeeReceipts', [FeeReceiptsController::class, 'updateBalanceFeeReceipts'])->name('updateBalanceFeeReceipts');
-Route::get('/deleteFeeReceipts/{id}', [FeeReceiptsController::class, 'deleteFeeReceipts'])->name('deleteFeeReceipts');
-
-//---------------------contactform--------------------//
-
-
-Route::get('/ContactForm', [contactform::class, 'index']);
-Route::post('/submit-form', [contactform::class, 'store'])->name('contact.store');
-Route::post('/send-reply', [contactform::class, 'sendReply'])->name('send.reply');
-Route::post('/clear-notification', [contactform::class, 'clearNotification'])->name('clear-notification');
-Route::post('/clear-all-notifications', [contactform::class, 'clearAllNotifications'])->name('clear-all-notifications');
-
 
 //------------User Managment-----------//
 Route::get('/userHome', [User_Controller::class, 'index']);
@@ -131,4 +137,4 @@ Route::get('/auth-registers', [User_Controller::class, 'register']);
 Route::get('/auth-logins', [User_Controller::class, 'login']);
 Route::get('/getclass/{class}', [ClassFeeVoucherController::class, 'getFeesForClass']);
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

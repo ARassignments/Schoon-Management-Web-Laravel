@@ -458,6 +458,9 @@
                                 <li>
                                     <a class="side-nav-link ps-4" href="specialfeesgenerate">Special Fees Generate</a>
                                 </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="showSpecialFees">Show Special Fees</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
