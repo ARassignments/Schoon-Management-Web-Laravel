@@ -91,6 +91,12 @@ Route::middleware(['auth','isadmin'])->group(function () {
     Route::get('/left-students-record', [ReportsController::class, 'leftstudentsreport']);
     Route::get('/pass-students-record', [ReportsController::class, 'passstudentsreport']);
     Route::get('/current-students-record', [ReportsController::class, 'currentstudentsreport']);
+    Route::get('/defaulter-students', [ReportsController::class, 'defaulterstudents']);
+    Route::get('/students-ledger', [ReportsController::class, 'studentsledger']);
+    Route::get('/allstudents-list', [ReportsController::class, 'studentslist']);
+    Route::get('/individual-students', [ReportsController::class, 'individualstudents']);
+    Route::get('/receipt-details', [ReportsController::class, 'receiptdetails']);
+    Route::get('/receipt-reports', [ReportsController::class, 'receiptreports']);
     
 });
 

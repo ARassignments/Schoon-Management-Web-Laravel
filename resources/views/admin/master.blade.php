@@ -530,12 +530,12 @@
                         </div>
                     </li>
                     <li class="side-nav-item mb-1">
-                        <a data-bs-toggle="collapse" href="#sidebarExtendedUI4" class="side-nav-link side-nav-link-dropdown">
+                        <a data-bs-toggle="collapse" href="#sidebarExtendedUI5" class="side-nav-link side-nav-link-dropdown">
                             <i class="ri-compasses-2-line"></i>
                             <span>All Record Reports</span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarExtendedUI4" data-bs-parent="#sidebarMenu2">
+                        <div class="collapse" id="sidebarExtendedUI5" data-bs-parent="#sidebarMenu2">
                             <ul class="side-nav-item">
                                 <li>
                                     <a class="side-nav-link ps-4" href="defaulter-students">Defaulters</a>
@@ -544,16 +544,16 @@
                                     <a class="side-nav-link ps-4" href="students-ledger">Students Ledger</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="students-list">Students List</a>
+                                    <a class="side-nav-link ps-4" href="allstudents-list">Students List</a>
                                 </li>
                                 <li>
                                     <a class="side-nav-link ps-4" href="individual-students">Individual Reports</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="receipt-students">Receipt Details</a>
+                                    <a class="side-nav-link ps-4" href="receipt-details">Receipt Details</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="current-students-record">Receipt Reports</a>
+                                    <a class="side-nav-link ps-4" href="receipt-reports">Receipt Reports</a>
                                 </li>
                             </ul>
                         </div>

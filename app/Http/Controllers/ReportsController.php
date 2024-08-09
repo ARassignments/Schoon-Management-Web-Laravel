@@ -72,5 +72,47 @@ class ReportsController extends Controller
         $notificationCount = contactfom::where('is_new', true)->count();
         return view('admin.reports.currentstudentsreport',compact('add','notificationCount','contacts'));
     }
+    public function defaulterstudents()
+    {
+        $add = AdmissionForm::where('status','=','Current')->get();
+        $contacts = contactfom::all();
+        $notificationCount = contactfom::where('is_new', true)->count();
+        return view('admin.reports.defaulterstudents',compact('add','notificationCount','contacts'));
+    }
+    public function studentsledger()
+    {
+        $add = AdmissionForm::where('status','=','Current')->get();
+        $contacts = contactfom::all();
+        $notificationCount = contactfom::where('is_new', true)->count();
+        return view('admin.reports.studentsledger',compact('add','notificationCount','contacts'));
+    }
+    public function studentslist()
+    {
+        $add = AdmissionForm::all();
+        $contacts = contactfom::all();
+        $notificationCount = contactfom::where('is_new', true)->count();
+        return view('admin.reports.studentslist',compact('add','notificationCount','contacts'));
+    }
+    public function individualstudents()
+    {
+        $add = AdmissionForm::where('status','=','Current')->get();
+        $contacts = contactfom::all();
+        $notificationCount = contactfom::where('is_new', true)->count();
+        return view('admin.reports.currentstudentsreport',compact('add','notificationCount','contacts'));
+    }
+    public function receiptdetails()
+    {
+        $add = AdmissionForm::where('status','=','Current')->get();
+        $contacts = contactfom::all();
+        $notificationCount = contactfom::where('is_new', true)->count();
+        return view('admin.reports.currentstudentsreport',compact('add','notificationCount','contacts'));
+    }
+    public function receiptreports()
+    {
+        $add = AdmissionForm::where('status','=','Current')->get();
+        $contacts = contactfom::all();
+        $notificationCount = contactfom::where('is_new', true)->count();
+        return view('admin.reports.currentstudentsreport',compact('add','notificationCount','contacts'));
+    }
     
 }
