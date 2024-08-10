@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\AdmissionForm;
 use App\Models\ContactFom;
+use App\Models\ClassFeeVoucher;
+use App\Models\FeeReceipt;
 use Illuminate\Http\Request;
 
 class ReportsController extends Controller
@@ -74,7 +76,7 @@ class ReportsController extends Controller
     }
     public function defaulterstudents()
     {
-        $add = AdmissionForm::where('status','=','Current')->get();
+        $add = ClassFeeVoucher::with('students_add')->where('pre_dues', '>', 0)->get();
         $contacts = contactfom::all();
         $notificationCount = contactfom::where('is_new', true)->count();
         return view('admin.reports.defaulterstudents',compact('add','notificationCount','contacts'));
@@ -102,7 +104,7 @@ class ReportsController extends Controller
     }
     public function receiptdetails()
     {
-        $add = AdmissionForm::where('status','=','Current')->get();
+        $add = FeeReceipt::with('students_add')->get();
         $contacts = contactfom::all();
         $notificationCount = contactfom::where('is_new', true)->count();
         return view('admin.reports.currentstudentsreport',compact('add','notificationCount','contacts'));

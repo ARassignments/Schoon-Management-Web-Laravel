@@ -58,7 +58,7 @@
                                 <div
                                     class="card-body-container p-3 d-flex align-items-center justify-content-end shadow rounded mt-4">
 
-                                    <h5 class="header-title mb-0 me-auto text-white">Students Reports</h5>
+                                    <h5 class="header-title mb-0 me-auto text-white">Students List</h5>
 
                                 </div>
                                 @if (session('success'))

@@ -58,33 +58,11 @@
                                 <div
                                     class="card-body-container p-3 d-flex align-items-center justify-content-end shadow rounded mt-4">
 
-                                    <h5 class="header-title mb-0 me-auto text-white">Students Reports</h5>
+                                    <h5 class="header-title mb-0 me-auto text-white">Current Students Reports</h5>
 
                                 </div>
-                                @if (session('success'))
-                                    <div id="successMessage" class="alert alert-success fade show mt-3 text-center"
-                                        role="alert">
-                                        {{ session('success') }}
-                                    </div>
-                                @endif
-                                @if (session('successdelete'))
-                                    <div id="successMessage" class="alert alert-danger fade show mt-3 text-center"
-                                        role="alert">
-                                        {{ session('successdelete') }}
-                                    </div>
-                                @endif
-                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        var successMessage = document.getElementById('successMessage');
-                                        if (successMessage) {
-                                            setTimeout(function() {
-                                                var bsAlert = new bootstrap.Alert(successMessage);
-                                                bsAlert.close(); // This will trigger the fade-out animation
-                                            }, 3000); // Display duration
-                                        }
-                                    });
-                                </script>
+                              
+                                
                                 <div class="feeallcard feeallshadow">
                                     <div id="yearly-sales-collapse" class="collapse show mt-4">
 

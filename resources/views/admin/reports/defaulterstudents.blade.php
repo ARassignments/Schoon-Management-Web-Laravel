@@ -58,33 +58,10 @@
                                 <div
                                     class="card-body-container p-3 d-flex align-items-center justify-content-end shadow rounded mt-4">
 
-                                    <h5 class="header-title mb-0 me-auto text-white">Students Reports</h5>
+                                    <h5 class="header-title mb-0 me-auto text-white">Defaulters Students Reports</h5>
 
                                 </div>
-                                @if (session('success'))
-                                    <div id="successMessage" class="alert alert-success fade show mt-3 text-center"
-                                        role="alert">
-                                        {{ session('success') }}
-                                    </div>
-                                @endif
-                                @if (session('successdelete'))
-                                    <div id="successMessage" class="alert alert-danger fade show mt-3 text-center"
-                                        role="alert">
-                                        {{ session('successdelete') }}
-                                    </div>
-                                @endif
-                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        var successMessage = document.getElementById('successMessage');
-                                        if (successMessage) {
-                                            setTimeout(function() {
-                                                var bsAlert = new bootstrap.Alert(successMessage);
-                                                bsAlert.close(); // This will trigger the fade-out animation
-                                            }, 3000); // Display duration
-                                        }
-                                    });
-                                </script>
+                        
                                 <div class="feeallcard feeallshadow">
                                     <div id="yearly-sales-collapse" class="collapse show mt-4">
 
@@ -107,9 +84,7 @@
                                                         <th>Date Of Birth</th>
                                                         <th>Religion</th>
                                                         <th>Address</th>
-                                                        <th>Status</th>
-                                                        <th>Created Date</th>
-                                                        <th>Updated Date</th>
+                                                       
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -121,22 +96,19 @@
                                                         <tr class="text-center">
                                                             <td>{{ $i++}}</td>
                                                             <td>{{ $addmission->gr_number }}</td>
-                                                            <td>{{ $addmission->student_name }}</td>
-                                                            <td>{{ $addmission->father_name }}</td>
-                                                            <td>{{ $addmission->student_age }}</td>
-                                                            <td>{{ $addmission->mobile_number }}</td>
-                                                            <td>{{ $addmission->class }}</td>
-                                                            <td>{{ $addmission->current_class }}</td>
-                                                            <td>{{ $addmission->section }}</td>
-                                                            <td>{{ $addmission->last_institute }}</td>
-                                                            <td>{{ $addmission->fees }}</td>
-                                                            <td>{{ $addmission->date_of_addmission }}</td>
-                                                            <td>{{ $addmission->date_of_birth }}</td>
-                                                            <td>{{ $addmission->religion }}</td>
-                                                            <td>{{ $addmission->address }}</td>
-                                                            <td>{{ $addmission->Status }}</td>
-                                                            <td>{{ $addmission->created_at }}</td>
-                                                            <td>{{ $addmission->updated_at }}</td>
+                                                            <td>{{ $addmission->students_add->student_name }}</td>
+                                                            <td>{{ $addmission->students_add->father_name }}</td>
+                                                            <td>{{ $addmission->students_add->student_age }}</td>
+                                                            <td>{{ $addmission->students_add->mobile_number }}</td>
+                                                            <td>{{ $addmission->students_add->class }}</td>
+                                                            <td>{{ $addmission->students_add->current_class }}</td>
+                                                            <td>{{ $addmission->students_add->section }}</td>
+                                                            <td>{{ $addmission->students_add->last_institute }}</td>
+                                                            <td>{{ $addmission->students_add->fees }}</td>
+                                                            <td>{{ $addmission->students_add->date_of_addmission }}</td>
+                                                            <td>{{ $addmission->students_add->date_of_birth }}</td>
+                                                            <td>{{ $addmission->students_add->religion }}</td>
+                                                            <td>{{ $addmission->students_add->address }}</td>
                                                         </tr>
                                                     @endforeach
 
