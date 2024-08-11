@@ -116,5 +116,10 @@ class ReportsController extends Controller
         $notificationCount = contactfom::where('is_new', true)->count();
         return view('admin.reports.receiptreports',compact('add','notificationCount','contacts'));
     }
+    public function studentsLedgerReportView($id){
+        $notificationCount = contactfom::where('is_new', true)->count();
+        $contacts = contactfom::all();
+        return view('admin.studentLedgerReportView', compact('notificationCount', 'contacts'));
+    }
     
 }

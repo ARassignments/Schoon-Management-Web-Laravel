@@ -28,6 +28,7 @@
                                                         <th>Section</th>
                                                         <th>Fees</th>
                                                         <th>Previous Dues</th>
+                                                        <th>Actions</th>
                                                       
                                                     </tr>
                                                 </thead>
@@ -46,6 +47,9 @@
                                                             <td>{{ $addmission->students_add->section }}</td>
                                                             <td>{{ $addmission->students_add->fees }}</td>
                                                             <td>{{ $addmission->previous_dues }}</td>
+                                                            <td>
+                                                                <a href="{{url('studentsLedgerReportView',1)}}" class="btn btn-primary btn-sm">View</a>
+                                                            </td>
                                                            
                                                         </tr>
                                                     @endforeach
