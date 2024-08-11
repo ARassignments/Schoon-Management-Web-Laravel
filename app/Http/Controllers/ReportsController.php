@@ -83,7 +83,7 @@ class ReportsController extends Controller
     }
     public function studentsledger()
     {
-        $add = AdmissionForm::where('status','=','Current')->get();
+        $add = ClassFeeVoucher::with('students_add')->where('previous_dues','>',0)->get();
         $contacts = contactfom::all();
         $notificationCount = contactfom::where('is_new', true)->count();
         return view('admin.reports.studentsledger',compact('add','notificationCount','contacts'));
@@ -100,21 +100,21 @@ class ReportsController extends Controller
         $add = AdmissionForm::where('status','=','Current')->get();
         $contacts = contactfom::all();
         $notificationCount = contactfom::where('is_new', true)->count();
-        return view('admin.reports.currentstudentsreport',compact('add','notificationCount','contacts'));
+        return view('admin.reports.individualstudents',compact('add','notificationCount','contacts'));
     }
     public function receiptdetails()
     {
         $add = FeeReceipt::with('students_add')->get();
         $contacts = contactfom::all();
         $notificationCount = contactfom::where('is_new', true)->count();
-        return view('admin.reports.currentstudentsreport',compact('add','notificationCount','contacts'));
+        return view('admin.reports.receiptdetails',compact('add','notificationCount','contacts'));
     }
     public function receiptreports()
     {
-        $add = AdmissionForm::where('status','=','Current')->get();
+        $add = FeeReceipt::with('students_add')->get();
         $contacts = contactfom::all();
         $notificationCount = contactfom::where('is_new', true)->count();
-        return view('admin.reports.currentstudentsreport',compact('add','notificationCount','contacts'));
+        return view('admin.reports.receiptreports',compact('add','notificationCount','contacts'));
     }
     
 }
