@@ -2,26 +2,17 @@
 
 namespace App\Http\Controllers;
 
-
-use Illuminate\Http\Request;
-use App\Models\contactfom;
-use Barryvdh\DomPDF\Facade as PDF;
-use Illuminate\Support\Facades\Log;
-
-use App\Models\stdpro;
 use App\Models\Admissionform;
 use App\Models\ClassFeeVoucher;
-use App\Models\Classes;
-
+use App\Models\contactfom;
 use App\Models\Fees;
-
+use Illuminate\Http\Request;
 
 class ClassFeeVoucherController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-
 
     /**
      * Show the form for creating a new resource.
@@ -118,7 +109,6 @@ class ClassFeeVoucherController extends Controller
         return view('admin.voucher-class-fees', compact('notificationCount', 'contacts', 'voucher'));
     }
 
-
     // public function store_class_voucher(Request $request)
     // {
     //     // Debugging
@@ -156,8 +146,6 @@ class ClassFeeVoucherController extends Controller
 
     //     return redirect()->back()->with('success', 'Class fee voucher created successfully!');
     // }
-
-
 
     // public function store_class_voucher(Request $request)
     // {
@@ -252,12 +240,17 @@ class ClassFeeVoucherController extends Controller
                 'pre_dues' => 'pre_dues',
                 'id_card' => 'id_card',
                 'board_fee' => 'board_fee',
-                'stationary' => 'stationary'
+                'stationary' => 'stationary',
             ];
+
+            $total = 0;
 
             foreach ($fee_mapping as $formKey => $dbColumn) {
                 $classvoucher->{$dbColumn} = isset($fees[$formKey]) ? $fees[$formKey] : 0;
+                $total += $classvoucher->{$dbColumn};
             }
+
+            $classvoucher->total = $total;
 
             $classvoucher->save();
         }
@@ -265,22 +258,17 @@ class ClassFeeVoucherController extends Controller
         return redirect()->back()->with('success', 'Class fee vouchers created successfully!');
     }
 
-
     public function getFeesForClass($class)
     {
         $fees = Fees::where('class', $class)->first();
         return response()->json($fees);
     }
 
+    public function store(Request $request)
+    {}
 
-
-    public function store(Request $request) {}
-
-
-
-
-    public function generatePDF() {}
-
+    public function generatePDF()
+    {}
 
     /**
      * Display the specified resource.

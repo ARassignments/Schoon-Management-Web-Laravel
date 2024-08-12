@@ -1,5 +1,8 @@
 @extends('admin.master')
 @section('content')
+<head>
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
+</head>
     <div class="content-page mt-4">
         <div class="content">
             <!-- Start Content-->
@@ -19,13 +22,14 @@
                                     <div id="yearly-sales-collapse" class="collapse show mt-4">
 
                                         <div class="table-responsive">
-                                            <table class="table table-nowrap table-hover mb-0">
+                                            <table class="table table-hover mb-0" id="myTable">
                                                 <thead>
                                                     <tr class="text-center">
-                                                        <th>Id</th>
-                                                        <th>Class</th>
-                                                        <th>Total Students</th>
-                                                       
+                                                        <th class="text-center">Id</th>
+                                                        <th class="text-center">Class</th>
+                                                        <th class="text-center">Total Students</th>
+                                                        <th></th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -38,6 +42,9 @@
                                                             <td>{{ $i++}}</td>
                                                             <td>{{ $addmission->class }}</td>
                                                             <td>{{ $addmission->total }}</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -52,4 +59,9 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
 @endsection

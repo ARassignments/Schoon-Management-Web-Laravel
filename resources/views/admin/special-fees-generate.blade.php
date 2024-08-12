@@ -173,7 +173,7 @@
 
                         </div>
                         <div class="container mt-5 d-none">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" >
                                 <thead>
                                     <tr class="our-color-1">
                                         <th>G. R. No.</th>

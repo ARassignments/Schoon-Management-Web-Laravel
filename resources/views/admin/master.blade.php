@@ -428,9 +428,7 @@
                         </a>
                         <div class="collapse" id="sidebarExtendedUI" data-bs-parent="#sidebarMenu1">
                             <ul class="side-nav-item">
-                                <li>
-                                    <!-- <a class="side-nav-link ps-4" href="{{ url('fee') }}">Fees Name</a> -->
-                                </li>
+                               
                                 <li>
                                     <a class="side-nav-link ps-4" href="{{ url('feeallocation') }}">Fees Allocation</a>
                                 </li>
@@ -478,7 +476,7 @@
                             <span>General Register Reports</span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarExtendedUI2" data-bs-parent="#sidebarMenu2">
+                        <div class="collapse" id="sidebarExtendedUI2" data-bs-parent="#sidebarMenu3">
                             <ul class="side-nav-item">
                                 <li>
                                     <a class="side-nav-link ps-4" href="students-report">All Students</a>
@@ -498,7 +496,7 @@
                             <span>Students Strength Reports</span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarExtendedUI3" data-bs-parent="#sidebarMenu2">
+                        <div class="collapse" id="sidebarExtendedUI3" data-bs-parent="#sidebarMenu4">
                             <ul class="side-nav-item">
                                 <li>
                                     <a class="side-nav-link ps-4" href="all-students">All Students</a>
@@ -515,7 +513,7 @@
                             <span>Students Record Reports</span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarExtendedUI4" data-bs-parent="#sidebarMenu2">
+                        <div class="collapse" id="sidebarExtendedUI4" data-bs-parent="#sidebarMenu5">
                             <ul class="side-nav-item">
                                 <li>
                                     <a class="side-nav-link ps-4" href="all-students-record">All Students</a>
@@ -538,7 +536,7 @@
                             <span>All Record Reports</span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarExtendedUI5" data-bs-parent="#sidebarMenu2">
+                        <div class="collapse" id="sidebarExtendedUI5" data-bs-parent="#sidebarMenu6">
                             <ul class="side-nav-item">
                                 <li>
                                     <a class="side-nav-link ps-4" href="defaulter-students">Defaulters</a>
@@ -561,55 +559,8 @@
                             </ul>
                         </div>
                     </li>
-               
-
-
-
-
-                    {{-- <li class="side-nav-item mb-1">
-                        <a data-bs-toggle="collapse" href="#sidebarLayouts" aria-expanded="false"
-                            aria-controls="sidebarLayouts" class="side-nav-link">
-                            <i class="ri-layout-line"></i>
-
-                            <span> Student ledger </span>
-                        </a>
-                        <div class="collapse" id="sidebarExtendedUI2" data-bs-parent="#sidebarMenu2">
-                            <ul class="side-nav-item">
-                                <li>
-                                    <a class="side-nav-link ps-4" href="students-report">All Students</a>
-                                </li>
-                                <li>
-                                    <a class="side-nav-link ps-4" href="showclassfees">Show Class Fees</a>
-                                </li>
-                                <li>
-                                    <a class="side-nav-link ps-4" href="specialfeesgenerate">Special Fees Generate</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-                    {{-- 
-
-
-                    <li class="side-nav-item mb-1">
-                        <a data-bs-toggle="collapse" href="#sidebarLayouts" aria-expanded="false"
-                            aria-controls="sidebarLayouts" class="side-nav-link">
-                            <i class="ri-layout-line"></i>
-
-                            <span> Fee Entry Form </span>
-                        </a>
-                        <div class="collapse" id="sidebarLayouts">
-
-                        </div>
-                    </li> --}}
-
-
                 </ul>
                 <!--- End Sidemenu -->
-
                 <div class="clearfix"></div>
             </div>
         </div>

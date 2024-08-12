@@ -1,5 +1,8 @@
 @extends('admin.master')
 @section('content')
+<head>
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
+</head>
     <div class="content-page mt-4">
         <div class="content">
             <div class="row justify-content-center">

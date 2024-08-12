@@ -1,5 +1,8 @@
 @extends('admin.master')
 @section('content')
+<head>
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
+</head>
 <!-- ============================================================== -->
 <!-- Start Page Content here -->
 <!-- ============================================================== -->
@@ -81,18 +84,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
             <div class="row">
                 <div class="col-xl-12 ">
                     <!-- Todo-->
@@ -103,26 +94,13 @@
                                     <a data-bs-toggle="collapse" href="#yearly-sales-collapse" role="button" aria-expanded="false" aria-controls="yearly-sales-collapse"><i class="ri-subtract-line text-white"></i></a>
                                 </div>
                                 <h5 class="header-title mb-0 me-auto text-white">Admission Form</h5>
-
-                                <!-- Searchbar Start -->
-                                <!-- <div class="app-search ms-3">
-                                        <form>
-                                            <div class="input-group">
-                                                <input type="search" class="form-control" placeholder="Search...">
-                                                <span class="ri-search-line search-icon text-muted"></span>
-                                            </div>
-                                        </form>
-                                    </div> -->
-                                <form class="app-search" action="" method="GET">
-                                    <input class="search-input" name="search" placeholder="Search..." type="search" value="{{ $search }}">
-
-                                </form>
+                                
                                 <!-- Searchbar End -->
                             </div>
                             <div class="feeallcard feeallshadow">
                                 <div id="yearly-sales-collapse" class="collapse show mt-4">
                                     <div class="table-responsive">
-                                        <table class="table table-nowrap table-hover mb-0 text-center" id="studentTable">
+                                        <table class="table table-nowrap table-hover mb-0 text-center" id="myTable">
                                             <thead>
                                                 <tr class="text-center"> 
                                                     <th>GR Number</th>
@@ -205,87 +183,12 @@
                     </div> <!-- end card-->
                 </div> <!-- end col-->
             </div>
-
-
-
-
-
-
-
-
-
-
-            {{-- <div class="row">
-                    <div class="col-xl-12">
-                        <!-- Todo-->
-                        <div class="">
-                            <div class="card-body p-0">
-                                <div
-                                    class="card-body-container p-3 d-flex align-items-center justify-content-end shadow rounded">
-                                    <div class="card-widgets me-3">
-                                        <a href="javascript:;" data-bs-toggle="reload"><i
-                                                class="ri-refresh-line text-white"></i></a>
-                                        <a data-bs-toggle="collapse" href="#yearly-sales-collapse" role="button"
-                                            aria-expanded="false" aria-controls="yearly-sales-collapse"><i
-                                                class="ri-subtract-line text-white"></i></a>
-                                    </div>
-                                    <h5 class="header-title mb-0 me-auto text-white">Projects</h5>
-
-                                    <!-- Searchbar Start -->
-                                    <!-- <div class="app-search ms-3">
-                                        <form>
-                                            <div class="input-group">
-                                                <input type="search" class="form-control" placeholder="Search...">
-                                                <span class="ri-search-line search-icon text-muted"></span>
-                                            </div>
-                                        </form>
-                                    </div> -->
-                                    <input class="search-input" name="text" placeholder="Search..." type="search">
-                                    <!-- Searchbar End -->
-                                </div>
-                                <div id="yearly-sales-collapse" class="collapse show mt-5">
-                                 
-                                    <div class="table-responsive">
-                                        <table class="table table-nowrap table-hover mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Id</th>
-                                                    <th>Project Name</th>
-                                                    <th>Start Date</th>
-                                                    <th>Due Date</th>
-                                                    <th>Status</th>
-                                                    <th>Assign</th>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-
-                                                <tr>
-
-                                                    <td>7</td>
-                                                    <td>Velonic Admin v1.3</td>
-                                                    <td>01/01/2015</td>
-                                                    <td>31/05/2015</td>
-                                                    <td><span class="badge bg-danger-subtle text-danger">Cool</span></td>
-                                                    <td>Techzaa Studio</td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div> <!-- end card-->
-                    </div> <!-- end col-->
-                </div> --}}
-            <!-- end row -->
-
         </div>
-        <!-- container -->
-
     </div>
     <!-- content -->
-
-
-    @endsection
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
+@endsection

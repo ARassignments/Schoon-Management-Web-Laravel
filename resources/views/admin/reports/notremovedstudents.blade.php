@@ -1,5 +1,8 @@
 @extends('admin.master')
 @section('content')
+<head>
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
+</head>
     <div class="content-page mt-4">
         <div class="content">
             <!-- Start Content-->
@@ -19,7 +22,7 @@
                                     <div id="yearly-sales-collapse" class="collapse show mt-4">
 
                                         <div class="table-responsive">
-                                            <table class="table table-nowrap table-hover mb-0">
+                                            <table class="table table-nowrap table-hover mb-0" id="myTable">
                                                 <thead>
                                                     <tr class="text-center">
                                                         <th>Id</th>
@@ -62,4 +65,9 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
 @endsection

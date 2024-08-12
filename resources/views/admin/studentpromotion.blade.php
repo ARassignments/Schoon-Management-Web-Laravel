@@ -1,5 +1,8 @@
 @extends('admin.master')
 @section('content')
+<head>
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
+</head>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- ============================================================== -->
 <!-- Start Page Content here -->
@@ -22,128 +25,7 @@
                                             </div> -->
                                 <h5 class="header-title mb-0 me-auto text-white px-4">Student Promotion</h5>
 
-                                <!-- Searchbar Start -->
-                                <!-- <div class="app-search ms-3">
-                                                    <form>
-                                                        <div class="input-group">
-                                                            <input type="search" class="form-control" placeholder="Search...">
-                                                            <span class="ri-search-line search-icon text-muted"></span>
-                                                        </div>
-                                                    </form>
-                                                </div> -->
-                                <input class="search-input" name="text" placeholder="Search..." type="search">
-                                <!-- Searchbar End -->
                             </div>
-
-
-
-
-                            {{-- <form action="{{ route('promote.students') }}" method="post" id="promoteForm">
-                                @csrf
-                                <div class="card-body mt-3">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <h4 class="text-center mt-2"><b>From</b></h4>
-                                            <hr>
-                                            <div class="text-center">
-                                                <label class="form-label text-center position-absolute"
-                                                    style="left: 0;">
-                                                    <h5><b>Class</b></h5>
-                                                </label>
-                                                <div class="d-flex justify-content-center">
-                                                    <select name="from_class" class="form-control mb-3"
-                                                        style="width: 70%;">
-                                                        <option disabled selected>Select Class</option>
-                                                        @foreach ($class as $classes)
-                                                        <option value="{{ $classes }}">{{ $classes }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="text-center">
-                                                <label class="form-label text-center position-absolute"
-                                                    style="left: 0;">
-                                                    <h5><b>Section</b></h5>
-                                                </label>
-                                                <div class="d-flex justify-content-center">
-                                                    <select name="from_section" class="form-control mb-3"
-                                                        style="width: 70%;">
-                                                        <option disabled selected>Select Section</option>
-                                                        @foreach ($sections as $section)
-                                                        <option value="{{ $section }}">{{ $section }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-6 mt-3 mt-lg-0">
-                                            <h4 class="text-center mt-2"><b>To</b></h4>
-                                            <hr>
-                                            <div class="text-center">
-                                                <div class="d-flex justify-content-center">
-                                                    <select name="to_class" class="form-control mb-3"
-                                                        style="width: 80%;">
-                                                        <option disabled selected>Select Class</option>
-                                                        @foreach ($class as $classes)
-                                                        <option value="{{ $classes }}">{{ $classes }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="text-center">
-                                                <div class="d-flex justify-content-center">
-                                                    <select name="to_section" class="form-control mb-3"
-                                                        style="width: 80%;">
-                                                        <option disabled selected>Select Section</option>
-                                                        @foreach ($sections as $section)
-                                                        <option value="{{ $section }}">{{ $section }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary our-color-1">Promote Students</button>
-                                </div>
-                            </form>
-
-                            <div class="feeallcard feeallshadow">
-                                <div id="yearly-sales-collapse" class="collapse show mt-5">
-                                    <div class="table-responsive">
-                                        <table id="students_table" class="table table-nowrap table-hover mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>GR Number</th>
-                                                    <th>Student Name</th>
-                                                    <th>Father Name</th>
-                                                    <th>Excluded</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($add as $admission)
-                                                <tr>
-                                                    <td>{{ $admission->gr_number }}</td>
-                                                    <td>{{ $admission->student_name }}</td>
-                                                    <td>{{ $admission->father_name }}</td>
-                                                    <td>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input studentCheckbox"
-                                                                type="checkbox" value="{{ $admission->id }}"
-                                                                id="studentCheckbox{{ $admission->id }}">
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div> --}}
                             <form id="promoteForm">
                                 @csrf
                                 <div class="card-body mt-3">
@@ -295,7 +177,7 @@
                             <div class="feeallcard feeallshadow">
                                 <div id="yearly-sales-collapse" class="collapse show mt-5">
                                     <div class="table-responsive">
-                                        <table id="students_table" class="table table-nowrap table-hover mb-0 text-center">
+                                        <table class="table table-nowrap table-hover mb-0 text-center" id="myTable">
                                             <thead>
                                                 <tr>
                                                     <th>GR Number</th>
@@ -344,6 +226,10 @@
     </div>
     <!-- content -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
     <!-- Include SweetAlert2 CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 

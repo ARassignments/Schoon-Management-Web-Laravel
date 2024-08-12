@@ -14,9 +14,9 @@ use App\Http\Controllers\FeeReceiptsController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\Special_Fees_Generate_Controller;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -129,7 +129,7 @@ Route::middleware(['auth', 'isadmin'])->group(function () {
 });
 
 //------------User Managment-----------//
-Route::get('/userHome', [User_Controller::class, 'index']);
+Route::get('/', [User_Controller::class, 'index']);
 Route::get('/userAbout', [User_Controller::class, 'about']);
 Route::get('/ourprogram', [User_Controller::class, 'ourprograms']);
 Route::get('/contactform', [User_Controller::class, 'contactForm']);
