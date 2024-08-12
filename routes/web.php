@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'isadmin'])->group(function () {
+// Route::middleware(['auth', 'isadmin'])->group(function () {
     Route::get('/dashboard', [admin_controller::class, 'index']);
     //------------admission management------------//
     Route::get('/show-addmissionform', [admin_controller::class, 'addmissionform']);
@@ -101,6 +101,7 @@ Route::middleware(['auth', 'isadmin'])->group(function () {
     Route::get('/individual-students', [ReportsController::class, 'individualstudents']);
     Route::get('/receipt-details', [ReportsController::class, 'receiptdetails']);
     Route::get('/receipt-reports', [ReportsController::class, 'receiptreports']);
+    Route::get('/studentsLedgerReportView/{id}', [ReportsController::class, 'studentsLedgerReportView'])->name('studentsLedgerReportView');
     
 
 
@@ -126,7 +127,7 @@ Route::middleware(['auth', 'isadmin'])->group(function () {
     Route::post('/clear-notification', [contactform::class, 'clearNotification'])->name('clear-notification');
     Route::post('/clear-all-notifications', [contactform::class, 'clearAllNotifications'])->name('clear-all-notifications');
 
-});
+// });
 
 //------------User Managment-----------//
 Route::get('/', [User_Controller::class, 'index']);
