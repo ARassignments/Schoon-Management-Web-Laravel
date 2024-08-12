@@ -25,11 +25,9 @@
                                             <table class="table table-hover mb-0" id="myTable">
                                                 <thead>
                                                     <tr class="text-center">
-                                                        <th class="text-center">Id</th>
+                                                        <th class="text-start">Id</th>
                                                         <th class="text-center">Class</th>
-                                                        <th class="text-center">Total Students</th>
-                                                        <th></th>
-                                                        <th></th>
+                                                        <th class="text-end">Total Students</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -39,11 +37,9 @@
                                                     @endphp
                                                     @foreach ($add as $addmission)
                                                         <tr class="text-center">
-                                                            <td>{{ $i++}}</td>
+                                                            <td class="text-start">{{ $i++}}</td>
                                                             <td>{{ $addmission->class }}</td>
-                                                            <td>{{ $addmission->total }}</td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td class="text-end">{{ $addmission->total }}</td>
                                                             
                                                         </tr>
                                                     @endforeach

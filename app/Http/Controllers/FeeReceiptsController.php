@@ -89,7 +89,7 @@ class FeeReceiptsController extends Controller
                 $feeReceipt->total = $latestFeeVoucher->total;
                 $feeReceipt->paytype = "";
                 $feeReceipt->discount = 0;
-                $feeReceipt->receipts = 0;
+                $feeReceipt->receipts = $latestFeeVoucher->total;
                 $feeReceipt->balance = 0;
                 $feeReceipt->save();
                 return response()->json($feeReceipt);

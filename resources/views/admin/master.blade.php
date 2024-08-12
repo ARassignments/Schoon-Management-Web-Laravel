@@ -57,6 +57,65 @@
     <link href="{{ asset('assets/vendor/flatpickr/flatpickr.min.css')}}" rel="stylesheet" type="text/css" />
 
 
+    <style>
+        #myTable_wrapper .dt-search,
+        #myTable_wrapper .dt-info,
+        #myTable_wrapper .dt-paging,
+        #myTable_wrapper .dt-length {
+            padding-left: 0.6rem;
+            padding-right: 0.6rem;
+        }
+        #myTable_wrapper .dt-length,
+        #myTable_wrapper .dt-search{
+            padding-top: 0.6rem; 
+        }
+
+        #myTable_wrapper .dt-paging{
+            padding-bottom: 0.6rem;
+        }
+
+        #myTable_wrapper .dt-length label {
+            margin-left: 0.5rem;
+            text-transform: capitalize;
+        }
+
+        #myTable_wrapper .dt-input {
+            outline: none;
+        }
+        #myTable_wrapper .dataTable {
+            margin-bottom: 0rem !important;
+        }
+        #myTable_wrapper .dt-layout-full {
+            display: block;
+            width: calc(100% - 1.6rem) !important;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0 0.8rem;
+        }
+
+        #myTable_wrapper .dt-layout-full::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        #myTable_wrapper .dt-layout-full::-webkit-scrollbar {
+            height: 15px;
+        }
+
+        #myTable_wrapper .dt-layout-full::-webkit-scrollbar-thumb {
+            border: 4px solid #fff;
+            border-radius: 10px;
+            background-color: rgba(108, 117, 125, 0.3);
+            transition: all 0.3s ease;
+        }
+        #myTable_wrapper .dt-layout-full::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(108, 117, 125, 0.5);
+            cursor: all-scroll;
+        }
+
+        .feeallcard {
+            background: white;
+        }
+    </style>
 
 
 

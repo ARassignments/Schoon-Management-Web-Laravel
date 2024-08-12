@@ -250,6 +250,10 @@ class ClassFeeVoucherController extends Controller
                 $total += $classvoucher->{$dbColumn};
             }
 
+            // Subtract late_fee from total
+            $total -= $classvoucher->late_fee;
+            // $total -= $fees["late_fee"];
+            
             $classvoucher->total = $total;
 
             $classvoucher->save();
@@ -264,11 +268,9 @@ class ClassFeeVoucherController extends Controller
         return response()->json($fees);
     }
 
-    public function store(Request $request)
-    {}
+    public function store(Request $request) {}
 
-    public function generatePDF()
-    {}
+    public function generatePDF() {}
 
     /**
      * Display the specified resource.

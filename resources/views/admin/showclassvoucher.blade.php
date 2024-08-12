@@ -3,6 +3,7 @@
     <!-- ============================================================== -->
     <!-- Start Page Content here -->
     <!-- ============================================================== -->
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
 
     <div class="content-page mt-4">
         <div class="content">
@@ -23,13 +24,13 @@
 
                                     <!-- Searchbar Start -->
                                     <!-- <div class="app-search ms-3">
-                                        <form>
-                                            <div class="input-group">
-                                                <input type="search" class="form-control" placeholder="Search...">
-                                                <span class="ri-search-line search-icon text-muted"></span>
-                                            </div>
-                                        </form>
-                                    </div> -->
+                                            <form>
+                                                <div class="input-group">
+                                                    <input type="search" class="form-control" placeholder="Search...">
+                                                    <span class="ri-search-line search-icon text-muted"></span>
+                                                </div>
+                                            </form>
+                                        </div> -->
                                     <form class="app-search" action="" method="GET">
                                         {{-- <input class="search-input" name="search" placeholder="Search..." type="search" value="{{ $search }}"> --}}
 
@@ -48,7 +49,7 @@
                                         {{ session('successdelete') }}
                                     </div>
                                 @endif
-                                                                    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
+                                {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function() {
                                         var successMessage = document.getElementById('successMessage');
@@ -64,7 +65,7 @@
                                     <div id="yearly-sales-collapse" class="collapse show mt-4">
 
                                         <div class="table-responsive">
-                                            <table class="table table-nowrap table-hover mb-0">
+                                            <table class="table table-nowrap table-hover mb-0" id="myTable">
                                                 <thead>
                                                     <tr class="text-center">
                                                         <th>Id</th>
@@ -115,7 +116,8 @@
                                                             <td>{{ $vouc->class }}</td>
                                                             <td>{{ $vouc->section }}</td>
                                                             <td>
-                                                                <a href="{{url('voucherform',$vouc->id)}}" class="btn btn-primary">View</a>
+                                                                <a href="{{ url('voucherform', $vouc->id) }}"
+                                                                    class="btn btn-sm our-color-1 rounded-2 shadow">View</a>
                                                             </td>
 
                                                         </tr>
@@ -227,6 +229,10 @@
     <!-- content -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
 
     <!-- Include SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
