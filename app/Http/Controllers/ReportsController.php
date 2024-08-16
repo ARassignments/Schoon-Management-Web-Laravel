@@ -6,6 +6,7 @@ use App\Models\ContactFom;
 use App\Models\ClassFeeVoucher;
 use App\Models\FeeReceipt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReportsController extends Controller
 {

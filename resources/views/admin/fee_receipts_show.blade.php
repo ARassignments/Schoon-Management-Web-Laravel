@@ -1,8 +1,9 @@
 @extends('admin.master')
 @section('content')
-<head>
-    <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
-</head>
+
+    <head>
+        <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
+    </head>
     <!-- ============================================================== -->
     <!-- Start Page Content here -->
     <!-- ============================================================== -->
@@ -77,13 +78,13 @@
 
                                     <!-- Searchbar Start -->
                                     <!-- <div class="app-search ms-3">
-                                                                                                            <form>
-                                                                                                                <div class="input-group">
-                                                                                                                    <input type="search" class="form-control" placeholder="Search...">
-                                                                                                                    <span class="ri-search-line search-icon text-muted"></span>
-                                                                                                                </div>
-                                                                                                            </form>
-                                                                                                        </div> -->
+                                                                                                                <form>
+                                                                                                                    <div class="input-group">
+                                                                                                                        <input type="search" class="form-control" placeholder="Search...">
+                                                                                                                        <span class="ri-search-line search-icon text-muted"></span>
+                                                                                                                    </div>
+                                                                                                                </form>
+                                                                                                            </div> -->
                                     <form class="app-search" action="" method="GET">
                                         <input class="search-input" name="search" placeholder="Search GR Number..."
                                             type="text" maxlength="10" value="" onkeyup="fetchData(this.value)"
@@ -105,7 +106,7 @@
                                         {{ session('successdelete') }}
                                     </div>
                                 @endif
-                                                                    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
+                                {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
                                 <script>
                                     document.addEventListener('DOMContentLoaded', function() {
                                         var successMessage = document.getElementById('successMessage');

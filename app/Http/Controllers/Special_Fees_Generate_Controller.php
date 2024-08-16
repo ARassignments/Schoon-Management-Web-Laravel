@@ -99,12 +99,20 @@ class Special_Fees_Generate_Controller extends Controller
                 'stationary' => 'stationary'
             ];
 
+            $total = 0;
+
             foreach ($fee_mapping as $formKey => $dbColumn) {
                 $specialvoucher->{$dbColumn} = isset($fees[$formKey]) ? $fees[$formKey] : 0;
+                $total += $specialvoucher->{$dbColumn};
             }
 
+            // Subtract late_fee from total
+            $total -= $specialvoucher->late_fee;
+            
+            $specialvoucher->total = $total;
+            
             $specialvoucher->save();
-
+            
             return redirect()->back()->with('success', 'Special fee voucher created successfully for the student!');
         } else {
             return redirect()->back()->with('error', 'Student not found or not eligible.');

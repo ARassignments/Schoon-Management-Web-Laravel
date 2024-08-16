@@ -101,7 +101,7 @@
                                                                 <td>{{ $addmission->updated_at }}</td>
                                                                 <td>
                                                                     <button type="button"
-                                                                        class="btn our-color-1 rounded-2 shadow"
+                                                                        class="btn btn-sm our-color-1 rounded-2 shadow"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#statusModal{{ $addmission->id }}">
                                                                         Change Status
@@ -110,9 +110,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <a href="{{ url('edit-admissionform', $addmission->id) }}"
-                                                                        class="btn our-color-1 rounded-2 shadow">Edit</a>
+                                                                        class="btn btn-sm our-color-1 rounded-2 shadow">Edit</a>
                                                                     <!-- Delete Button -->
-                                                                    <button type="button" class="btn btn-danger mx-2"
+                                                                    <button type="button" class="btn btn-sm btn-danger mx-2"
                                                                         data-bs-toggle="modal"
                                                                         data-bs-target="#deleteConfirmationModal{{ $addmission->id }}">Delete</button>
 
