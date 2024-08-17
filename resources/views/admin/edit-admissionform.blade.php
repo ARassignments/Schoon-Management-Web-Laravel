@@ -40,24 +40,24 @@
 
                                     <div class="mb-3">
                                         <label class="form-label">Class</label>
-                                        <select name="class" id="artistDropdown" class="form-control mb-3" required>
+                                        <select name="class" id="classDropdown" class="form-control mb-3" required>
                                             <option value="">Select Class</option>
                                             @foreach($classes as $class)
-                                            <option value="{{ $class }}" {{ $addmission->class == $class ? 'selected' : '' }}>
-                                                {{$class }}
-                                            </option>
+                                                <option value="{{ $class }}" {{ $addmission->class == $class ? 'selected' : '' }}>
+                                                    {{ $class }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
-
+                        
                                     <div class="mb-3">
                                         <label class="form-label">Current Class</label>
-                                        <select name="current_class" id="artistDropdown" class="form-control mb-3" required>
+                                        <select name="current_class" id="currentClassDropdown" class="form-control mb-3" required>
                                             <option value="">Select Class</option>
                                             @foreach($classes as $class)
-                                            <option value="{{ $class }}" {{ $addmission->current_class == $class ? 'selected' : '' }}>
-                                                {{$class }}
-                                            </option>
+                                                <option value="{{ $class }}" {{ $addmission->current_class == $class ? 'selected' : '' }}>
+                                                    {{ $class }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -104,7 +104,16 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                   
                                 </div> <!-- end col -->
+                                <div class="col-3"></div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="discount">Discount (%)</label>
+                                        <input type="number" id="discount" name="discount" class="form-control" value="{{ old('discount', $addmission->discount) }}" step="0.01">
+                                    </div>
+                                </div>
+                                <div class="col-3"></div>
                             </div> <!-- end row -->
                         </div>
                         <input type="submit" class="btn our-color-1 w-25 justify-content-center d-flex mb-4 container">

@@ -6,10 +6,9 @@ use App\Models\Admissionform;
 // use Illuminate\Support\Facades\Validator;
 use App\Models\Classes;
 use App\Models\contactfom;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
-use Illuminate\Http\Request;
 
 class admin_controller extends Controller
 {
@@ -58,7 +57,6 @@ class admin_controller extends Controller
         return view('admin.voucher-class-fees', compact('addC', 'class', 'notificationCount', 'contacts'));
     }
 
-
     public function addmissionform(Request $request)
     {
 
@@ -75,7 +73,7 @@ class admin_controller extends Controller
         $contacts = contactfom::all();
         $addmission = Admissionform::all();
 
-        $add  = compact('add', 'search', 'notificationCount', 'contacts', 'addmission');
+        $add = compact('add', 'search', 'notificationCount', 'contacts', 'addmission');
         return view('admin.addmissionform')->with($add);
 
         // $add = Admissionform::all();
@@ -94,8 +92,6 @@ class admin_controller extends Controller
         return view('admin.addadmissionform', compact('adddb', 'adclass', 'adsection', 'addall', 'notificationCount', 'contacts'));
     }
 
-
-
     public function updateStatus(Request $request)
     {
         $admissionId = $request->input('id');
@@ -113,103 +109,78 @@ class admin_controller extends Controller
         return response()->json(['error' => 'Failed to update status.'], 400);
     }
 
-
-
     public function adminprofile()
     {
         $notificationCount = contactfom::where('is_new', true)->count(); // Count only unread notifications
         $contacts = contactfom::all();
-        return view('admin.adminprofile',compact('notificationCount','contacts'));
+        return view('admin.adminprofile', compact('notificationCount', 'contacts'));
     }
-
-
-
 
     public function addstudentpromotion()
     {
         return view('admin.addstudentpromotion');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function storeaddmissionform(Request $request)
     {
-        //
+        $request->validate([
+            'gr_number' => 'required|string|max:255',
+            'student_name' => 'required|string|max:255',
+            'father_name' => 'required|string|max:255',
+            'student_age' => 'nullable|integer',
+            'mobile_number' => 'required|string|max:255',
+            'class' => 'required|string|max:255',
+            'current_class' => 'required|string|max:255',
+            'section' => 'required|string|max:255',
+            'last_institute' => 'nullable|string|max:255',
+            'fees' => 'required|numeric',
+            'date_of_addmission' => 'required|date',
+            'date_of_birth' => 'required|date',
+            'religion' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'discount' => 'nullable|numeric|min:0|max:100',
+        ], [
+            'fees.required' => 'Fees field is required.',
+            'fees.numeric' => 'Fees field must contain only numbers.',
+        ]);
+
+        $dateOfAdmission = date('Y-m-d', strtotime($request->date_of_addmission));
+        $dateOfBirth = date('Y-m-d', strtotime($request->date_of_birth));
+        $fees = $request->input('fees');
+        $discount = $request->input('discount', 0);
+        $discountedFees = $fees - ($fees * ($discount / 100));
+
+        $age = date_diff(date_create($dateOfBirth), date_create('today'))->y;
+
+        $add = new Admissionform();
+        $add->gr_number = $request->gr_number;
+        $add->student_name = $request->student_name;
+        $add->father_name = $request->father_name;
+        $add->student_age = $age; // Store calculated age
+        $add->mobile_number = $request->mobile_number;
+        $add->class = $request->class;
+        $add->current_class = $request->current_class;
+        $add->section = $request->section;
+        $add->last_institute = $request->last_institute;
+        $add->date_of_addmission = $dateOfAdmission;
+        $add->date_of_birth = $dateOfBirth;
+        $add->religion = $request->religion;
+        $add->address = $request->address;
+        $add->fees = $discountedFees;
+        $add->discount = $discount;
+
+        $studentName = $add->student_name;
+        $fatherName = $add->father_name;
+        $add->save();
+
+        return redirect('show-addmissionform')->with('success', "The record of student $studentName, son of $fatherName, has been successfully submitted!");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function storeaddmissionform(Request $request)
-{
-    // Validation rules with custom error messages
-    $request->validate([
-        'gr_number' => 'required|string|max:255',
-        'student_name' => 'required|string|max:255',
-        'father_name' => 'required|string|max:255',
-        'student_age' => 'nullable|integer',
-        'mobile_number' => 'required|string|max:255',
-        'class' => 'required|string|max:255',
-        'current_class' => 'required|string|max:255',
-        'section' => 'required|string|max:255',
-        'last_institute' => 'nullable|string|max:255',
-        'fees' => 'required|numeric',
-        'date_of_addmission' => 'required|date',
-        'date_of_birth' => 'required|date',
-        'religion' => 'required|string|max:255',
-        'address' => 'required|string|max:255',
-    ], [
-        'fees.required' => 'Fees field is required.',
-        'fees.numeric' => 'Fees field must contain only numbers.',
-    ]);
-
-    // Convert the date format if necessary
-    $dateOfAdmission = date('Y-m-d', strtotime($request->date_of_addmission));
-    $dateOfBirth = date('Y-m-d', strtotime($request->date_of_birth));
-
-    // Calculate age
-    $age = date_diff(date_create($dateOfBirth), date_create('today'))->y;
-
-    // Create a new Admissionform instance and assign the validated data
-    $add = new Admissionform();
-    $add->gr_number = $request->gr_number;
-    $add->student_name = $request->student_name;
-    $add->father_name = $request->father_name;
-    $add->student_age = $age; // Store calculated age
-    $add->mobile_number = $request->mobile_number;
-    $add->class = $request->class;
-    $add->current_class = $request->current_class;
-    $add->section = $request->section;
-    $add->last_institute = $request->last_institute;
-    $add->fees = $request->fees;
-    $add->date_of_addmission = $dateOfAdmission;
-    $add->date_of_birth = $dateOfBirth;
-    $add->religion = $request->religion;
-    $add->address = $request->address;
-
-    $studentName = $add->student_name;
-    $fatherName = $add->father_name;
-    $add->save();
-
-    return redirect('show-addmissionform')->with('success', "The record of student $studentName, son of $fatherName, has been successfully submitted!");
-}
-
-
-
-
-
-
-
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function editaddmissionform(string $id)
     {
         $addmission = Admissionform::find($id);
         $classes = Classes::distinct()->pluck('class_name');
+        // dd($classes);
         $classessec = Classes::distinct()->pluck('section_name');
         $notificationCount = contactfom::where('is_new', true)->count(); // Count only unread notifications
         $contacts = contactfom::all();
@@ -237,12 +208,16 @@ class admin_controller extends Controller
             'date_of_birth' => 'required|date',
             'religion' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
+            'discount' => 'nullable|numeric|min:0|max:100',
         ]);
 
         // Convert the date format if necessary
         $dateOfAdmission = date('Y-m-d', strtotime($request->date_of_addmission));
         $dateOfBirth = date('Y-m-d', strtotime($request->date_of_birth));
-
+        $fees = $request->input('fees');
+        $discount = $request->input('discount', 0); // Default to 0 if not provided
+        $discountedFees = $fees - ($fees * ($discount / 100));
+    
         // Find the Admissionform instance and update its data
         $add = Admissionform::find($id);
         $add->gr_number = $request->gr_number;
@@ -254,12 +229,12 @@ class admin_controller extends Controller
         $add->current_class = $request->current_class;
         $add->section = $request->section;
         $add->last_institute = $request->last_institute;
-        $add->fees = $request->fees;
         $add->date_of_addmission = $dateOfAdmission;
         $add->date_of_birth = $dateOfBirth;
         $add->religion = $request->religion;
         $add->address = $request->address;
-
+        $add->fees = $discountedFees;
+        $add->discount = $discount;
         // Save the updated record
         $add->save();
 
@@ -277,11 +252,12 @@ class admin_controller extends Controller
         $studentName = $addmission->student_name;
         $fatherName = $addmission->father_name;
         $addmission->delete();
-        return back()->with('successdelete',  "Record of student $studentName, son of $fatherName deleted successfully!");
+        return back()->with('successdelete', "Record of student $studentName, son of $fatherName deleted successfully!");
     }
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
         return redirect('/login');
-      }
-      
+    }
+
 }
