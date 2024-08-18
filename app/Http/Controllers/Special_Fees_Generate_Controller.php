@@ -49,16 +49,11 @@ class Special_Fees_Generate_Controller extends Controller
 
     public function storeSpecialFeesVoucher(Request $request)
     {
-        // Extract class, section, and gr_number from request
-        $selectedClass = $request->input('class');
-        $selectedSection = $request->input('section');
         $monthYear = $request->input('month_year');
         $grNumber = $request->input('gr_number');
 
         // Fetch the specific student based on gr_number
         $student = Admissionform::where('gr_number', $grNumber)
-            ->where('current_class', $selectedClass)
-            ->where('section', $selectedSection)
             ->whereNotIn('Status', ['Pass Out', 'Left Out'])
             ->first();
 
@@ -82,8 +77,6 @@ class Special_Fees_Generate_Controller extends Controller
             $specialvoucher->due_date = $request->input('due_date');
             $specialvoucher->session = $request->input('session');
             $specialvoucher->month_year = $monthYear;
-            $specialvoucher->class = $selectedClass;
-            $specialvoucher->section = $selectedSection;
 
             $fees = $request->input('fees', []);
             $fee_mapping = [

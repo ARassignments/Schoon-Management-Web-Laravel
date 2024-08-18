@@ -24,13 +24,13 @@
 
                                     <!-- Searchbar Start -->
                                     <!-- <div class="app-search ms-3">
-                                            <form>
-                                                <div class="input-group">
-                                                    <input type="search" class="form-control" placeholder="Search...">
-                                                    <span class="ri-search-line search-icon text-muted"></span>
-                                                </div>
-                                            </form>
-                                        </div> -->
+                                                <form>
+                                                    <div class="input-group">
+                                                        <input type="search" class="form-control" placeholder="Search...">
+                                                        <span class="ri-search-line search-icon text-muted"></span>
+                                                    </div>
+                                                </form>
+                                            </div> -->
                                     <form class="app-search" action="" method="GET">
                                         {{-- <input class="search-input" name="search" placeholder="Search..." type="search" value="{{ $search }}"> --}}
 
@@ -164,128 +164,81 @@
                                                         }
                                                     </style>
 
-                                                    {{-- @foreach ($add as $addmission)
-    <div class="modal fade" id="statusModal{{ $addmission->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
-            <div class="modal-content rounded-4 shadow-lg">
-                <div class="modal-header align-items-center text-white">
-                    <h5 class="modal-title" id="exampleModalLabel"><b>Change Status</b></h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body py-3 px-3 text-center">
-                    <form id="statusForm{{ $addmission->id }}" data-id="{{ $addmission->id }}">
-                        @csrf
-                        <div class="form-group">
-                            <label for="statusSelect{{ $addmission->id }}" class="text-white fw-bold mb-2" style="font-size: 1.1rem;">Select Status</label>
-                            <select id="statusSelect{{ $addmission->id }}" name="status" class="form-select text-center fw-bold border-0">
-                                <option value="" disabled selected>Select status</option>
-                                <option value="Current">Current</option>
-                                <option value="Left Out">Left Out</option>
-                                <option value="Pass Out">Pass Out</option>
-                            </select>
-                            <input type="hidden" name="id" value="{{ $addmission->id }}">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger rounded-pill" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success rounded-pill save-status" data-id="{{ $addmission->id }}" data-student-name="{{ $addmission->student_name }}" data-father-name="{{ $addmission->father_name }}">Update Status</button>
-                </div>
-            </div>
-        </div>
-    </div>
-@endforeach --}}
-
-
-
-
-
-
-
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </td>
-                            </tr>
-
-                            </tbody>
-
-
-                            </table>
-                        </div>
-                    </div>
+                        </div> <!-- end card-->
+                    </div> <!-- end col-->
                 </div>
+                <!-- end row -->
+
             </div>
-        </div> <!-- end card-->
-    </div> <!-- end col-->
-    </div>
-    <!-- end row -->
+            <!-- container -->
 
-    </div>
-    <!-- container -->
+        </div>
+        <!-- content -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
+        <script>
+            let table = new DataTable('#myTable');
+        </script>
 
-    </div>
-    <!-- content -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
-    <script>
-        let table = new DataTable('#myTable');
-    </script>
+        <!-- Include SweetAlert2 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.save-status').click(function() {
+                    var studentId = $(this).data('id');
+                    var studentName = $(this).data('student-name');
+                    var fatherName = $(this).data('father-name');
+                    var form = $('#statusForm' + studentId);
+                    var formData = form.serialize();
 
-    <!-- Include SweetAlert2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.save-status').click(function() {
-                var studentId = $(this).data('id');
-                var studentName = $(this).data('student-name');
-                var fatherName = $(this).data('father-name');
-                var form = $('#statusForm' + studentId);
-                var formData = form.serialize();
-
-                $.ajax({
-                    url: '/update-status', // Adjust to your actual route
-                    type: 'POST',
-                    data: formData,
-                    success: function(response) {
-                        // Handle success
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success!',
-                            text: 'Status for ' + studentName + ' ' + fatherName +
-                                ' updated successfully!',
-                            confirmButtonText: 'OK',
-                            background: '#092139',
-                            color: '#ffffff',
-                            customClass: {
-                                confirmButton: 'btn btn-success'
-                            },
-                            buttonsStyling: false
-                        }).then(() => {
-                            $('#statusModal' + studentId).modal('hide');
-                            // Optionally refresh the data on the page
-                            location.reload();
-                        });
-                    },
-                    error: function(response) {
-                        // Handle error
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'No Status Selected',
-                            text: 'Please select a status before submitting.',
-                            confirmButtonText: 'OK',
-                            background: '#092139',
-                            color: '#ffffff',
-                            customClass: {
-                                confirmButton: 'btn btn-warning'
-                            },
-                            buttonsStyling: false
-                        });
-                    }
+                    $.ajax({
+                        url: '/update-status', // Adjust to your actual route
+                        type: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            // Handle success
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: 'Status for ' + studentName + ' ' + fatherName +
+                                    ' updated successfully!',
+                                confirmButtonText: 'OK',
+                                background: '#092139',
+                                color: '#ffffff',
+                                customClass: {
+                                    confirmButton: 'btn btn-success'
+                                },
+                                buttonsStyling: false
+                            }).then(() => {
+                                $('#statusModal' + studentId).modal('hide');
+                                // Optionally refresh the data on the page
+                                location.reload();
+                            });
+                        },
+                        error: function(response) {
+                            // Handle error
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'No Status Selected',
+                                text: 'Please select a status before submitting.',
+                                confirmButtonText: 'OK',
+                                background: '#092139',
+                                color: '#ffffff',
+                                customClass: {
+                                    confirmButton: 'btn btn-warning'
+                                },
+                                buttonsStyling: false
+                            });
+                        }
+                    });
                 });
             });
-        });
-    </script>
-@endsection
+        </script>
+    @endsection

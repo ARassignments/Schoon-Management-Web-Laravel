@@ -109,7 +109,7 @@ class FeeReceiptsController extends Controller
         } else {
             $feeReceipts = FeeReceipt::all();
         }
-        
+
         // Add student names to fee receipts
         $feeReceipts->each(function ($feeReceipt) {
             $student = Admissionform::where('gr_number', $feeReceipt->gr_number)->first();
@@ -119,11 +119,76 @@ class FeeReceiptsController extends Controller
         return response()->json($feeReceipts);
     }
 
+    // public function showFilteredFeeReceipts(Request $request)
+    // {
+    //     $request->validate([
+    //         'filterData' => 'required|string',
+    //     ]);
+
+    //     // Default to all receipts if no filter is applied
+    //     $feeReceiptsQuery = FeeReceipt::query();
+
+    //     // Filter by today's date
+    //     if ($request->has('filterData') && $request->filterData == 'today') {
+    //         $today = \Carbon\Carbon::today()->toDateString();
+    //         $feeReceiptsQuery->whereDate('created_at', $today);
+    //     }
+    //     dd(feeReceiptsQuery);
+    //     // Filter by the current month
+    //     if ($request->has('filterData') && $request->filterData == 'monthly') {
+    //         $startOfMonth = \Carbon\Carbon::now()->startOfMonth()->toDateString();
+    //         $endOfMonth = \Carbon\Carbon::now()->endOfMonth()->toDateString();
+    //         $feeReceiptsQuery->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
+    //     }
+
+    //     // Get filtered receipts
+    //     $feeReceipts = $feeReceiptsQuery->get();
+
+    //     $feeReceipt = FeeReceipt::where('id', $request->id)->first();
+    //     if ($feeReceipt) {
+    //         $feeReceipt->paytype = $request->paytype;
+    //         $feeReceipt->save();
+
+    //         return response()->json(['feeReceipt' => $feeReceipt]);
+    //     } else {
+    //         return response()->json(['message' => 'Fee receipt not found.'], 404);
+    //     }
+    // }
+
+    public function showFilteredFeeReceipts(Request $request)
+{
+    $request->validate([
+        'filterData' => 'required|string',
+    ]);
+
+    $feeReceiptsQuery = FeeReceipt::query();
+
+    if ($request->filterData == 'today') {
+        $today = \Carbon\Carbon::today()->toDateString();
+        $feeReceiptsQuery->whereDate('created_at', $today);
+    } elseif ($request->filterData == 'monthly') {
+        $startOfMonth = \Carbon\Carbon::now()->startOfMonth()->toDateString();
+        $endOfMonth = \Carbon\Carbon::now()->endOfMonth()->toDateString();
+        $feeReceiptsQuery->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
+    }
+
+    $feeReceipts = $feeReceiptsQuery->get();
+     // Add student names to fee receipts
+     $feeReceipts->each(function ($feeReceipt) {
+        $student = Admissionform::where('gr_number', $feeReceipt->gr_number)->first();
+        $feeReceipt->student_name = $student ? $student->student_name : 'Unknown';
+    });
+
+
+    return response()->json($feeReceipts);
+}
+
+
     public function updatePayTypeFeeReceipts(Request $request)
     {
         $request->validate([
             'id' => 'required|exists:fee_receipts,id',
-            'paytype' => 'required|string'
+            'paytype' => 'required|string',
         ]);
 
         $feeReceipt = FeeReceipt::where('id', $request->id)->first();
@@ -141,7 +206,7 @@ class FeeReceiptsController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:fee_receipts,id',
-            'discount' => 'required|numeric|min:0'
+            'discount' => 'required|numeric|min:0',
         ]);
 
         $feeReceipt = FeeReceipt::where('id', $request->id)->first();
@@ -159,7 +224,7 @@ class FeeReceiptsController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:fee_receipts,id',
-            'receipts' => 'required|numeric|min:0'
+            'receipts' => 'required|numeric|min:0',
         ]);
 
         $feeReceipt = FeeReceipt::where('id', $request->id)->first();
@@ -177,7 +242,7 @@ class FeeReceiptsController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:fee_receipts,id',
-            'balance' => 'required|numeric|min:0'
+            'balance' => 'required|numeric|min:0',
         ]);
 
         $feeReceipt = FeeReceipt::where('id', $request->id)->first();

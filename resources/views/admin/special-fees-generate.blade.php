@@ -39,30 +39,7 @@
                                             <label class="form-label">GR Number</label>
                                             <input type="text" name="gr_number" class="form-control" placeholder="GR Number">
                                         </div>
-                                        <div class="col-lg-6 mb-3">
-                                            <label for="class" class="form-label">Class</label>
-                                            <select name="class" id="class" class="form-control">
-                                                <option>select</option>
-                                                @foreach ($clases as $class)
-                                                    <option value="{{ $class }}"
-                                                        {{ isset($selectedClass) && $selectedClass == $class ? 'selected' : '' }}>
-                                                        {{ $class }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-6 mb-3">
-                                            <label for="section" class="form-label">Section</label>
-                                            <select name="section" id="section" class="form-control" required>
-                                                <option>select</option>
-                                                @foreach ($secs as $section)
-                                                    <option value="{{ $section }}"
-                                                        {{ isset($selectedSection) && $selectedSection == $section ? 'selected' : '' }}>
-                                                        {{ $section }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                        
                                         <div class="col-lg-6 mb-3">
                                             <label class="form-label">Note 01</label>
                                             <input type="text" name="note_01" class="form-control" placeholder="Note 01">

@@ -108,7 +108,6 @@ Route::middleware('auth')->group(function () {
     //---------------------fee receipts--------------------//
 
 
-    Route::get('/showFeeReceipts', [FeeReceiptsController::class, 'showFeeReceipts'])->name('showFeeReceipts');
     Route::post('/createFeeReceipts', [FeeReceiptsController::class, 'createFeeReceipts'])->name('createFeeReceipts');
     Route::get('/showSearchedFeeReceipts/{search?}', [FeeReceiptsController::class, 'showSearchedFeeReceipts'])->name('showSearchedFeeReceipts');
     Route::post('/updatePayTypeFeeReceipts', [FeeReceiptsController::class, 'updatePayTypeFeeReceipts'])->name('updatePayTypeFeeReceipts');
@@ -116,6 +115,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/updateReceiptsFeeReceipts', [FeeReceiptsController::class, 'updateReceiptsFeeReceipts'])->name('updateReceiptsFeeReceipts');
     Route::post('/updateBalanceFeeReceipts', [FeeReceiptsController::class, 'updateBalanceFeeReceipts'])->name('updateBalanceFeeReceipts');
     Route::get('/deleteFeeReceipts/{id}', [FeeReceiptsController::class, 'deleteFeeReceipts'])->name('deleteFeeReceipts');
+    Route::get('/showFeeReceipts', [FeeReceiptsController::class, 'showFeeReceipts'])->name('showFeeReceipts');
+    Route::post('/showFilteredFeeReceipts', [FeeReceiptsController::class, 'showFilteredFeeReceipts'])->name('showFilteredFeeReceipts');
 
 
     //---------------------contactform--------------------//

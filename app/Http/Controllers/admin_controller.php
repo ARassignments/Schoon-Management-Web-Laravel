@@ -180,7 +180,6 @@ class admin_controller extends Controller
     {
         $addmission = Admissionform::find($id);
         $classes = Classes::distinct()->pluck('class_name');
-        // dd($classes);
         $classessec = Classes::distinct()->pluck('section_name');
         $notificationCount = contactfom::where('is_new', true)->count(); // Count only unread notifications
         $contacts = contactfom::all();
