@@ -156,32 +156,34 @@ class FeeReceiptsController extends Controller
     // }
 
     public function showFilteredFeeReceipts(Request $request)
-{
-    $request->validate([
-        'filterData' => 'required|string',
-    ]);
+    {
+        $request->validate([
+            'filterData' => 'required|string',
+        ]);
 
-    $feeReceiptsQuery = FeeReceipt::query();
+        $feeReceiptsQuery = FeeReceipt::query();
 
-    if ($request->filterData == 'today') {
-        $today = \Carbon\Carbon::today()->toDateString();
-        $feeReceiptsQuery->whereDate('created_at', $today);
-    } elseif ($request->filterData == 'monthly') {
-        $startOfMonth = \Carbon\Carbon::now()->startOfMonth()->toDateString();
-        $endOfMonth = \Carbon\Carbon::now()->endOfMonth()->toDateString();
-        $feeReceiptsQuery->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
+        if ($request->filterData == 'today') {
+            $today = \Carbon\Carbon::today()->toDateString();
+            $feeReceiptsQuery->whereDate('created_at', $today);
+        } elseif ($request->filterData == 'monthly') {
+            $startOfMonth = \Carbon\Carbon::now()->startOfMonth()->toDateString();
+            $endOfMonth = \Carbon\Carbon::now()->endOfMonth()->toDateString();
+            $feeReceiptsQuery->whereBetween('created_at', [$startOfMonth, $endOfMonth]);
+        } elseif ($request->filterData == 'all') {
+            $feeReceiptsQuery = FeeReceipt::query();
+        }
+
+        $feeReceipts = $feeReceiptsQuery->get();
+        // Add student names to fee receipts
+        $feeReceipts->each(function ($feeReceipt) {
+            $student = Admissionform::where('gr_number', $feeReceipt->gr_number)->first();
+            $feeReceipt->student_name = $student ? $student->student_name : 'Unknown';
+        });
+
+
+        return response()->json($feeReceipts);
     }
-
-    $feeReceipts = $feeReceiptsQuery->get();
-     // Add student names to fee receipts
-     $feeReceipts->each(function ($feeReceipt) {
-        $student = Admissionform::where('gr_number', $feeReceipt->gr_number)->first();
-        $feeReceipt->student_name = $student ? $student->student_name : 'Unknown';
-    });
-
-
-    return response()->json($feeReceipts);
-}
 
 
     public function updatePayTypeFeeReceipts(Request $request)

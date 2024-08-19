@@ -118,6 +118,7 @@
                                                 <select id="filterSelector" class="form-select"
                                                     onchange="fetchFilterData()">
                                                     <option value="" selected disabled>--Select Filter--</option>
+                                                    <option value="all">All Data</option>
                                                     <option value="today">Today</option>
                                                     <option value="monthly">This Month</option>
                                                 </select>
