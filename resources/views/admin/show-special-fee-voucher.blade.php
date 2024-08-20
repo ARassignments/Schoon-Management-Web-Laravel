@@ -88,8 +88,6 @@
                                                         <th>Board Fee</th>
                                                         <th>Stationary</th>
                                                         <th>Total</th>
-                                                        <th>Class</th>
-                                                        <th>Section</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -115,8 +113,6 @@
                                                             <td>{{ $vouc->board_fee }}</td>
                                                             <td>{{ $vouc->stationary }}</td>
                                                             <td>{{ $vouc->total }}</td>
-                                                            <td>{{ $vouc->class }}</td>
-                                                            <td>{{ $vouc->section }}</td>
                                                             <td>
                                                                 <a href="{{ url('viewSpecialFeesVoucher', $vouc->id) }}"
                                                                     class="btn btn-sm our-color-1 rounded-2 shadow">View</a>

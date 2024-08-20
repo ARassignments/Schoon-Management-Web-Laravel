@@ -30,10 +30,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
-    Route::get('/dashboard', [admin_controller::class, 'index']);
+    Route::get('/dashboard', [admin_controller::class, 'index'])->name('dashboard');
     //------------admission management------------//
-    Route::get('/show-addmissionform', [admin_controller::class, 'addmissionform']);
-    Route::get('/addadmissionform', [admin_controller::class, 'addform']);
+    Route::get('/show-addmissionform', [admin_controller::class, 'addmissionform'])->name('show-addmissionform');
+    Route::get('/addadmissionform', [admin_controller::class, 'addform'])->name('addadmissionform');
     Route::post('storeaddmissionform', [admin_controller::class, 'storeaddmissionform']);
     Route::get('/edit-admissionform/{id}', [admin_controller::class, 'editaddmissionform']);
     Route::post('/update-addmissionform/{id}', [admin_controller::class, 'updateaddmissionform']);
@@ -68,9 +68,9 @@ Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
     // Route::get('/addStudentPromotion', [admin_controller::class, 'addstudentpromotion']);
     // Route::post('storeStudentPromotion', [admin_controller::class, 'storestudentpromtion']);
     //------------class management-----------//
-    Route::get('/class', [Classes_Controller::class, 'index']);
+    Route::get('/class', [Classes_Controller::class, 'index'])->name('class');
     route::post('storeclass', [Classes_Controller::class, 'storeclass']);
-    Route::get('/add-class', [Classes_Controller::class, 'addclass']);
+    Route::get('/add-class', [Classes_Controller::class, 'addclass'])->name('addclass');
     Route::get('/editclass/{id}', [Classes_Controller::class, 'editclass']);
     Route::post('/updateClass/{id}', [Classes_Controller::class, 'updateclass']);
     Route::get('/deleteclass/{id}', [Classes_Controller::class, 'destroycalsses']);

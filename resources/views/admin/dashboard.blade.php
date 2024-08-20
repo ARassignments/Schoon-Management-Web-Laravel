@@ -58,13 +58,10 @@
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="card widget-flat text-bg-white shadow">
                             <div class="card-body dashboard-card">
-                                <!-- <div class="float-end">
-                                <i class="ri-shopping-basket-line widget-icon"></i>
-                            </div> -->
-                                <h2 class="my-2 our-color">753</h2>
+                            <h6 class="text-uppercase mt-0 our-color-2" title="Customers"><b>Today Fee Receipt</b></h6>
                                 <hr>
+                                <h2 class="my-2 our-color">{{ $feeReceiptsCount }}</h2>
                                 <p class="mb-0">
-                                    <span class="text-nowrap">Monthly Recieved Fess</span>
                                 </p>
                             </div>
                         </div>
@@ -74,12 +71,12 @@
                         <div class="card widget-flat text-bg-white shadow">
                             <div class="card-body dashboard-card">
                                 <!-- <div class="float-end">
-                                <i class="ri-group-2-line widget-icon"></i>
+                                <i class="ri-shopping-basket-line widget-icon"></i>
                             </div> -->
-                                <h2 class="my-2 our-color">63,154</h2>
+                            <h6 class="text-uppercase mt-0 our-color-2" title="Customers"><b>Monthly Fee Receipt</b></h6>
                                 <hr>
+                                <h2 class="my-2 our-color">{{ $feeReceiptsCountMonthly }}</h2>
                                 <p class="mb-0">
-                                    <span class="text-nowrap">Today Recieved Fees</span>
                                 </p>
                             </div>
                         </div>

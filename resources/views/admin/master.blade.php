@@ -111,6 +111,17 @@
             background-color: rgba(108, 117, 125, 0.5);
             cursor: all-scroll;
         }
+        #myTable_wrapper:has(.magicButton){
+            position: relative !important;
+        }
+        /* #myTable_wrapper .dt-layout-full:has(.magicButton){
+            position: relative !important;
+        } */
+        #myTable_wrapper .dt-layout-full tr td:has(.magicButton){
+            position: absolute;
+            right: 0.5rem;
+            border-bottom:none !important;
+        }
 
         .feeallcard {
             background: white;
@@ -507,16 +518,16 @@
                         <div class="collapse" id="sidebarExtendedUI1" data-bs-parent="#sidebarMenu2">
                             <ul class="side-nav-item">
                                 <li>
-                                    <a class="side-nav-link ps-4" href="classfeesgenerate">Class Fees Generate</a>
+                                    <a class="side-nav-link ps-4" href="{{url('classfeesgenerate')}}">Class Fees Generate</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="showclassfees">Show Class Fees</a>
+                                    <a class="side-nav-link ps-4" href="{{url('showclassfees')}}">Show Class Fees</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="specialfeesgenerate">Special Fees Generate</a>
+                                    <a class="side-nav-link ps-4" href="{{url('specialfeesgenerate')}}">Special Fees Generate</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="showSpecialFees">Show Special Fees</a>
+                                    <a class="side-nav-link ps-4" href="{{url('showSpecialFees')}}">Show Special Fees</a>
                                 </li>
                             </ul>
                         </div>
@@ -538,13 +549,13 @@
                         <div class="collapse" id="sidebarExtendedUI2" data-bs-parent="#sidebarMenu3">
                             <ul class="side-nav-item">
                                 <li>
-                                    <a class="side-nav-link ps-4" href="students-report">All Students</a>
+                                    <a class="side-nav-link ps-4" href="{{url('students-report')}}">All Students</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="removed-students">Remove Students</a>
+                                    <a class="side-nav-link ps-4" href="{{url('removed-students')}}">Remove Students</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="notremoved-students">Not Removed Students</a>
+                                    <a class="side-nav-link ps-4" href="{{url('notremoved-students')}}">Not Removed Students</a>
                                 </li>
                             </ul>
                         </div>
@@ -558,10 +569,10 @@
                         <div class="collapse" id="sidebarExtendedUI3" data-bs-parent="#sidebarMenu4">
                             <ul class="side-nav-item">
                                 <li>
-                                    <a class="side-nav-link ps-4" href="all-students">All Students</a>
+                                    <a class="side-nav-link ps-4" href="{{url('all-students')}}">All Students</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="class-students">Class</a>
+                                    <a class="side-nav-link ps-4" href="{{url('class-students')}}">Class</a>
                                 </li>
                             </ul>
                         </div>
@@ -575,16 +586,16 @@
                         <div class="collapse" id="sidebarExtendedUI4" data-bs-parent="#sidebarMenu5">
                             <ul class="side-nav-item">
                                 <li>
-                                    <a class="side-nav-link ps-4" href="all-students-record">All Students</a>
+                                    <a class="side-nav-link ps-4" href="{{url('all-students-record')}}">All Students</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="left-students-record">Left Out Students</a>
+                                    <a class="side-nav-link ps-4" href="{{url('left-students-record')}}">Left Out Students</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="pass-students-record">Pass Out Students</a>
+                                    <a class="side-nav-link ps-4" href="{{url('pass-students-record')}}">Pass Out Students</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="current-students-record">Current Students</a>
+                                    <a class="side-nav-link ps-4" href="{{url('current-students-record')}}">Current Students</a>
                                 </li>
                             </ul>
                         </div>
@@ -598,22 +609,22 @@
                         <div class="collapse" id="sidebarExtendedUI5" data-bs-parent="#sidebarMenu6">
                             <ul class="side-nav-item">
                                 <li>
-                                    <a class="side-nav-link ps-4" href="defaulter-students">Defaulters</a>
+                                    <a class="side-nav-link ps-4" href="{{url('defaulter-students')}}">Defaulters</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="students-ledger">Students Ledger</a>
+                                    <a class="side-nav-link ps-4" href="{{url('students-ledger')}}">Students Ledger</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="allstudents-list">Students List</a>
+                                    <a class="side-nav-link ps-4" href="{{url('allstudents-list')}}">Students List</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="individual-students">Individual Reports</a>
+                                    <a class="side-nav-link ps-4" href="{{url('individual-students')}}">Individual Reports</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="receipt-details">Receipt Details</a>
+                                    <a class="side-nav-link ps-4" href="{{url('receipt-details')}}">Receipt Details</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="receipt-reports">Receipt Reports</a>
+                                    <a class="side-nav-link ps-4" href="{{url('receipt-reports')}}">Receipt Reports</a>
                                 </li>
                             </ul>
                         </div>

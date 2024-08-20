@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use App\Models\Admissionform;
 // use Illuminate\Support\Facades\Validator;
 use App\Models\Classes;
 use App\Models\contactfom;
+use App\Models\FeeReceipt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -41,12 +42,16 @@ class admin_controller extends Controller
 
             $add = Admissionform::all();
         }
-
+        $today = Carbon::today()->toDateString();
+        $feeReceiptsCount = FeeReceipt::whereDate('created_at', $today)->count();
+        $startOfMonth = Carbon::now()->startOfMonth()->toDateString();
+        $endOfMonth = Carbon::now()->endOfMonth()->toDateString();
+        $feeReceiptsCountMonthly = FeeReceipt::whereBetween('created_at', [$startOfMonth, $endOfMonth])->count();
         $addC = Admissionform::count();
         $class = Classes::count();
         $notificationCount = contactfom::where('is_new', true)->count(); // Count only unread notifications
         $contacts = contactfom::all();
-        return view('admin.dashboard', compact('add', 'search', 'addC', 'class', 'notificationCount', 'contacts'));
+        return view('admin.dashboard', compact('add', 'search', 'addC', 'class', 'notificationCount', 'contacts', 'feeReceiptsCount','feeReceiptsCountMonthly'));
     }
     public function voucher(Request $request)
     {
@@ -216,7 +221,7 @@ class admin_controller extends Controller
         $fees = $request->input('fees');
         $discount = $request->input('discount', 0); // Default to 0 if not provided
         $discountedFees = $fees - ($fees * ($discount / 100));
-    
+
         // Find the Admissionform instance and update its data
         $add = Admissionform::find($id);
         $add->gr_number = $request->gr_number;
