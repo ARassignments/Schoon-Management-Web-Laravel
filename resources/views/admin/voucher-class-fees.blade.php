@@ -19,7 +19,7 @@
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-8">
                             <div class="d-flex justify-content-start">
                                 <p style="margin: 0;
                                     font-weight: 100;
@@ -72,7 +72,7 @@
                         <!-- <div class="row second"> -->
 
 
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="d-flex justify-content-between">
                                 <p style="margin: 0;
                                     font-weight: 100;
@@ -128,7 +128,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-12">
                         <table class="table border-dark" border="1">
                             <thead>
                                 <tr style="font-size: 12px; text-align: center;">
@@ -169,7 +169,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="due-date">
                             <p
                                 style="margin: 0;
@@ -194,7 +194,7 @@
                                 font-family: sans-serif;">
                             {{ $voucher->note_02 }}</p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
 
                         <div class="d-flex justify-content-between">
                             <p style="margin: 0;
@@ -240,7 +240,7 @@
 
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-8">
                             <div class="d-flex justify-content-start">
                                 <p style="margin: 0;
                                     font-weight: 100;
@@ -288,7 +288,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="d-flex justify-content-between">
                                 <p style="margin: 0;
                                 font-weight: 100;
@@ -344,7 +344,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-12">
                         <table class="table border-dark" border="1">
                             <thead>
                                 <tr style="font-size: 12px; text-align: center;">
@@ -385,7 +385,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div>
                             <p
                                 style="margin: 0;
@@ -410,7 +410,7 @@
                                 font-family: sans-serif;">
                             {{ $voucher->note_02 }}</p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
 
                         <div class="d-flex justify-content-between">
                             <p style="margin: 0;
@@ -454,7 +454,7 @@
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-8">
                             <div class="d-flex justify-content-start">
                                 <p style="margin: 0;
                                     font-weight: 100;
@@ -502,7 +502,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-4">
                             <div class="d-flex justify-content-between">
                                 <p style="margin: 0;
                                 font-weight: 100;
@@ -558,7 +558,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-12">
                         <table class="table border-dark" border="1">
                             <thead>
                                 <tr style="font-size: 12px; text-align: center;">
@@ -599,7 +599,7 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div>
                             <p
                                 style="margin: 0;
@@ -624,7 +624,7 @@
                                 font-family: sans-serif;">
                             {{ $voucher->note_02 }}</p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="d-flex justify-content-between">
                             <p style="margin: 0;
                                 font-weight: 100;

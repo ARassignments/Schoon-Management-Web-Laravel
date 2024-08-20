@@ -20,7 +20,18 @@
                                 </div>
                                 <div class="feeallcard feeallshadow">
                                     <div id="yearly-sales-collapse" class="collapse show mt-4">
-
+                                        <div class="d-flex flex-wrap pt-3 px-2">
+                                            <div class="d-flex align-items-center col-md-12">
+                                                <label for="classFilter" class="col-3">Class By:</label>
+                                                <select id="classFilter" class="form-select col-9">
+                                                    <option value="">All</option>
+                                                    {{-- @foreach ($classes as $class)
+                                                        <option value="{{ $class->class_name }}">{{ $class->class_name }}
+                                                        </option>
+                                                    @endforeach --}}
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="table-responsive">
                                             <table class="table table-hover mb-0" id="myTable">
                                                 <thead>
@@ -58,6 +69,20 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
     <script>
-        let table = new DataTable('#myTable');
+        $(document).ready(function() {
+            var table = new DataTable('#myTable');
+
+            // Populate the Class filter dropdown
+            var uniqueClasses = [...new Set(table.column(1).data().toArray())];
+            uniqueClasses.forEach(function(className) {
+                $('#classFilter').append(new Option(className, className));
+            });
+
+            // Filter function for class
+            $('#classFilter').on('change', function() {
+                table.column(1).search(this.value).draw();
+            });
+
+        });
     </script>
 @endsection

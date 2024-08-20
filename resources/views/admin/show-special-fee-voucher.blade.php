@@ -115,7 +115,7 @@
                                                             <td>{{ $vouc->total }}</td>
                                                             <td>
                                                                 <a href="{{ url('viewSpecialFeesVoucher', $vouc->id) }}"
-                                                                    class="btn btn-sm our-color-1 rounded-2 shadow">View</a>
+                                                                    class="btn btn-sm our-color-1 rounded-2 shadow magicButton">View</a>
                                                             </td>
 
                                                         </tr>
