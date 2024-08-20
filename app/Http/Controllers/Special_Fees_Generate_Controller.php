@@ -76,6 +76,8 @@ class Special_Fees_Generate_Controller extends Controller
             $specialvoucher->issued_date = now(); // Or use a specific date
             $specialvoucher->due_date = $request->input('due_date');
             $specialvoucher->session = $request->input('session');
+            $specialvoucher->note_01 = $request->input('note_01');
+            $specialvoucher->note_02 = $request->input('note_02');
             $specialvoucher->month_year = $monthYear;
 
             $fees = $request->input('fees', []);

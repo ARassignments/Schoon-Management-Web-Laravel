@@ -1,16 +1,16 @@
 @extends('admin.master')
 @section('content')
-<div style=" background-color: rgb(161, 161, 161);" class="d-flex align-items-center justify-content-center flex-column">
+    <div style=" background-color: rgb(161, 161, 161);" class="d-flex align-items-center justify-content-center flex-column">
         <button onclick="printElement('printableArea')" class="btn btn-primary mt-3">Print</button>
 
         <div class="my-3 page pb-3 mb-5" size="A4" id="printableArea"
             style="   width: 21cm;
-overflow: hidden; background: white;
-display: block;
-position: relative;">
-{{-- height: 29.7cm; --}}
+            overflow: hidden; background: white;
+            display: block;
+            position: relative;">
+            {{-- height: 29.7cm; --}}
 
-<svg id="barcode" class="d-none"></svg>
+            <svg id="barcode" class="d-none"></svg>
             <!-- ===============================================================Voucher-1-Start=============================================================== -->
 
             <div class="p-2">
@@ -25,7 +25,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">GRNo.</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">GRNo.</p>
                                 <span>{{ $voucher->gr_number }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
@@ -33,7 +34,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Student Name</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Student Name</p>
                                 <span>{{ $voucher->students_add->student_name }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
@@ -41,7 +43,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Father Name</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Father Name</p>
                                 <span>{{ $voucher->students_add->father_name }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
@@ -49,7 +52,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Class</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Class</p>
                                 <span>{{ $voucher->class }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
@@ -57,7 +61,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Section</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Section</p>
                                 <span>{{ $voucher->section }}</span>
                             </div>
                         </div>
@@ -73,7 +78,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Transaction</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Transaction</p>
                                 <span class="me-2">{{ $voucher->transaction_date }}</span>
                             </div>
                             <div class="d-flex justify-content-between">
@@ -81,7 +87,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Issued</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Issued</p>
                                 <span class="me-2">{{ $voucher->issued_date }}</span>
                             </div>
                             <div class="d-flex justify-content-between">
@@ -89,7 +96,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Due On</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Due On</p>
                                 <span class="me-2">{{ $voucher->due_date }}</span>
                             </div>
                             <div class="d-flex justify-content-between">
@@ -97,7 +105,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Session</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Session</p>
                                 <span class="me-2">{{ $voucher->session }}</span>
                             </div>
                             <div class="d-flex justify-content-between">
@@ -105,7 +114,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Month</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Month</p>
                                 <span class="me-2">{{ $voucher->month_year }}</span>
                             </div>
                         </div>
@@ -169,6 +179,20 @@ position: relative;">
                     font-family: sans-serif;">
                                 100/-Rs will be charged after due date.</p>
                         </div>
+                        <p
+                            style="margin: 0;
+                                font-weight: 100;
+                                font-size: 14px;
+                                color: rgb(129, 129, 129);
+                                font-family: sans-serif;">
+                            {{ $voucher->note_01 }}</p>
+                        <p
+                            style="margin: 0;
+                                font-weight: 100;
+                                font-size: 14px;
+                                color: rgb(129, 129, 129);
+                                font-family: sans-serif;">
+                            {{ $voucher->note_02 }}</p>
                     </div>
                     <div class="col-md-6">
 
@@ -177,7 +201,8 @@ position: relative;">
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-4">Previous Dues</p>
+                                font-family: sans-serif;"
+                                class="col-4">Previous Dues</p>
                             <span class="me-2">{{ $voucher->previous_dues }}</span>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -185,7 +210,8 @@ position: relative;">
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-8">Total Payable (Within due Date)</p>
+                                font-family: sans-serif;"
+                                class="col-8">Total Payable (Within due Date)</p>
                             <span class="me-2">{{ $voucher->total_payable_within_due_date }}</span>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -193,7 +219,8 @@ position: relative;">
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-8">Total Payable (After due Date)</p>
+                                font-family: sans-serif;"
+                                class="col-8">Total Payable (After due Date)</p>
                             <span class="me-2">{{ $voucher->total_payable_after_due_date }}</span>
                         </div>
 
@@ -219,7 +246,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">GRNo.</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">GRNo.</p>
                                 <span>{{ $voucher->gr_number }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
@@ -227,7 +255,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Student Name</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Student Name</p>
                                 <span>{{ $voucher->students_add->student_name }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
@@ -235,7 +264,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Father Name</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Father Name</p>
                                 <span>{{ $voucher->students_add->father_name }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
@@ -243,7 +273,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Class</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Class</p>
                                 <span>{{ $voucher->class }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
@@ -251,7 +282,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Section</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Section</p>
                                 <span>{{ $voucher->section }}</span>
                             </div>
                         </div>
@@ -262,40 +294,45 @@ position: relative;">
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-4">Transaction</p>
-                                <span class="me-2">{{$voucher->transaction_date}}</span>
+                                font-family: sans-serif;"
+                                    class="col-4">Transaction</p>
+                                <span class="me-2">{{ $voucher->transaction_date }}</span>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <p style="margin: 0;
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-4">Issued</p>
-                                <span class="me-2">{{$voucher->issued_date}}</span>
+                                font-family: sans-serif;"
+                                    class="col-4">Issued</p>
+                                <span class="me-2">{{ $voucher->issued_date }}</span>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <p style="margin: 0;
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-4">Due On</p>
-                                <span class="me-2">{{$voucher->due_date}}</span>
+                                font-family: sans-serif;"
+                                    class="col-4">Due On</p>
+                                <span class="me-2">{{ $voucher->due_date }}</span>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <p style="margin: 0;
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-4">Session</p>
-                                <span class="me-2">{{$voucher->session}}</span>
+                                font-family: sans-serif;"
+                                    class="col-4">Session</p>
+                                <span class="me-2">{{ $voucher->session }}</span>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <p style="margin: 0;
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-4">Month</p>
-                                <span class="me-2">{{$voucher->month_year}}</span>
+                                font-family: sans-serif;"
+                                    class="col-4">Month</p>
+                                <span class="me-2">{{ $voucher->month_year }}</span>
                             </div>
                         </div>
                     </div>
@@ -358,6 +395,20 @@ position: relative;">
                     font-family: sans-serif;">
                                 100/-Rs will be charged after due date.</p>
                         </div>
+                        <p
+                            style="margin: 0;
+                                font-weight: 100;
+                                font-size: 14px;
+                                color: rgb(129, 129, 129);
+                                font-family: sans-serif;">
+                            {{ $voucher->note_01 }}</p>
+                        <p
+                            style="margin: 0;
+                                font-weight: 100;
+                                font-size: 14px;
+                                color: rgb(129, 129, 129);
+                                font-family: sans-serif;">
+                            {{ $voucher->note_02 }}</p>
                     </div>
                     <div class="col-md-6">
 
@@ -366,7 +417,8 @@ position: relative;">
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-4">Previous Dues</p>
+                                font-family: sans-serif;"
+                                class="col-4">Previous Dues</p>
                             <span class="me-2">{{ $voucher->previous_dues }}</span>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -374,7 +426,8 @@ position: relative;">
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-8">Total Payable (Within due Date)</p>
+                                font-family: sans-serif;"
+                                class="col-8">Total Payable (Within due Date)</p>
                             <span class="me-2">{{ $voucher->total_payable_within_due_date }}</span>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -382,7 +435,8 @@ position: relative;">
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-8">Total Payable (After due Date)</p>
+                                font-family: sans-serif;"
+                                class="col-8">Total Payable (After due Date)</p>
                             <span class="me-2">{{ $voucher->total_payable_after_due_date }}</span>
                         </div>
                     </div>
@@ -406,7 +460,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">GRNo.</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">GRNo.</p>
                                 <span>{{ $voucher->gr_number }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
@@ -414,7 +469,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Student Name</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Student Name</p>
                                 <span>{{ $voucher->students_add->student_name }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
@@ -422,7 +478,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Father Name</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Father Name</p>
                                 <span>{{ $voucher->students_add->father_name }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
@@ -430,7 +487,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Class</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Class</p>
                                 <span>{{ $voucher->class }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
@@ -438,7 +496,8 @@ position: relative;">
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Section</p>
+                                    font-family: sans-serif;"
+                                    class="col-4">Section</p>
                                 <span>{{ $voucher->section }}</span>
                             </div>
                         </div>
@@ -449,40 +508,45 @@ position: relative;">
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-4">Transaction</p>
-                                <span class="me-2">{{$voucher->transaction_date}}</span>
+                                font-family: sans-serif;"
+                                    class="col-4">Transaction</p>
+                                <span class="me-2">{{ $voucher->transaction_date }}</span>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <p style="margin: 0;
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-4">Issued</p>
-                                <span class="me-2">{{$voucher->issued_date}}</span>
+                                font-family: sans-serif;"
+                                    class="col-4">Issued</p>
+                                <span class="me-2">{{ $voucher->issued_date }}</span>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <p style="margin: 0;
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-4">Due On</p>
-                                <span class="me-2">{{$voucher->due_date}}</span>
+                                font-family: sans-serif;"
+                                    class="col-4">Due On</p>
+                                <span class="me-2">{{ $voucher->due_date }}</span>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <p style="margin: 0;
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-4">Session</p>
-                                <span class="me-2">{{$voucher->session}}</span>
+                                font-family: sans-serif;"
+                                    class="col-4">Session</p>
+                                <span class="me-2">{{ $voucher->session }}</span>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <p style="margin: 0;
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-4">Month</p>
-                                <span class="me-2">{{$voucher->month_year}}</span>
+                                font-family: sans-serif;"
+                                    class="col-4">Month</p>
+                                <span class="me-2">{{ $voucher->month_year }}</span>
                             </div>
                         </div>
                     </div>
@@ -545,6 +609,20 @@ position: relative;">
                     font-family: sans-serif;">
                                 100/-Rs will be charged after due date.</p>
                         </div>
+                        <p
+                            style="margin: 0;
+                                font-weight: 100;
+                                font-size: 14px;
+                                color: rgb(129, 129, 129);
+                                font-family: sans-serif;">
+                            {{ $voucher->note_01 }}</p>
+                        <p
+                            style="margin: 0;
+                                font-weight: 100;
+                                font-size: 14px;
+                                color: rgb(129, 129, 129);
+                                font-family: sans-serif;">
+                            {{ $voucher->note_02 }}</p>
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex justify-content-between">
@@ -552,7 +630,8 @@ position: relative;">
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-4">Previous Dues</p>
+                                font-family: sans-serif;"
+                                class="col-4">Previous Dues</p>
                             <span class="me-2">{{ $voucher->previous_dues }}</span>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -560,7 +639,8 @@ position: relative;">
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-8">Total Payable (Within due Date)</p>
+                                font-family: sans-serif;"
+                                class="col-8">Total Payable (Within due Date)</p>
                             <span class="me-2">{{ $voucher->total_payable_within_due_date }}</span>
                         </div>
                         <div class="d-flex justify-content-between">
@@ -568,7 +648,8 @@ position: relative;">
                                 font-weight: 100;
                                 font-size: 14px;
                                 color: black;
-                                font-family: sans-serif;" class="col-8">Total Payable (After due Date)</p>
+                                font-family: sans-serif;"
+                                class="col-8">Total Payable (After due Date)</p>
                             <span class="me-2">{{ $voucher->total_payable_after_due_date }}</span>
                         </div>
                     </div>
@@ -583,41 +664,41 @@ position: relative;">
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const barcodeValue = "{{ $voucher->gr_number }}"; // Example barcode value
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const barcodeValue = "{{ $voucher->gr_number }}"; // Example barcode value
 
-        // Generate barcode in SVG
-        JsBarcode("#barcode", barcodeValue, {
-            format: "CODE128",
-            displayValue: true,
-            width: 2,
-            height: 50
+            // Generate barcode in SVG
+            JsBarcode("#barcode", barcodeValue, {
+                format: "CODE128",
+                displayValue: true,
+                width: 2,
+                height: 50
+            });
+
+            // document.querySelector("#barcode").with = "100%"
+
+            // // Convert SVG to PNG image
+            const svgElement = document.getElementById("barcode");
+            const svgData = new XMLSerializer().serializeToString(svgElement);
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            const img = document.createElement("img");
+
+            img.onload = function() {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+                const pngData = canvas.toDataURL("image/png");
+                document.getElementById("barcodeImg1").src = pngData;
+                document.getElementById("barcodeImg2").src = pngData;
+                document.getElementById("barcodeImg3").src = pngData;
+            };
+
+            img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
         });
 
-        // document.querySelector("#barcode").with = "100%"
-
-        // // Convert SVG to PNG image
-        const svgElement = document.getElementById("barcode");
-        const svgData = new XMLSerializer().serializeToString(svgElement);
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-        const img = document.createElement("img");
-
-        img.onload = function() {
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0);
-            const pngData = canvas.toDataURL("image/png");
-            document.getElementById("barcodeImg1").src = pngData;
-            document.getElementById("barcodeImg2").src = pngData;
-            document.getElementById("barcodeImg3").src = pngData;
-        };
-
-        img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
-    });
-
-    function printElement(elementId) {
+        function printElement(elementId) {
             var printContents = document.getElementById(elementId).innerHTML;
             var originalContents = document.body.innerHTML;
 
@@ -627,5 +708,5 @@ position: relative;">
 
             document.body.innerHTML = originalContents;
         }
-</script>
+    </script>
 @endsection
