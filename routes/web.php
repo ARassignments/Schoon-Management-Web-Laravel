@@ -9,6 +9,7 @@ use App\Http\Controllers\ClassFeeVoucherController;
 use App\Http\Controllers\contactform;
 use App\Http\Controllers\User_Controller;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\NoCache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FeeReceiptsController;
 use App\Http\Controllers\ReportsController;
@@ -28,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::middleware(['auth', 'isadmin'])->group(function () {
+Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
     Route::get('/dashboard', [admin_controller::class, 'index']);
     //------------admission management------------//
     Route::get('/show-addmissionform', [admin_controller::class, 'addmissionform']);
@@ -128,7 +129,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/clear-notification', [contactform::class, 'clearNotification'])->name('clear-notification');
     Route::post('/clear-all-notifications', [contactform::class, 'clearAllNotifications'])->name('clear-all-notifications');
 
-// });
+});
 
 //------------User Managment-----------//
 Route::get('/', [User_Controller::class, 'index']);
