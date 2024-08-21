@@ -117,10 +117,10 @@
         /* #myTable_wrapper .dt-layout-full:has(.magicButton){
             position: relative !important;
         } */
-        #myTable_wrapper .dt-layout-full tr td:has(.magicButton){
+        #myTable_wrapper .dt-layout-full tr td .magicButton{
             position: absolute;
-            right: 0.5rem;
-            border-bottom:none !important;
+            right: 2.2rem;
+            transform: translateY(-3px);
         }
 
         .feeallcard {
