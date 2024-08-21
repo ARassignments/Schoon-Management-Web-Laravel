@@ -149,7 +149,7 @@
                         <a href="index.html" class="logo-light">
                             <span class="logo-lg">
                                 {{-- <img src="assets/images/logo.png" alt="logo"> --}}
-<h2>IQRA</h2>
+                                <h2>IQRA</h2>
                             </span>
                             <span class="logo-sm">
                                 {{-- <img src="assets/images/logo-sm.png" alt="small logo"> --}}
