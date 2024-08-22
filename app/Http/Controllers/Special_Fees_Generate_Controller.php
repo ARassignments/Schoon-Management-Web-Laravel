@@ -103,8 +103,23 @@ class Special_Fees_Generate_Controller extends Controller
 
             // Subtract late_fee from total
             $total -= $specialvoucher->late_fee;
+
+            if (isset($fees['pre_dues']) && $fees['pre_dues']) {
+                $total -= $specialvoucher->pre_dues;
+                $specialvoucher->pre_dues = $student->predues;
+                $specialvoucher->previous_dues = $student->predues;
+                $total += $student->predues;
+            }
             
+            if (isset($fees['tution']) && $fees['tution']) {
+                $total -= $specialvoucher->tution;
+                $specialvoucher->tution = $student->fees;
+                $total += $student->fees;
+            }
+
             $specialvoucher->total = $total;
+            $specialvoucher->total_payable_within_due_date = $total;
+            $specialvoucher->total_payable_after_due_date = $total+$specialvoucher->late_fee;
             
             $specialvoucher->save();
             

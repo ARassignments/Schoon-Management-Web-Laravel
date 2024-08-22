@@ -1,8 +1,9 @@
 @extends('admin.master')
 @section('content')
-<head>
-    <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
-</head>
+
+    <head>
+        <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
+    </head>
     <div class="content-page mt-4">
         <div class="content">
             <div class="row justify-content-center">
@@ -63,6 +64,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
+
                                         <div class="col-lg-6 mb-3">
                                             <label class="form-label">Note 01</label>
                                             <input type="text" name="note_01" class="form-control">

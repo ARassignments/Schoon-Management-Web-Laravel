@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Carbon\Carbon;
 use App\Models\Admissionform;
 // use Illuminate\Support\Facades\Validator;
@@ -51,7 +52,7 @@ class admin_controller extends Controller
         $class = Classes::count();
         $notificationCount = contactfom::where('is_new', true)->count(); // Count only unread notifications
         $contacts = contactfom::all();
-        return view('admin.dashboard', compact('add', 'search', 'addC', 'class', 'notificationCount', 'contacts', 'feeReceiptsCount','feeReceiptsCountMonthly'));
+        return view('admin.dashboard', compact('add', 'search', 'addC', 'class', 'notificationCount', 'contacts', 'feeReceiptsCount', 'feeReceiptsCountMonthly'));
     }
     public function voucher(Request $request)
     {
@@ -263,5 +264,4 @@ class admin_controller extends Controller
         Auth::logout();
         return redirect('/login');
     }
-
 }

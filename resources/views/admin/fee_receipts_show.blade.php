@@ -357,7 +357,7 @@
                                         class="form-control form-control-sm fs-5 text-center m-auto"
                                         style="width:80px" value="${response[i].receipts}" id="receipt${i}"
                                         maxlength="5"
-                                        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateReceipt('receipt${i}',${response[i].id})">
+                                        onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateReceipt('receipt${i}',${response[i].id},'balance${i}')">
                                 </td>
                                 <td>
                                     <input type="text"
@@ -423,7 +423,7 @@
                                 <input type="text" class="form-control form-control-sm fs-5 text-center m-auto" style="width:80px" value="${response[i].discount}" id="discount${i}" maxlength="2" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateDiscount('discount${i}',${response[i].id})">
                             </td>
                             <td>
-                                <input type="text" class="form-control form-control-sm fs-5 text-center m-auto" style="width:80px" value="${response[i].receipts}" id="receipt${i}" maxlength="5" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateReceipt('receipt${i}',${response[i].id})">
+                                <input type="text" class="form-control form-control-sm fs-5 text-center m-auto" style="width:80px" value="${response[i].receipts}" id="receipt${i}" maxlength="5" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateReceipt('receipt${i}',${response[i].id}, 'balance${i}')">
                             </td>
                             <td>
                                 <input type="text" class="form-control form-control-sm fs-5 text-center m-auto" id="balance${i}" style="width:80px" value="${response[i].balance}" maxlength="5" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateBalance('balance${i}',${response[i].id})">
@@ -446,7 +446,6 @@
                     }
                 });
             }
-
 
             function updatePayType(elementId, id) {
                 let selectedValue = document.querySelector('#' + elementId).value;
@@ -530,7 +529,7 @@
                 });
             }
 
-            function updateReceipt(elementId, id) {
+            function updateReceipt(elementId, id, balanceEle) {
                 let receiptsValue = document.querySelector('#' + elementId).value;
                 $.ajax({
                     type: 'post',
@@ -559,6 +558,7 @@
                                 title: data
                             });
                         } else {
+                            document.querySelector(`#${balanceEle}`).value = response.balance;
                             Toast.fire({
                                 icon: "success",
                                 title: "Receipt Updated Successfully"

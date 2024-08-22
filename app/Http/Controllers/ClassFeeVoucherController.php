@@ -94,6 +94,7 @@ class ClassFeeVoucherController extends Controller
             'contacts'
         ));
     }
+
     public function showvoucher()
     {
         $notificationCount = contactfom::where('is_new', true)->count();
@@ -102,6 +103,7 @@ class ClassFeeVoucherController extends Controller
         $voucher = ClassFeeVoucher::with('students_add')->get();
         return view('admin.showclassvoucher', compact('notificationCount', 'contacts', 'voucher'));
     }
+
     public function viewvoucher($id)
     {
         $notificationCount = contactfom::where('is_new', true)->count();
@@ -255,9 +257,23 @@ class ClassFeeVoucherController extends Controller
 
             // Subtract late_fee from total
             $total -= $classvoucher->late_fee;
-            // $total -= $fees["late_fee"];
+            
+            if (isset($fees['pre_dues']) && $fees['pre_dues']) {
+                $total -= $classvoucher->pre_dues;
+                $classvoucher->pre_dues = $student->predues;
+                $classvoucher->previous_dues = $student->predues;
+                $total += $student->predues;
+            }
+            
+            if (isset($fees['tution']) && $fees['tution']) {
+                $total -= $classvoucher->tution;
+                $classvoucher->tution = $student->fees;
+                $total += $student->fees;
+            }
 
             $classvoucher->total = $total;
+            $classvoucher->total_payable_within_due_date = $total;
+            $classvoucher->total_payable_after_due_date = $total+$classvoucher->late_fee;
 
             $classvoucher->save();
         }
