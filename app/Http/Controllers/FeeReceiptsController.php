@@ -80,6 +80,11 @@ class FeeReceiptsController extends Controller
         if ($gr_number != null) {
             $latestFeeVoucher = ClassFeeVoucher::where('gr_number', $gr_number)->latest('created_at')->first();
             if ($latestFeeVoucher) {
+                // Fetch discount from Admissionform model using GR number
+                $student = Admissionform::where('gr_number', $gr_number)->first();
+                $discount = $student ? $student->discount : 0;
+                $predues = $student->predues;
+
                 $feeReceipt = new FeeReceipt();
                 $feeReceipt->voucher_id = $latestFeeVoucher->id;
                 $feeReceipt->date = $latestFeeVoucher->due_date;
@@ -88,9 +93,9 @@ class FeeReceiptsController extends Controller
                 $feeReceipt->section = $latestFeeVoucher->section;
                 $feeReceipt->total = $latestFeeVoucher->total;
                 $feeReceipt->paytype = "";
-                $feeReceipt->discount = 0;
+                $feeReceipt->discount = $discount;
                 $feeReceipt->receipts = $latestFeeVoucher->total;
-                $feeReceipt->balance = 0;
+                $feeReceipt->balance = $predues;
                 $feeReceipt->save();
                 return response()->json($feeReceipt);
             } else {
@@ -216,6 +221,13 @@ class FeeReceiptsController extends Controller
             $feeReceipt->discount = $request->discount;
             $feeReceipt->save();
 
+            // Update the discount in the Admissionform based on the gr_number
+            $student = Admissionform::where('gr_number', $feeReceipt->gr_number)->first();
+            if ($student) {
+                $student->discount = $request->discount;
+                $student->save();
+            }
+
             return response()->json(['feeReceipt' => $feeReceipt]);
         } else {
             return response()->json(['message' => 'Fee receipt not found.'], 404);
@@ -231,10 +243,23 @@ class FeeReceiptsController extends Controller
 
         $feeReceipt = FeeReceipt::where('id', $request->id)->first();
         if ($feeReceipt) {
+            // Update the receipts in the FeeReceipt
             $feeReceipt->receipts = $request->receipts;
+
+            // Calculate the balance (total - receipts)
+            $balance = $feeReceipt->total - $request->receipts;
+            $feeReceipt->balance = $balance;
+
             $feeReceipt->save();
 
-            return response()->json(['feeReceipt' => $feeReceipt]);
+            // Update the balance in the Admissionform based on the gr_number
+            $student = Admissionform::where('gr_number', $feeReceipt->gr_number)->first();
+            if ($student) {
+                $student->predues = $balance;
+                $student->save();
+            }
+
+            return response()->json(['feeReceipt' => $feeReceipt, 'balance' => $student->predues]);
         } else {
             return response()->json(['message' => 'Fee receipt not found.'], 404);
         }
@@ -251,6 +276,13 @@ class FeeReceiptsController extends Controller
         if ($feeReceipt) {
             $feeReceipt->balance = $request->balance;
             $feeReceipt->save();
+
+            // Update the balance in the Admissionform based on the gr_number
+            $student = Admissionform::where('gr_number', $feeReceipt->gr_number)->first();
+            if ($student) {
+                $student->predues = $request->balance;
+                $student->save();
+            }
 
             return response()->json(['feeReceipt' => $feeReceipt]);
         } else {

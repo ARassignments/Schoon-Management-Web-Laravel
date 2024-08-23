@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('current_class');
             $table->string('section');
             $table->string('last_institute');
-            $table->string('fees');
+            $table->string('fees')->default('0');
+            $table->string('predues')->default('0');
+            $table->string('discount')->default('0');
             $table->date('date_of_addmission');
             $table->date('date_of_birth');
             $table->string('religion');
