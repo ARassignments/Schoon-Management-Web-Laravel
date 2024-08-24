@@ -127,8 +127,7 @@ class admin_controller extends Controller
         return view('admin.addstudentpromotion');
     }
 
-    public function storeaddmissionform(Request $request)
-    {
+    public function storeaddmissionform(Request $request){
         $request->validate([
             'gr_number' => 'required|string|max:255',
             'student_name' => 'required|string|max:255',

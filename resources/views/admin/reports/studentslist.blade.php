@@ -112,14 +112,14 @@
             var table = new DataTable('#myTable');
 
             // Populate the Class filter dropdown
-            var uniqueClasses = [...new Set(table.column(6).data().toArray())];
+            var uniqueClasses = [...new Set(table.column(7).data().toArray())];
             uniqueClasses.forEach(function(className) {
                 $('#classFilter').append(new Option(className, className));
             });
 
             // Filter function for class
             $('#classFilter').on('change', function() {
-                table.column(6).search(this.value).draw();
+                table.column(7).search(this.value).draw();
             });
             
             // Populate the Section filter dropdown

@@ -75,20 +75,20 @@
                                                         <tr class="text-center">
                                                             <td>{{ $i++}}</td>
                                                             <td>{{ $addmission->gr_number }}</td>
-                                                            <td>{{ $addmission->student_name }}</td>
-                                                            <td>{{ $addmission->father_name }}</td>
-                                                            <td>{{ $addmission->student_age }}</td>
-                                                            <td>{{ $addmission->mobile_number }}</td>
+                                                            <td>{{ $addmission->students_add->student_name }}</td>
+                                                            <td>{{ $addmission->students_add->father_name }}</td>
+                                                            <td>{{ $addmission->students_add->student_age }}</td>
+                                                            <td>{{ $addmission->students_add->mobile_number }}</td>
                                                             <td>{{ $addmission->class }}</td>
-                                                            <td>{{ $addmission->current_class }}</td>
+                                                            <td>{{ $addmission->students_add->current_class }}</td>
                                                             <td>{{ $addmission->section }}</td>
-                                                            <td>{{ $addmission->last_institute }}</td>
-                                                            <td>{{ $addmission->fees }}</td>
-                                                            <td>{{ $addmission->date_of_addmission }}</td>
-                                                            <td>{{ $addmission->date_of_birth }}</td>
-                                                            <td>{{ $addmission->religion }}</td>
-                                                            <td>{{ $addmission->address }}</td>
-                                                            <td>{{ $addmission->Status }}</td>
+                                                            <td>{{ $addmission->students_add->last_institute }}</td>
+                                                            <td>{{ $addmission->students_add->fees }}</td>
+                                                            <td>{{ $addmission->students_add->date_of_addmission }}</td>
+                                                            <td>{{ $addmission->students_add->date_of_birth }}</td>
+                                                            <td>{{ $addmission->students_add->religion }}</td>
+                                                            <td>{{ $addmission->students_add->address }}</td>
+                                                            <td>{{ $addmission->students_add->Status }}</td>
                                                             <td>{{ $addmission->created_at }}</td>
                                                             <td>{{ $addmission->updated_at }}</td>
                                                         </tr>
@@ -108,18 +108,20 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
     <script>
+        
+        
         $(document).ready(function() {
             var table = new DataTable('#myTable');
 
             // Populate the Class filter dropdown
-            var uniqueClasses = [...new Set(table.column(6).data().toArray())];
+            var uniqueClasses = [...new Set(table.column(7).data().toArray())];
             uniqueClasses.forEach(function(className) {
                 $('#classFilter').append(new Option(className, className));
             });
 
             // Filter function for class
             $('#classFilter').on('change', function() {
-                table.column(6).search(this.value).draw();
+                table.column(7).search(this.value).draw();
             });
             
             // Populate the Section filter dropdown

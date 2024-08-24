@@ -67,7 +67,7 @@
                                                             <td>{{ $addmission->student_name }}</td>
                                                             <td>{{ $addmission->father_name }}</td>
                                                             <td>{{ $addmission->address }}</td>
-                                                            <td>{{ $addmission->class }}</td>
+                                                            <td>{{ $addmission->current_class }}</td>
                                                             <td>{{ $addmission->section }}</td>
                                                             <td>{{ $addmission->Status }}</td>
                                                         </tr>

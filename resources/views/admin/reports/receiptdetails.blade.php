@@ -72,12 +72,12 @@
                                                             <td>{{ $addmission->gr_number }}</td>
                                                             <td>{{ $addmission->students_add->student_name }}</td>
                                                             <td>{{ $addmission->students_add->father_name }}</td>
-                                                            <td>{{ $addmission->students_add->class }}</td>
+                                                            <td>{{ $addmission->students_add->current_class }}</td>
                                                             <td>{{ $addmission->students_add->section }}</td>
                                                             <td>{{ $addmission->date }}</td>
-                                                            <td>{{ $addmission->paytype }}</td>
+                                                            <td>{{ $addmission->paytype == ""?"-":$addmission->paytype }}</td>
                                                             <td>{{ $addmission->discount }}</td>
-                                                            <td>{{ $addmission->receipt }}</td>
+                                                            <td>{{ $addmission->receipts }}</td>
                                                             <td>{{ $addmission->balance }}</td>
                                                             <td>{{ $addmission->total }}</td>
                                                         </tr>

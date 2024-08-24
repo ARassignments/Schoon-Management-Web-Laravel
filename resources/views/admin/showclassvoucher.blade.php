@@ -17,6 +17,7 @@
                             class="add-btn2 "><span class="spn2">Generate PDF</span></a>
                     </button>
                 </div>
+
                 <div class="row">
                     <div class="col-xl-12 ">
                         <!-- Todo-->
@@ -29,13 +30,13 @@
 
                                     <!-- Searchbar Start -->
                                     <!-- <div class="app-search ms-3">
-                                                                                                                            <form>
-                                                                                                                                <div class="input-group">
-                                                                                                                                    <input type="search" class="form-control" placeholder="Search...">
-                                                                                                                                    <span class="ri-search-line search-icon text-muted"></span>
-                                                                                                                                </div>
-                                                                                                                            </form>
-                                                                                                                        </div> -->
+                                                                                                                                <form>
+                                                                                                                                    <div class="input-group">
+                                                                                                                                        <input type="search" class="form-control" placeholder="Search...">
+                                                                                                                                        <span class="ri-search-line search-icon text-muted"></span>
+                                                                                                                                    </div>
+                                                                                                                                </form>
+                                                                                                                            </div> -->
                                     <form class="app-search" action="" method="GET">
                                         {{-- <input class="search-input" name="search" placeholder="Search..." type="search" value="{{ $search }}"> --}}
 
@@ -204,11 +205,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">GRNo.</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher="gr_number"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher="gr_number"></span>
                                     </div>
                                     <div class="d-flex justify-content-start">
                                         <p style="margin: 0;
@@ -217,11 +220,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Student Name</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher="student_name"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher="student_name"></span>
                                     </div>
                                     <div class="d-flex justify-content-start">
                                         <p style="margin: 0;
@@ -230,11 +235,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Father Name</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher="father_name"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher="father_name"></span>
                                     </div>
                                     <div class="d-flex justify-content-start">
                                         <p style="margin: 0;
@@ -243,11 +250,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Class</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher="class"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher="class"></span>
                                     </div>
                                     <div class="d-flex justify-content-start">
                                         <p style="margin: 0;
@@ -256,11 +265,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Section</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher="section"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher="section"></span>
                                     </div>
                                 </div>
 
@@ -277,11 +288,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Transaction</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher="transaction_date"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher="transaction_date"></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p style="margin: 0;
@@ -290,11 +303,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Issued</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher="issued_date"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher="issued_date"></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p style="margin: 0;
@@ -303,11 +318,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Due On</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher="due_date"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher="due_date"></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p style="margin: 0;
@@ -316,11 +333,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Session</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher="session"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher="session"></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p style="margin: 0;
@@ -329,11 +348,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Month</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher="month_year"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher="month_year"></span>
                                     </div>
                                 </div>
                             </div>
@@ -418,11 +439,13 @@
                                 color: black;
                                 font-family: sans-serif;"
                                         class="col-4">Previous Dues</p>
-                                    <span style="margin: 0;
+                                    <span
+                                        style="margin: 0;
                                     font-weight: 100;
                                     font-size: 12px;
                                     color: black;
-                                    font-family: sans-serif;" class="me-2" data-voucher="previous_dues"></span>
+                                    font-family: sans-serif;"
+                                        class="me-2" data-voucher="previous_dues"></span>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p style="margin: 0;
@@ -431,11 +454,13 @@
                                 color: black;
                                 font-family: sans-serif;"
                                         class="col-8">Total Payable (Within due Date)</p>
-                                    <span style="margin: 0;
+                                    <span
+                                        style="margin: 0;
                                     font-weight: 100;
                                     font-size: 12px;
                                     color: black;
-                                    font-family: sans-serif;" class="me-2" data-voucher="total_payable_within_due_date"></span>
+                                    font-family: sans-serif;"
+                                        class="me-2" data-voucher="total_payable_within_due_date"></span>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p style="margin: 0;
@@ -444,11 +469,13 @@
                                 color: black;
                                 font-family: sans-serif;"
                                         class="col-8">Total Payable (After due Date)</p>
-                                    <span style="margin: 0;
+                                    <span
+                                        style="margin: 0;
                                     font-weight: 100;
                                     font-size: 12px;
                                     color: black;
-                                    font-family: sans-serif;" class="me-2" data-voucher="total_payable_after_due_date"></span>
+                                    font-family: sans-serif;"
+                                        class="me-2" data-voucher="total_payable_after_due_date"></span>
                                 </div>
 
                             </div>
@@ -475,11 +502,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">GRNo.</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher2="gr_number"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher2="gr_number"></span>
                                     </div>
                                     <div class="d-flex justify-content-start">
                                         <p style="margin: 0;
@@ -488,11 +517,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Student Name</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher2="student_name"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher2="student_name"></span>
                                     </div>
                                     <div class="d-flex justify-content-start">
                                         <p style="margin: 0;
@@ -501,11 +532,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Father Name</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher2="father_name"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher2="father_name"></span>
                                     </div>
                                     <div class="d-flex justify-content-start">
                                         <p style="margin: 0;
@@ -514,11 +547,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Class</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher2="class"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher2="class"></span>
                                     </div>
                                     <div class="d-flex justify-content-start">
                                         <p style="margin: 0;
@@ -527,11 +562,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Section</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher2="section"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher2="section"></span>
                                     </div>
                                 </div>
 
@@ -548,11 +585,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Transaction</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher2="transaction_date"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher2="transaction_date"></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p style="margin: 0;
@@ -561,11 +600,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Issued</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher2="issued_date"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher2="issued_date"></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p style="margin: 0;
@@ -574,11 +615,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Due On</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher2="due_date"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher2="due_date"></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p style="margin: 0;
@@ -587,11 +630,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Session</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher2="session"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher2="session"></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p style="margin: 0;
@@ -600,11 +645,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Month</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher2="month_year"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher2="month_year"></span>
                                     </div>
                                 </div>
                             </div>
@@ -689,11 +736,13 @@
                                 color: black;
                                 font-family: sans-serif;"
                                         class="col-4">Previous Dues</p>
-                                    <span style="margin: 0;
+                                    <span
+                                        style="margin: 0;
                                     font-weight: 100;
                                     font-size: 12px;
                                     color: black;
-                                    font-family: sans-serif;" class="me-2" data-voucher2="previous_dues"></span>
+                                    font-family: sans-serif;"
+                                        class="me-2" data-voucher2="previous_dues"></span>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p style="margin: 0;
@@ -702,11 +751,13 @@
                                 color: black;
                                 font-family: sans-serif;"
                                         class="col-8">Total Payable (Within due Date)</p>
-                                    <span style="margin: 0;
+                                    <span
+                                        style="margin: 0;
                                     font-weight: 100;
                                     font-size: 12px;
                                     color: black;
-                                    font-family: sans-serif;" class="me-2" data-voucher2="total_payable_within_due_date"></span>
+                                    font-family: sans-serif;"
+                                        class="me-2" data-voucher2="total_payable_within_due_date"></span>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p style="margin: 0;
@@ -715,11 +766,13 @@
                                 color: black;
                                 font-family: sans-serif;"
                                         class="col-8">Total Payable (After due Date)</p>
-                                    <span style="margin: 0;
+                                    <span
+                                        style="margin: 0;
                                     font-weight: 100;
                                     font-size: 12px;
                                     color: black;
-                                    font-family: sans-serif;" class="me-2" data-voucher2="total_payable_after_due_date"></span>
+                                    font-family: sans-serif;"
+                                        class="me-2" data-voucher2="total_payable_after_due_date"></span>
                                 </div>
 
                             </div>
@@ -747,11 +800,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">GRNo.</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher3="gr_number"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher3="gr_number"></span>
                                     </div>
                                     <div class="d-flex justify-content-start">
                                         <p style="margin: 0;
@@ -760,11 +815,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Student Name</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher3="student_name"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher3="student_name"></span>
                                     </div>
                                     <div class="d-flex justify-content-start">
                                         <p style="margin: 0;
@@ -773,11 +830,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Father Name</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher3="father_name"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher3="father_name"></span>
                                     </div>
                                     <div class="d-flex justify-content-start">
                                         <p style="margin: 0;
@@ -786,11 +845,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Class</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher3="class"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher3="class"></span>
                                     </div>
                                     <div class="d-flex justify-content-start">
                                         <p style="margin: 0;
@@ -799,11 +860,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Section</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" data-voucher3="section"></span>
+                                        font-family: sans-serif;"
+                                            data-voucher3="section"></span>
                                     </div>
                                 </div>
 
@@ -820,11 +883,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Transaction</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher3="transaction_date"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher3="transaction_date"></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p style="margin: 0;
@@ -833,11 +898,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Issued</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher3="issued_date"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher3="issued_date"></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p style="margin: 0;
@@ -846,11 +913,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Due On</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher3="due_date"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher3="due_date"></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p style="margin: 0;
@@ -859,11 +928,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Session</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher3="session"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher3="session"></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p style="margin: 0;
@@ -872,11 +943,13 @@
                                     color: black;
                                     font-family: sans-serif;"
                                             class="col-4">Month</p>
-                                        <span style="margin: 0;
+                                        <span
+                                            style="margin: 0;
                                         font-weight: 100;
                                         font-size: 12px;
                                         color: black;
-                                        font-family: sans-serif;" class="me-2" data-voucher3="month_year"></span>
+                                        font-family: sans-serif;"
+                                            class="me-2" data-voucher3="month_year"></span>
                                     </div>
                                 </div>
                             </div>
@@ -961,11 +1034,13 @@
                                 color: black;
                                 font-family: sans-serif;"
                                         class="col-4">Previous Dues</p>
-                                    <span style="margin: 0;
+                                    <span
+                                        style="margin: 0;
                                     font-weight: 100;
                                     font-size: 12px;
                                     color: black;
-                                    font-family: sans-serif;" class="me-2" data-voucher3="previous_dues"></span>
+                                    font-family: sans-serif;"
+                                        class="me-2" data-voucher3="previous_dues"></span>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p style="margin: 0;
@@ -974,11 +1049,13 @@
                                 color: black;
                                 font-family: sans-serif;"
                                         class="col-8">Total Payable (Within due Date)</p>
-                                    <span style="margin: 0;
+                                    <span
+                                        style="margin: 0;
                                     font-weight: 100;
                                     font-size: 12px;
                                     color: black;
-                                    font-family: sans-serif;" class="me-2" data-voucher3="total_payable_within_due_date"></span>
+                                    font-family: sans-serif;"
+                                        class="me-2" data-voucher3="total_payable_within_due_date"></span>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p style="margin: 0;
@@ -987,11 +1064,13 @@
                                 color: black;
                                 font-family: sans-serif;"
                                         class="col-8">Total Payable (After due Date)</p>
-                                    <span style="margin: 0;
+                                    <span
+                                        style="margin: 0;
                                     font-weight: 100;
                                     font-size: 12px;
                                     color: black;
-                                    font-family: sans-serif;" class="me-2" data-voucher3="total_payable_after_due_date"></span>
+                                    font-family: sans-serif;"
+                                        class="me-2" data-voucher3="total_payable_after_due_date"></span>
                                 </div>
 
                             </div>
@@ -1117,7 +1196,7 @@
 
                         // Function to update the HTML content
                         updateVoucherDetails(voucher);
-                        
+
                         // Convert the HTML content to PDF and add it to the PDF document
                         const element = document.getElementById('printableArea');
                         await pdf.from(element).toPdf().get('pdf').then((pdfDoc) => {
@@ -1125,7 +1204,7 @@
                                 pdfDoc.addPage();
                             }
                         });
-                        
+
                     }
 
                     // Save the final PDF

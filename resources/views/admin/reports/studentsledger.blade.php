@@ -67,7 +67,7 @@
                                                             <td>{{ $addmission->gr_number }}</td>
                                                             <td>{{ $addmission->students_add->student_name }}</td>
                                                             <td>{{ $addmission->students_add->father_name }}</td>
-                                                            <td>{{ $addmission->students_add->class }}</td>
+                                                            <td>{{ $addmission->students_add->current_class }}</td>
                                                             <td>{{ $addmission->students_add->section }}</td>
                                                             <td>{{ $addmission->students_add->fees }}</td>
                                                             <td>{{ $addmission->previous_dues }}</td>

@@ -278,7 +278,7 @@ class ClassFeeVoucherController extends Controller
             $classvoucher->save();
         }
 
-        return redirect()->back()->with('success', 'Class fee vouchers created successfully!');
+        return redirect('showclassfees')->with('success', 'Class fee vouchers created successfully!');
     }
 
     public function getFeesForClass($class)

@@ -33,8 +33,8 @@ return new class extends Migration
             $table->integer('previous_dues')->default(0);
             $table->integer('total_payable_within_due_date')->default(0);
             $table->integer('total_payable_after_due_date')->default(0);
-            $table->string('class');
-            $table->string('section');
+            $table->string('class')->nullable(true);
+            $table->string('section')->nullable(true);
             $table->string('note_01')->nullable(true);
             $table->string('note_02')->nullable(true);
             $table->timestamps();

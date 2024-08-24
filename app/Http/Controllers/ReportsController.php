@@ -10,8 +10,8 @@ use App\Models\FeeReceipt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ReportsController extends Controller
-{
+class ReportsController extends Controller{
+    
     public function studentsreport()
     {
         $add = AdmissionForm::all();

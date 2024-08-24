@@ -123,9 +123,9 @@ class Special_Fees_Generate_Controller extends Controller
             
             $specialvoucher->save();
             
-            return redirect()->back()->with('success', 'Special fee voucher created successfully for the student!');
+            return redirect('showSpecialFees')->with('success', 'Special fee voucher created successfully for the student!');
         } else {
-            return redirect()->back()->with('error', 'Student not found or not eligible.');
+            return redirect('showSpecialFees')->with('error', 'Student not found or not eligible.');
         }
     }
 

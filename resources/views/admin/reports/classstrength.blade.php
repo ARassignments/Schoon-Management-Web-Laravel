@@ -79,6 +79,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
     <script>
+        
         $(document).ready(function() {
             var table = new DataTable('#myTable');
 
