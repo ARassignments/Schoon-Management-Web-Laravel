@@ -56,6 +56,7 @@
     <!-- Flatpickr Timepicker css -->
     <link href="{{ asset('assets/vendor/flatpickr/flatpickr.min.css')}}" rel="stylesheet" type="text/css" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         #myTable_wrapper .dt-search,
@@ -121,6 +122,12 @@
             position: absolute;
             right: 2.2rem;
             transform: translateY(-3px);
+        }
+
+        #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer{
+            margin-left: 0rem;
+            padding-right: 1.0rem;
+            display: none !important;
         }
 
         .feeallcard {
