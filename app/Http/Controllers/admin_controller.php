@@ -44,10 +44,10 @@ class admin_controller extends Controller
             $add = Admissionform::all();
         }
         $today = Carbon::today()->toDateString();
-        $feeReceiptsCount = FeeReceipt::whereDate('created_at', $today)->sum('total');
+        $feeReceiptsCount = FeeReceipt::whereDate('created_at', $today)->sum('receipts');
         $startOfMonth = Carbon::now()->startOfMonth();
         $endOfMonth = Carbon::now()->endOfMonth();
-        $feeReceiptsCountMonthly = FeeReceipt::whereBetween('created_at', [$startOfMonth, $endOfMonth])->sum('total');
+        $feeReceiptsCountMonthly = FeeReceipt::whereBetween('created_at', [$startOfMonth, $endOfMonth])->sum('receipts');
         $addC = Admissionform::count();
         $class = Classes::count();
         $notificationCount = contactfom::where('is_new', true)->count(); // Count only unread notifications

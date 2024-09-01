@@ -103,7 +103,7 @@ Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
     Route::get('/receipt-details', [ReportsController::class, 'receiptdetails']);
     Route::get('/receipt-reports', [ReportsController::class, 'receiptreports']);
     Route::get('/studentsLedgerReportView/{id}', [ReportsController::class, 'studentsLedgerReportView'])->name('studentsLedgerReportView');
-    
+    Route::get('showSearchedFeeReceipts', [ReportsController::class, 'showSearchedFeeReceipts']);
 
 
     //---------------------fee receipts--------------------//

@@ -1,10 +1,11 @@
 @extends('admin.master')
 @section('content')
-<head>
-    <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
-    <!-- Buttons extension CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
-</head>
+
+    <head>
+        <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
+        <!-- Buttons extension CSS -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+    </head>
     <div class="content-page mt-4">
         <div class="content">
             <!-- Start Content-->
@@ -42,6 +43,18 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="form-group p-3">
+                                            <label for="filterSelector">Filter By:</label>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <select id="filterSelector" class="form-select"
+                                                    onchange="fetchFilterData()">
+                                                    <option value="" selected disabled>--Select Filter--</option>
+                                                    <option value="all">All Data</option>
+                                                    <option value="today">Today</option>
+                                                    <option value="monthly">This Month</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="table-responsive">
                                             <table class="table table-nowrap table-hover mb-0" id="myTable">
                                                 <thead>
@@ -54,10 +67,10 @@
                                                         <th>Section</th>
                                                         <th>Fees</th>
                                                         <th>Previous Dues</th>
-                                                      
+
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="feeReceiptContainer">
 
                                                     @php
                                                         $i = 1;
@@ -71,8 +84,8 @@
                                                             <td>{{ $addmission->students_add->current_class }}</td>
                                                             <td>{{ $addmission->students_add->section }}</td>
                                                             <td>{{ $addmission->students_add->fees }}</td>
-                                                            <td>{{ $addmission->previous_dues }}</td>
-                                                           
+                                                            <td>{{ $addmission->students_add->previous_dues }}</td>
+
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -99,6 +112,8 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <script>
+        console.log(@json($add));
+        
         $(document).ready(function() {
             // Initialize DataTable
             var table = new DataTable('#myTable', {
@@ -181,7 +196,7 @@
             $('#sectionFilter').on('change', function() {
                 table.column(5).search(this.value).draw();
             });
-            
+
             // Custom button click events
             $('#btnExportPdf').on('click', function() {
                 table.button('.buttons-pdf').trigger();
@@ -208,5 +223,51 @@
                 }
             }
         });
+        function fetchData(filterValue) {
+        let url = `showSearchedFeeReceipts?filter=${filterValue}`;
+        $.ajax({
+            type: 'get',
+            url: url,
+            success: function(response) {
+                let feeReceiptContainer = document.querySelector("#feeReceiptContainer");
+                if (response.length > 0) {
+                    feeReceiptContainer.innerHTML = "";
+                    console.log(response);
+                    response.forEach((item, index) => {
+                        
+                        feeReceiptContainer.innerHTML += `
+                            <tr class="text-center">
+                                <td>${index + 1}</td>
+                                <td>${item.gr_number}</td>
+                                <td>${item.student_name}</td>
+                                <td>${item.father_name}</td>
+                                <td>${item.current_class}</td>
+                                <td>${item.section}</td>
+                                <td>${item.fees}</td>
+                                <td>${item.previous_dues}</td>
+                            </tr>
+                        `;
+                    });
+                } else {
+                    feeReceiptContainer.innerHTML = `
+                        <tr>
+                            <td colspan="8">
+                                <h1 class="text-center display-4 fs-1 text-uppercase mt-2">Data not found</h1>
+                            </td>
+                        </tr>
+                    `;
+                }
+            }
+        });
+    }
+
+    // Function to handle filter changes
+    function fetchFilterData() {
+        let filterValue = document.getElementById('filterSelector').value;
+        fetchData(filterValue);
+    }
+
+    // Attach event listener to the filter dropdown
+    document.getElementById('filterSelector').addEventListener('change', fetchFilterData);
     </script>
 @endsection

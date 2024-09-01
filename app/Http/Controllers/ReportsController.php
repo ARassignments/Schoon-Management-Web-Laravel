@@ -94,6 +94,22 @@ class ReportsController extends Controller{
         $classes = Classes::all();
         return view('admin.reports.defaulterstudents', compact('add', 'notificationCount', 'contacts', 'classes'));
     }
+    public function showSearchedFeeReceipts(Request $request)
+    {
+        $filter = $request->input('filter');
+        $query = AdmissionForm::with('students_add')->query();
+
+        if ($filter === 'today') {
+            $query->whereDate('date', today());
+        } elseif ($filter === 'monthly') {
+            $query->whereMonth('date', now()->month)
+                  ->whereYear('date', now()->year);
+        }
+
+        $addmissions = $query->get();
+
+        return response()->json($addmissions);
+    }
     public function studentsledger()
     {
         $add = ClassFeeVoucher::with('students_add')->where('previous_dues', '>', 0)->get();
