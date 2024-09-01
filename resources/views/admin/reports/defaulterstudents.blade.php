@@ -84,7 +84,7 @@
                                                             <td>{{ $addmission->students_add->current_class }}</td>
                                                             <td>{{ $addmission->students_add->section }}</td>
                                                             <td>{{ $addmission->students_add->fees }}</td>
-                                                            <td>{{ $addmission->students_add->previous_dues }}</td>
+                                                            <td>{{ $addmission->previous_dues }}</td>
 
                                                         </tr>
                                                     @endforeach
