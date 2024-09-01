@@ -1,10 +1,11 @@
 @extends('admin.master')
 @section('content')
-<head>
-    <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
-    <!-- Buttons extension CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
-</head>
+
+    <head>
+        <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
+        <!-- Buttons extension CSS -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+    </head>
     <div class="content-page mt-4">
         <div class="content">
             <!-- Start Content-->
@@ -20,7 +21,7 @@
                                     <h5 class="header-title mb-0 me-auto text-white">Receipt Details</h5>
 
                                 </div>
-                            
+
                                 <div class="feeallcard feeallshadow">
                                     <div id="yearly-sales-collapse" class="collapse show mt-4">
                                         <div class="d-flex flex-wrap pt-3 px-2">
@@ -42,6 +43,15 @@
                                                         <option value="{{ $class->section_name }}">
                                                             {{ $class->section_name }}</option>
                                                     @endforeach --}}
+                                                </select>
+                                            </div>
+                                            <div class="d-flex align-items-center col-md-12 mt-2">
+                                                <label for="filterSelector" class="col-2">Filter By:</label>
+                                                <select id="filterSelector" class="form-select col-10">
+                                                    <option value="" selected disabled>--Select Filter--</option>
+                                                    <option value="all">All Data</option>
+                                                    <option value="today">Today</option>
+                                                    <option value="monthly">This Month</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -66,18 +76,19 @@
                                                 <tbody>
 
                                                     @php
-                                                     $i=1;   
+                                                        $i = 1;
                                                     @endphp
                                                     @foreach ($add as $addmission)
                                                         <tr class="text-center">
-                                                            <td>{{ $i++}}</td>
+                                                            <td>{{ $i++ }}</td>
                                                             <td>{{ $addmission->gr_number }}</td>
                                                             <td>{{ $addmission->students_add->student_name }}</td>
                                                             <td>{{ $addmission->students_add->father_name }}</td>
                                                             <td>{{ $addmission->students_add->current_class }}</td>
                                                             <td>{{ $addmission->students_add->section }}</td>
                                                             <td>{{ $addmission->date }}</td>
-                                                            <td>{{ $addmission->paytype == ""?"-":$addmission->paytype }}</td>
+                                                            <td>{{ $addmission->paytype == '' ? '-' : $addmission->paytype }}
+                                                            </td>
                                                             <td>{{ $addmission->discount }}</td>
                                                             <td>{{ $addmission->receipts }}</td>
                                                             <td>{{ $addmission->balance }}</td>
@@ -154,8 +165,44 @@
                             <button id="btnPrintTable" class="btn btn-sm our-color-1 rounded-2 shadow"><i class="fa-solid fa-print"></i></button>
                         </div>
                     `);
+
+                    // Listen for filter change
+                    $('#filterSelector').on('change', function() {
+                        fetchData(this.value);
+                    });
                 }
             });
+
+            function fetchData(filterValue) {
+                let url = `showFilterReceiptDetailsReports?filter=${filterValue}`;
+                $.ajax({
+                    type: 'get',
+                    url: url,
+                    success: function(response) {
+                        table.clear(); // Clear the current data
+                        if (response.length > 0) {
+                            response.forEach((item, index) => {
+                                table.row.add([
+                                    index + 1,
+                                    item.gr_number,
+                                    item.students_add.student_name,
+                                    item.students_add.father_name,
+                                    item.students_add.current_class,
+                                    item.students_add.section,
+                                    item.date,
+                                    item.paytype === "" ? "-" : item.paytype, // Paytype with default value
+                                    item.discount,
+                                    item.receipts,
+                                    item.balance,
+                                    item.total
+                                ]).draw(false); // Add the new data and redraw the table
+                            });
+                        } else {
+                            table.clear().draw();
+                        }
+                    }
+                });
+            }
 
             // Disable buttons if no data is found after filtering
             table.on('draw', function() {
@@ -190,7 +237,7 @@
             $('#sectionFilter').on('change', function() {
                 table.column(5).search(this.value).draw();
             });
-            
+
             // Custom button click events
             $('#btnExportPdf').on('click', function() {
                 table.button('.buttons-pdf').trigger();

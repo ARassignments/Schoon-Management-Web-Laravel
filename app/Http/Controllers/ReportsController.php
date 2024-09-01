@@ -7,11 +7,13 @@ use App\Models\Classes;
 use App\Models\ContactFom;
 use App\Models\ClassFeeVoucher;
 use App\Models\FeeReceipt;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ReportsController extends Controller{
-    
+class ReportsController extends Controller
+{
+
     public function studentsreport()
     {
         $add = AdmissionForm::all();
@@ -94,20 +96,18 @@ class ReportsController extends Controller{
         $classes = Classes::all();
         return view('admin.reports.defaulterstudents', compact('add', 'notificationCount', 'contacts', 'classes'));
     }
-    public function showSearchedFeeReceipts(Request $request)
+    public function showSearchedFeeReceiptsReports(Request $request)
     {
         $filter = $request->input('filter');
-        $query = AdmissionForm::with('students_add')->query();
+        $query = ClassFeeVoucher::with('students_add')->where('pre_dues', '>', 0);
 
-        if ($filter === 'today') {
-            $query->whereDate('date', today());
-        } elseif ($filter === 'monthly') {
-            $query->whereMonth('date', now()->month)
-                  ->whereYear('date', now()->year);
+        if ($filter == 'today') {
+            $query->whereDate('created_at', Carbon::today());
+        } elseif ($filter == 'monthly') {
+            $query->whereMonth('created_at', Carbon::now()->month);
         }
 
         $addmissions = $query->get();
-
         return response()->json($addmissions);
     }
     public function studentsledger()
@@ -117,6 +117,20 @@ class ReportsController extends Controller{
         $notificationCount = contactfom::where('is_new', true)->count();
         $classes = Classes::all();
         return view('admin.reports.studentsledger', compact('add', 'notificationCount', 'contacts', 'classes'));
+    }
+    public function showFilterStudentsLedgerReports(Request $request)
+    {
+        $filter = $request->input('filter');
+        $query = ClassFeeVoucher::with('students_add')->where('previous_dues', '>', 0);
+
+        if ($filter == 'today') {
+            $query->whereDate('created_at', Carbon::today());
+        } elseif ($filter == 'monthly') {
+            $query->whereMonth('created_at', Carbon::now()->month);
+        }
+
+        $addmissions = $query->get();
+        return response()->json($addmissions);
     }
     public function studentslist()
     {
@@ -136,11 +150,25 @@ class ReportsController extends Controller{
     }
     public function receiptdetails()
     {
-        $add = FeeReceipt::with('students_add')->get();
+        $add = FeeReceipt::with('students_add')->where('receipts', '>', 0)->get();
         $contacts = contactfom::all();
         $notificationCount = contactfom::where('is_new', true)->count();
         $classes = Classes::all();
         return view('admin.reports.receiptdetails', compact('add', 'notificationCount', 'contacts', 'classes'));
+    }
+    public function showFilterReceiptDetailsReports(Request $request)
+    {
+        $filter = $request->input('filter');
+        $query = FeeReceipt::with('students_add')->where('receipts', '>', 0);
+
+        if ($filter == 'today') {
+            $query->whereDate('created_at', Carbon::today());
+        } elseif ($filter == 'monthly') {
+            $query->whereMonth('created_at', Carbon::now()->month);
+        }
+
+        $addmissions = $query->get();
+        return response()->json($addmissions);
     }
     public function receiptreports()
     {
@@ -150,10 +178,26 @@ class ReportsController extends Controller{
         $classes = Classes::all();
         return view('admin.reports.receiptreports', compact('add', 'notificationCount', 'contacts', 'classes'));
     }
+    public function showFilterReceiptReports(Request $request)
+    {
+        $filter = $request->input('filter');
+        $query = FeeReceipt::with('students_add');
+
+        if ($filter == 'today') {
+            $query->whereDate('created_at', Carbon::today());
+        } elseif ($filter == 'monthly') {
+            $query->whereMonth('created_at', Carbon::now()->month);
+        }
+
+        $addmissions = $query->get();
+        return response()->json($addmissions);
+    }
     public function studentsLedgerReportView($id)
     {
+        $add = ClassFeeVoucher::with('students_add')->where('id', '=', $id)->first();
+        $feeReceipts = FeeReceipt::where('voucher_id', '=', $id)->get();
         $notificationCount = contactfom::where('is_new', true)->count();
         $contacts = contactfom::all();
-        return view('admin.studentLedgerReportView', compact('notificationCount', 'contacts'));
+        return view('admin.studentLedgerReportView', compact('add', 'feeReceipts','notificationCount', 'contacts'));
     }
 }

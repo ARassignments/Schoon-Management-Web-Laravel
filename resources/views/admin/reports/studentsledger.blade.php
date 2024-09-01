@@ -1,10 +1,11 @@
 @extends('admin.master')
 @section('content')
-<head>
-    <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
-    <!-- Buttons extension CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
-</head>
+
+    <head>
+        <link rel="stylesheet" href="//cdn.datatables.net/2.1.3/css/dataTables.dataTables.min.css">
+        <!-- Buttons extension CSS -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+    </head>
     <div class="content-page mt-4">
         <div class="content">
             <!-- Start Content-->
@@ -41,6 +42,15 @@
                                                     @endforeach --}}
                                                 </select>
                                             </div>
+                                            <div class="d-flex align-items-center col-md-12 mt-2">
+                                                <label for="filterSelector" class="col-2">Filter By:</label>
+                                                <select id="filterSelector" class="form-select col-10">
+                                                    <option value="" selected disabled>--Select Filter--</option>
+                                                    <option value="all">All Data</option>
+                                                    <option value="today">Today</option>
+                                                    <option value="monthly">This Month</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="table-responsive">
                                             <table class="table table-nowrap table-hover mb-0" id="myTable">
@@ -55,7 +65,7 @@
                                                         <th>Fees</th>
                                                         <th>Previous Dues</th>
                                                         <th>Actions</th>
-                                                      
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -74,9 +84,9 @@
                                                             <td>{{ $addmission->students_add->fees }}</td>
                                                             <td>{{ $addmission->previous_dues }}</td>
                                                             <td>
-                                                                <a href="{{url('studentsLedgerReportView',1)}}" class="btn btn-sm our-color-1 rounded-2 shadow">View</a>
+                                                                <a href="{{ url('studentsLedgerReportView', $addmission->id) }}"
+                                                                    class="btn btn-sm our-color-1 rounded-2 shadow">View</a>
                                                             </td>
-                                                           
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -149,8 +159,42 @@
                             <button id="btnPrintTable" class="btn btn-sm our-color-1 rounded-2 shadow"><i class="fa-solid fa-print"></i></button>
                         </div>
                     `);
+
+                    // Listen for filter change
+                    $('#filterSelector').on('change', function() {
+                        fetchData(this.value);
+                    });
                 }
             });
+
+            function fetchData(filterValue) {
+                let url = `showFilterStudentsLedgerReports?filter=${filterValue}`;
+                $.ajax({
+                    type: 'get',
+                    url: url,
+                    success: function(response) {
+                        table.clear(); // Clear the current data
+                        if (response.length > 0) {
+                            response.forEach((item, index) => {
+                                let viewButton = `<a href="studentsLedgerReportView/${item.id}" class="btn btn-sm our-color-1 rounded-2 shadow">View</a>`;
+                                table.row.add([
+                                    index + 1,
+                                    item.gr_number,
+                                    item.students_add.student_name,
+                                    item.students_add.father_name,
+                                    item.students_add.current_class,
+                                    item.students_add.section,
+                                    item.students_add.fees,
+                                    item.previous_dues,
+                                    viewButton
+                                ]).draw(false); // Add the new data and redraw the table
+                            });
+                        } else {
+                            table.clear().draw();
+                        }
+                    }
+                });
+            }
 
             // Disable buttons if no data is found after filtering
             table.on('draw', function() {
@@ -185,7 +229,7 @@
             $('#sectionFilter').on('change', function() {
                 table.column(5).search(this.value).draw();
             });
-            
+
             // Custom button click events
             $('#btnExportPdf').on('click', function() {
                 table.button('.buttons-pdf').trigger();
@@ -212,5 +256,6 @@
                 }
             }
         });
+
     </script>
 @endsection
