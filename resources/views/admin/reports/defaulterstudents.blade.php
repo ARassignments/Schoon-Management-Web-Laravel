@@ -42,12 +42,9 @@
                                                     @endforeach --}}
                                                 </select>
                                             </div>
-                                        </div>
-                                        <div class="form-group p-3">
-                                            <label for="filterSelector">Filter By:</label>
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <select id="filterSelector" class="form-select"
-                                                    onchange="fetchFilterData()">
+                                            <div class="d-flex align-items-center col-md-12 mt-2">
+                                                <label for="filterSelector" class="col-2">Filter By:</label>
+                                                <select id="filterSelector" class="form-select col-10">
                                                     <option value="" selected disabled>--Select Filter--</option>
                                                     <option value="all">All Data</option>
                                                     <option value="today">Today</option>
@@ -67,11 +64,9 @@
                                                         <th>Section</th>
                                                         <th>Fees</th>
                                                         <th>Previous Dues</th>
-
                                                     </tr>
                                                 </thead>
-                                                <tbody id="feeReceiptContainer">
-
+                                                <tbody>
                                                     @php
                                                         $i = 1;
                                                     @endphp
@@ -113,8 +108,6 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <script>
-        console.log(@json($add));
-        
         $(document).ready(function() {
             // Initialize DataTable
             var table = new DataTable('#myTable', {
@@ -161,8 +154,40 @@
                             <button id="btnPrintTable" class="btn btn-sm our-color-1 rounded-2 shadow"><i class="fa-solid fa-print"></i></button>
                         </div>
                     `);
+
+                    // Listen for filter change
+                    $('#filterSelector').on('change', function() {
+                        fetchData(this.value);
+                    });
                 }
             });
+
+            function fetchData(filterValue) {
+                let url = `showSearchedFeeReceiptsReports?filter=${filterValue}`;
+                $.ajax({
+                    type: 'get',
+                    url: url,
+                    success: function(response) {
+                        table.clear(); // Clear the current data
+                        if (response.length > 0) {
+                            response.forEach((item, index) => {
+                                table.row.add([
+                                    index + 1,
+                                    item.gr_number,
+                                    item.students_add.student_name,
+                                    item.students_add.father_name,
+                                    item.students_add.current_class,
+                                    item.students_add.section,
+                                    item.students_add.fees,
+                                    item.previous_dues
+                                ]).draw(false); // Add the new data and redraw the table
+                            });
+                        } else {
+                            table.clear().draw();
+                        }
+                    }
+                });
+            }
 
             // Disable buttons if no data is found after filtering
             table.on('draw', function() {
@@ -224,51 +249,5 @@
                 }
             }
         });
-        function fetchData(filterValue) {
-        let url = `showSearchedFeeReceipts?filter=${filterValue}`;
-        $.ajax({
-            type: 'get',
-            url: url,
-            success: function(response) {
-                let feeReceiptContainer = document.querySelector("#feeReceiptContainer");
-                if (response.length > 0) {
-                    feeReceiptContainer.innerHTML = "";
-                    console.log(response);
-                    response.forEach((item, index) => {
-                        
-                        feeReceiptContainer.innerHTML += `
-                            <tr class="text-center">
-                                <td>${index + 1}</td>
-                                <td>${item.gr_number}</td>
-                                <td>${item.student_name}</td>
-                                <td>${item.father_name}</td>
-                                <td>${item.current_class}</td>
-                                <td>${item.section}</td>
-                                <td>${item.fees}</td>
-                                <td>${item.previous_dues}</td>
-                            </tr>
-                        `;
-                    });
-                } else {
-                    feeReceiptContainer.innerHTML = `
-                        <tr>
-                            <td colspan="8">
-                                <h1 class="text-center display-4 fs-1 text-uppercase mt-2">Data not found</h1>
-                            </td>
-                        </tr>
-                    `;
-                }
-            }
-        });
-    }
-
-    // Function to handle filter changes
-    function fetchFilterData() {
-        let filterValue = document.getElementById('filterSelector').value;
-        fetchData(filterValue);
-    }
-
-    // Attach event listener to the filter dropdown
-    document.getElementById('filterSelector').addEventListener('change', fetchFilterData);
     </script>
 @endsection

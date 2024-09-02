@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-<div style=" background-color: rgb(161, 161, 161);" class="d-flex align-items-center justify-content-center flex-column">
+    <div style=" background-color: rgb(161, 161, 161);" class="d-flex align-items-center justify-content-center flex-column">
         <button onclick="printElement('printableArea')" class="btn btn-primary mt-3">Print</button>
 
         <div class="my-3 page pb-3 mb-5" size="A4" id="printableArea"
@@ -8,7 +8,7 @@
 overflow: hidden; background: white;
 display: block;
 position: relative;">
-{{-- height: 29.7cm; --}}
+            {{-- height: 29.7cm; --}}
 
 
             <!-- ===============================================================Voucher-1-Start=============================================================== -->
@@ -19,46 +19,51 @@ position: relative;">
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-8">
                             <div class="d-flex justify-content-start">
                                 <p style="margin: 0;
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">GRNo.</p>
-                                {{-- <span>{{ $voucher->gr_number }}</span> --}}
+                                    font-family: sans-serif;"
+                                    class="col-4">GRNo.</p>
+                                <span>{{ $add->gr_number }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
                                 <p style="margin: 0;
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Student Name</p>
-                                {{-- <span>{{ $voucher->students_add->student_name }}</span> --}}
+                                    font-family: sans-serif;"
+                                    class="col-4">Student Name</p>
+                                <span>{{ $add->students_add->student_name }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
                                 <p style="margin: 0;
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Father Name</p>
-                                {{-- <span>{{ $voucher->students_add->father_name }}</span> --}}
+                                    font-family: sans-serif;"
+                                    class="col-4">Father Name</p>
+                                <span>{{ $add->students_add->father_name }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
                                 <p style="margin: 0;
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Class</p>
-                                {{-- <span>{{ $voucher->class }}</span> --}}
+                                    font-family: sans-serif;"
+                                    class="col-4">Class</p>
+                                <span>{{ $add->students_add->current_class }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
                                 <p style="margin: 0;
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Section</p>
-                                {{-- <span>{{ $voucher->section }}</span> --}}
+                                    font-family: sans-serif;"
+                                    class="col-4">Section</p>
+                                <span>{{ $add->students_add->section }}</span>
                             </div>
                         </div>
 
@@ -67,16 +72,17 @@ position: relative;">
                         <!-- <div class="row second"> -->
 
 
-                        <div class="col-md-5">
+                        <div class="col-4">
                             <div class="d-flex justify-content-between">
                                 <p style="margin: 0;
                                     font-weight: 100;
                                     font-size: 14px;
                                     color: black;
-                                    font-family: sans-serif;" class="col-4">Previous Dues</p>
-                                {{-- <span class="me-2">{{ $voucher->transaction_date }}</span> --}}
+                                    font-family: sans-serif;"
+                                    class="col-6">Previous Dues</p>
+                                <span class="me-2">{{ $add->pre_dues }}</span>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -103,17 +109,26 @@ position: relative;">
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr style="text-align: center">
-                                    {{-- <td>{{ $voucher->admission }}</td>
-                                    <td>{{ $voucher->tution }}</td>
-                                    <td>{{ $voucher->annual }}</td>
-                                    <td>{{ $voucher->exam_fee }}</td>
-                                    <td>{{ $voucher->lab_charges }}</td>
-                                    <td>{{ $voucher->late_fee }}</td>
-                                    <td>{{ $voucher->pre_dues }}</td>
-                                    <td>{{ $voucher->id_card }}</td>
-                                    <td>{{ $voucher->board_fee }}</td> --}}
-                                </tr>
+                                @foreach ($feeReceipts as $receipts)
+                                    @php
+                                        // Use Carbon to parse and format the date
+                                        $date = \Carbon\Carbon::parse($receipts->date);
+                                        $createdAt = \Carbon\Carbon::parse($receipts->created_at);
+                                        $month = $date->format('F'); // Full month name, e.g., January
+                                        $createdAtDate = $createdAt->format('Y-m-d'); // Format to 'YYYY-MM-DD'
+                                    @endphp
+                                    <tr class="text-center fs-5">
+                                        <td>{{ $receipts->id }}</td>
+                                        <td>{{ $receipts->date }}</td>
+                                        <td>{{ $month }}</td>
+                                        <td>{{ $add->session }}</td>
+                                        <td>0</td>
+                                        <td>{{ $receipts->receipts }}</td>
+                                        <td>{{ $receipts->balance }}</td>
+                                        <td>{{ $createdAtDate }}</td>
+                                        <td>{{ $createdAtDate }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
 
@@ -121,14 +136,12 @@ position: relative;">
                     </div>
                 </div>
             </div>
-            <!-- ===============================================================Voucher-2-End=============================================================== -->
-            <!-- ===============================================================Voucher-3-Start=============================================================== -->
-
         </div>
     </div>
 
-<script>
-    function printElement(elementId) {
+    <script>
+
+        function printElement(elementId) {
             var printContents = document.getElementById(elementId).innerHTML;
             var originalContents = document.body.innerHTML;
 
@@ -138,5 +151,5 @@ position: relative;">
 
             document.body.innerHTML = originalContents;
         }
-</script>
+    </script>
 @endsection
