@@ -75,6 +75,7 @@
                                                     @php
                                                         $i = 1;
                                                     @endphp
+                                                    
                                                     @foreach ($add as $addmission)
                                                         <tr class="text-center">
                                                             <td>{{ $i++ }}</td>
