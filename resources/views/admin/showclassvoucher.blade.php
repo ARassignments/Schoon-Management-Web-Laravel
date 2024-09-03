@@ -10,7 +10,8 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
         <style>
             .page-break {
-                page-break-after: always;
+                page-break-before: always;
+                page-break-inside: avoid;
             }
 
             .voucher-layout {
@@ -164,7 +165,7 @@
                                                             <td>
                                                                 <a href="{{ url('voucherform', $vouc->id) }}"
                                                                     class="btn btn-sm our-color-1 rounded-2 shadow magicButton">View</a>
-                                                                <a href="{{ url('voucherform', $vouc->id) }}"
+                                                                <a href="{{ url('editFeeVoucher', $vouc->id) }}"
                                                                     class="btn btn-sm our-color-1 rounded-2 shadow magicButton2">Edit</a>
                                                                 <a href="#"
                                                                     class="btn btn-sm btn-danger rounded-2 shadow magicButton3"
@@ -1761,7 +1762,6 @@
                 }
 
                 function exportVouchersToPDF() {
-                    // Get all row data
                     var rows = table.rows({
                         filter: 'applied'
                     }).data().toArray();
@@ -1771,56 +1771,49 @@
                         return;
                     }
 
-                    // Clear the printable area and add all vouchers
-                    var printableArea = $('#printableArea');
-                    printableArea.empty();
+                    const {
+                        jsPDF
+                    } = window.jspdf;
+                    var doc = new jsPDF({
+                        orientation: 'portrait',
+                        unit: 'mm',
+                        format: 'a4'
+                    });
 
-                    // Create an array of promises for fetching voucher data
-                    var fetchPromises = rows.map(function(row) {
-                        var voucherId = row[0]; // Assuming the ID is in the first column
+                    const pageWidth = doc.internal.pageSize.getWidth();
+                    const fixedWidth = pageWidth - 20; // Set a fixed width with some margin
+
+                    var printableArea = $('#printableArea');
+                    printableArea.empty(); // Clear the area before use
+
+                    var fetchPromises = rows.map(function(row, index) {
+                        var voucherId = row[0];
                         return fetchVoucherData(voucherId).then(function(data) {
-                            printableArea.append(generateVoucherLayout(data));
+                            // Set the voucher layout into the hidden printableArea div
+                            printableArea.html(generateVoucherLayout(data));
+
+                            // Apply fixed width to the printable area
+                            printableArea.css({
+                                width: fixedWidth + 'mm'
+                            });
+
+                            return doc.html(printableArea[0], {
+                                x: 10, // Add some left margin
+                                y: 10, // Add some top margin
+                                width: fixedWidth,
+                                callback: function() {
+                                    if (index < rows.length - 1) {
+                                        doc.addPage(); // Add a new page if not the last item
+                                    }
+                                }
+                            });
                         });
                     });
 
-                    // Wait for all promises to resolve before proceeding with printing
                     Promise.all(fetchPromises).then(function() {
-                        // Access the jsPDF library from the global window object
-                        const {
-                            jsPDF
-                        } = window.jspdf;
-
-                        // Create a new jsPDF instance with A4 page size and portrait orientation
-                        var doc = new jsPDF({
-                            orientation: 'portrait',
-                            unit: 'mm',
-                            format: 'a4'
-                        });
-
-                        // Set the dimensions for the A4 size and ensure proper layout fit
-                        const pageWidth = doc.internal.pageSize.getWidth();
-                        const pageHeight = doc.internal.pageSize.getHeight();
-
-                        // Iterate through each voucher layout and add it to the PDF
-                        printableArea.children('.voucher-layout').each(function(index, element) {
-                            if (index > 0) {
-                                doc.addPage();
-                            }
-                            doc.html(element, {
-                                callback: function(doc) {
-                                    if (index === printableArea.children('.voucher-layout')
-                                        .length - 1) {
-                                        doc.save('vouchers.pdf');
-                                    }
-                                },
-                                x: 10,
-                                y: 10,
-                                width: pageWidth -
-                                    20, // Adjust to ensure it fits within the page width
-                                windowWidth: printableArea
-                                    .width() // Use the actual width of the content
-                            });
-                        });
+                        setTimeout(function() {
+                            doc.save('vouchers.pdf');
+                        }, 1000); // Delay the save to ensure all pages are rendered
                     }).catch(function(error) {
                         console.error("Error fetching voucher data:", error);
                         alert("An error occurred while fetching the voucher data. Please try again.");
@@ -1840,7 +1833,7 @@
                                     let viewButton =
                                         `<a href="voucherform/${item.id}" class="btn btn-sm our-color-1 rounded-2 shadow magicButton">View</a>`;
                                     let editButton =
-                                        `<a href="voucherform/${item.id}" class="btn btn-sm our-color-1 rounded-2 shadow magicButton2">Edit</a>`;
+                                        `<a href="editFeeVoucher/${item.id}" class="btn btn-sm our-color-1 rounded-2 shadow magicButton2">Edit</a>`;
                                     let deleteButton =
                                         `<a href="#" class="btn btn-sm btn-danger rounded-2 shadow magicButton3" data-id="${item.id}">Delete</a>`;
 
