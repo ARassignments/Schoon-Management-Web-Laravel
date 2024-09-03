@@ -118,15 +118,51 @@
         /* #myTable_wrapper .dt-layout-full:has(.magicButton){
             position: relative !important;
         } */
+        #myTable_wrapper .dt-layout-full tr td{
+            text-align: center !important;
+        }
         #myTable_wrapper .dt-layout-full tr td .magicButton{
             position: absolute;
             right: 2.2rem;
-            transform: translateY(-3px);
+            transform: translateY(-4px);
+        }
+        .extras #myTable_wrapper .dt-layout-full tr td .magicButton{
+            position: absolute;
+            right: 7.9rem;
+            transform: translateY(-4px);
+        }
+        .extras #myTable_wrapper .dt-layout-full tr td .magicButton2{
+            position: absolute;
+            right: 5.0rem;
+            transform: translateY(-4px);
+        }
+        .extras #myTable_wrapper .dt-layout-full tr td .magicButton3{
+            position: absolute;
+            right: 1.2rem;
+            transform: translateY(-4px);
+        }
+
+        .extras #myTable_wrapper .dt-layout-full tr td:has(.magicButton)::before{
+            content: '';
+            width: 8.0rem !important;
+            display: inline-block;
+            height: 100%;
+            color: transparent !important;
         }
 
         #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer{
             margin-left: 0rem;
             padding-right: 1.0rem;
+            display: none !important;
+        }
+
+        .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer{
+            display: inline-block !important;
+        }
+
+        .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer button:nth-child(1),
+        .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer button:nth-child(2),
+        .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer button:nth-child(3){
             display: none !important;
         }
 

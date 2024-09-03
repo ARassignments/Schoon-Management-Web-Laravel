@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
+// Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
     Route::get('/dashboard', [admin_controller::class, 'index'])->name('dashboard');
     //------------admission management------------//
     Route::get('/show-addmissionform', [admin_controller::class, 'addmissionform'])->name('show-addmissionform');
@@ -81,6 +81,9 @@ Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
     Route::get('/classfeesgenerate', [ClassFeeVoucherController::class, 'class_fees_generate'])->name('class_fees_generate');
     Route::post('/storeclassvoucher', [ClassFeeVoucherController::class, 'store_class_voucher'])->name('store_class_voucher');
     Route::get('/get-gr-number', [ClassFeeVoucherController::class, 'getGrNumber']);
+    Route::get('/showFilterClassFees', [ClassFeeVoucherController::class, 'showFilterClassFees'])->name('showFilterClassFees');
+    Route::get('/getVoucherIndivisual/{id}', [ClassFeeVoucherController::class, 'getVoucherIndivisual'])->name('getVoucherIndivisual');
+    Route::get('/deleteFeeVoucher/{id}', [ClassFeeVoucherController::class, 'deleteFeeVoucher'])->name('deleteFeeVoucher');
     Route::get('/specialfeesgenerate', [Special_Fees_Generate_Controller::class, 'special_fees_generate']);
     Route::post('/storeSpecialFeesVoucher', [Special_Fees_Generate_Controller::class, 'storeSpecialFeesVoucher'])->name('storeSpecialFeesVoucher');
     Route::get('/showSpecialFees', [Special_Fees_Generate_Controller::class, 'showSpecialFees'])->name('showSpecialFees');
@@ -132,7 +135,7 @@ Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
     Route::post('/clear-notification', [contactform::class, 'clearNotification'])->name('clear-notification');
     Route::post('/clear-all-notifications', [contactform::class, 'clearAllNotifications'])->name('clear-all-notifications');
 
-});
+// });
 
 //------------User Managment-----------//
 Route::get('/', [User_Controller::class, 'index']);

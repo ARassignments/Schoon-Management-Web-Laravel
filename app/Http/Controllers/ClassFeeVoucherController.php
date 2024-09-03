@@ -6,6 +6,7 @@ use App\Models\Admissionform;
 use App\Models\ClassFeeVoucher;
 use App\Models\contactfom;
 use App\Models\Fees;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ClassFeeVoucherController extends Controller
@@ -104,12 +105,49 @@ class ClassFeeVoucherController extends Controller
         return view('admin.showclassvoucher', compact('notificationCount', 'contacts', 'voucher'));
     }
 
+    public function showFilterClassFees(Request $request)
+    {
+        $filter = $request->input('filter');
+        $query = ClassFeeVoucher::with('students_add');
+
+        if ($filter == 'today') {
+            $query->whereDate('created_at', Carbon::today());
+        } elseif ($filter == 'monthly') {
+            $query->whereMonth('created_at', Carbon::now()->month);
+        }
+
+        $addmissions = $query->get();
+        return response()->json($addmissions);
+    }
+
     public function viewvoucher($id)
     {
         $notificationCount = contactfom::where('is_new', true)->count();
         $contacts = contactfom::all();
         $voucher = ClassFeeVoucher::with('students_add')->where('id', $id)->firstorfail();
         return view('admin.voucher-class-fees', compact('notificationCount', 'contacts', 'voucher'));
+    }
+
+    public function getVoucherIndivisual($id)
+    {
+        // Fetch the voucher data based on the provided ID
+        $voucher = ClassFeeVoucher::with('students_add')->where('id', $id)->firstorfail();
+
+        // Check if the voucher exists
+        if (!$voucher) {
+            return response()->json(['error' => 'Voucher not found'], 404);
+        }
+
+        // Return the voucher data as JSON
+        return response()->json($voucher);
+    }
+
+    public function deleteFeeVoucher($id)
+    {
+        $feeReceipt = ClassFeeVoucher::findOrFail($id);
+        $feeReceipt->delete();
+
+        return response()->json(['feeReceipt' => $feeReceipt]);
     }
 
     // public function store_class_voucher(Request $request)
