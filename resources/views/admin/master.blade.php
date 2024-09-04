@@ -162,7 +162,8 @@
 
         .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer button:nth-child(1),
         .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer button:nth-child(2),
-        .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer button:nth-child(3){
+        .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer button:nth-child(3),
+        .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer button:nth-child(5){
             display: none !important;
         }
 
