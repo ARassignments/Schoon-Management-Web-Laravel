@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
+// Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
     Route::get('/dashboard', [admin_controller::class, 'index'])->name('dashboard');
     //------------admission management------------//
     Route::get('/show-addmissionform', [admin_controller::class, 'addmissionform'])->name('show-addmissionform');
@@ -42,6 +42,7 @@ Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
     Route::post('/update-addmissionform/{id}', [admin_controller::class, 'updateaddmissionform']);
     Route::get('/delete-addmissionform/{id}', [admin_controller::class, 'destroy']);
     Route::post('/update-status', [admin_controller::class, 'updateStatus']);
+    Route::post('/getTuitionFee', [admin_controller::class, 'getTuitionFee']);
     Route::get('/my profile', [admin_controller::class, 'adminprofile']);
     Route::get('/logout', [admin_controller::class, 'logout']);
 
@@ -89,8 +90,14 @@ Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
     Route::get('/getclass/{class}', [ClassFeeVoucherController::class, 'getClass'])->name('getclass');
     Route::get('/specialfeesgenerate', [Special_Fees_Generate_Controller::class, 'special_fees_generate']);
     Route::post('/storeSpecialFeesVoucher', [Special_Fees_Generate_Controller::class, 'storeSpecialFeesVoucher'])->name('storeSpecialFeesVoucher');
+    Route::get('/getSpecialVoucherIndivisual/{id}', [Special_Fees_Generate_Controller::class, 'getSpecialVoucherIndivisual'])->name('getSpecialVoucherIndivisual');
+    Route::get('/showFilterSpecialFees', [Special_Fees_Generate_Controller::class, 'showFilterSpecialFees'])->name('showFilterSpecialFees');
     Route::get('/showSpecialFees', [Special_Fees_Generate_Controller::class, 'showSpecialFees'])->name('showSpecialFees');
     Route::get('/viewSpecialFeesVoucher/{id}', [Special_Fees_Generate_Controller::class, 'viewSpecialFeesVoucher'])->name('viewSpecialFeesVoucher');
+    Route::get('/deleteSpecialFeeVoucher/{id}', [Special_Fees_Generate_Controller::class, 'deleteSpecialFeeVoucher'])->name('deleteSpecialFeeVoucher');
+    Route::get('/editSpecialFeeVoucher/{id}', [Special_Fees_Generate_Controller::class, 'editSpecialFeeVoucher'])->name('editSpecialFeeVoucher');
+    Route::post('/updateSpecialFeeVoucher/{id}', [Special_Fees_Generate_Controller::class, 'updateSpecialFeeVoucher'])->name('updateSpecialFeeVoucher');
+    Route::get('/fetchStudent/{gr_number}', [Special_Fees_Generate_Controller::class, 'fetchStudent'])->name('fetchStudent');
 
     // Reports
     Route::get('/students-report', [ReportsController::class, 'studentsreport']);
@@ -138,7 +145,7 @@ Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
     Route::post('/clear-notification', [contactform::class, 'clearNotification'])->name('clear-notification');
     Route::post('/clear-all-notifications', [contactform::class, 'clearAllNotifications'])->name('clear-all-notifications');
 
-});
+// });
 
 //------------User Managment-----------//
 Route::get('/', [User_Controller::class, 'index']);

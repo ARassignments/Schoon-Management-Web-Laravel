@@ -121,6 +121,9 @@
                     [10, 25, 50, 100, "All"]
                 ],
                 pageLength: 10,
+                order: [
+                    [0, 'desc']
+                ], // Set default sort on the first column (0-indexed) in descending order
                 buttons: [{
                         extend: 'pdfHtml5',
                         orientation: 'portrait', // 'portrait' or 'landscape'

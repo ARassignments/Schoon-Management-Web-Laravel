@@ -37,9 +37,10 @@
                                         </div>
                                         <div class="col-lg-6 mb-3">
                                             <label class="form-label">GR Number</label>
-                                            <input type="text" name="gr_number" class="form-control" placeholder="GR Number">
+                                            <input type="text" name="gr_number" class="form-control" id="gr_number"
+                                                placeholder="GR Number">
                                         </div>
-                                        
+
                                         <div class="col-lg-6 mb-3">
                                             <label class="form-label">Note 01</label>
                                             <input type="text" name="note_01" class="form-control" placeholder="Note 01">
@@ -130,7 +131,8 @@
                                     <!-- Action Buttons -->
                                     <div class="row">
                                         <div class="col-12 text-center mb-3">
-                                            <button type="button" class="btn btn-primary btn-secondary w-50">List</button>
+                                            <button type="button"
+                                                class="btn btn-primary btn-secondary w-50">List</button>
                                         </div>
                                         <div class="col-12 text-center">
                                             <button type="button"
@@ -140,7 +142,8 @@
                                             <button type="button" class="btn btn-primary our-color-1 w-25">ALL</button>
                                         </div>
                                         <div class="col-12 text-center mt-3">
-                                            <button type="button" class="btn btn-secondary w-25" onclick="refreshPage()">Refresh</button>
+                                            <button type="button" class="btn btn-secondary w-25"
+                                                onclick="refreshPage()">Refresh</button>
                                             <button type="submit" class="btn btn-primary w-25">Generate</button>
                                             <button type="button" class="btn btn-danger w-25">Delete</button>
                                         </div>
@@ -150,7 +153,7 @@
 
                         </div>
                         <div class="container mt-5 d-none">
-                            <table class="table table-bordered" >
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr class="our-color-1">
                                         <th>G. R. No.</th>
@@ -184,36 +187,51 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            function refreshPage() {
-                window.location.href = "/specialfeesgenerate";
-            }
+    <script>
+        function refreshPage() {
+            window.location.href = "/specialfeesgenerate";
+        }
 
-            $(document).ready(function() {
-                $('#class').change(function() {
-                    var selectedClass = $(this).val();
-                    if (selectedClass) {
-                        $.ajax({
-                            url: '{{ url('getclass') }}/' + selectedClass,
-                            type: 'GET',
-                            success: function(data) {
-                                if (data) {
-                                    console.log(data);
-                                    $('#admission-checkbox').val(data.admission || '0');
-                                    $('#tuition-checkbox').val(data.tution || '0');
-                                    $('#annual-checkbox').val(data.annual || '0');
-                                    $('#exam-fee-checkbox').val(data.exam_fee || '0');
-                                    $('#lab-charges-checkbox').val(data.lab_charges || '0');
-                                    $('#late-fee-checkbox').val(data.late_fee || '0');
-                                    $('#pre-dues-checkbox').val(data.pre_dues || '0');
-                                    $('#id-card-checkbox').val(data.id_card || '0');
-                                    $('#board-fee-checkbox').val(data.board_fee || '0');
-                                    $('#stationary-checkbox').val(data.stationary || '0');
+        $(document).ready(function() {
+
+            $('#gr_number').on('change', function() {
+                var grNumber = $(this).val();
+
+                if (grNumber) {
+                    $.ajax({
+                        url: '/fetchStudent/' + grNumber,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.status === 'success') {
+                                if (response.data.current_class) {
+                                    $.ajax({
+                                        url: '{{ url('getclass') }}/' + response.data.current_class,
+                                        type: 'GET',
+                                        success: function(data) {
+                                            if (data) {
+                                                $('#admission-checkbox').val(data.admission || '0');
+                                                $('#tuition-checkbox').val(data.tution || '0');
+                                                $('#annual-checkbox').val(data.annual || '0');
+                                                $('#exam-fee-checkbox').val(data.exam_fee || '0');
+                                                $('#lab-charges-checkbox').val(data.lab_charges || '0');
+                                                $('#late-fee-checkbox').val(data.late_fee || '0');
+                                                $('#pre-dues-checkbox').val(data.pre_dues || '0');
+                                                $('#id-card-checkbox').val(data.id_card || '0');
+                                                $('#board-fee-checkbox').val(data.board_fee || '0');
+                                                $('#stationary-checkbox').val(data.stationary || '0');
+                                            }
+                                        }
+                                    });
                                 }
                             }
-                        });
-                    }
-                });
+                        },
+                        error: function() {
+                            alert('Error fetching student data');
+                        }
+                    });
+                }
             });
-        </script>
+        });
+    </script>
 @endsection

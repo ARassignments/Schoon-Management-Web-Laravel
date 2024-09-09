@@ -21,9 +21,9 @@
                                 <div
                                     class="card-body-container p-3 d-flex align-items-center justify-content-end rounded mt-4">
                                     <!-- <div class="card-widgets me-3">
-                                                    <a href="javascript:;" data-bs-toggle="reload"><i class="ri-refresh-line text-white"></i></a>
-                                                    <a data-bs-toggle="collapse" href="#yearly-sales-collapse" role="button" aria-expanded="false" aria-controls="yearly-sales-collapse"><i class="ri-subtract-line text-white"></i></a>
-                                                </div> -->
+                                                        <a href="javascript:;" data-bs-toggle="reload"><i class="ri-refresh-line text-white"></i></a>
+                                                        <a data-bs-toggle="collapse" href="#yearly-sales-collapse" role="button" aria-expanded="false" aria-controls="yearly-sales-collapse"><i class="ri-subtract-line text-white"></i></a>
+                                                    </div> -->
                                     <h5 class="header-title mb-0 me-auto text-white px-4">Student Promotion</h5>
 
                                 </div>
@@ -105,16 +105,16 @@
                                                 <h4 class="text-center mt-2"><b>To</b></h4>
                                                 <hr>
                                                 <!-- <div class="text-center">
-                                                    <div class="d-flex justify-content-center">
-                                                        <select name="to_class" class="form-control mb-3" style="width: 80%;">
-                                                            <option disabled selected>Select Class</option>
-                                                            @foreach ($class as $classes)
+                                                        <div class="d-flex justify-content-center">
+                                                            <select name="to_class" class="form-control mb-3" style="width: 80%;">
+                                                                <option disabled selected>Select Class</option>
+                                                                @foreach ($class as $classes)
     <option value="{{ $classes }}">{{ $classes }}
-                                                            </option>
+                                                                </option>
     @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div> -->
+                                                            </select>
+                                                        </div>
+                                                    </div> -->
 
 
 
@@ -140,16 +140,16 @@
 
 
                                                 <!-- <div class="text-center">
-                                                    <div class="d-flex justify-content-center">
-                                                        <select name="to_section" class="form-control mb-3" style="width: 80%;">
-                                                            <option disabled selected>Select Section</option>
-                                                            @foreach ($sections as $section)
+                                                        <div class="d-flex justify-content-center">
+                                                            <select name="to_section" class="form-control mb-3" style="width: 80%;">
+                                                                <option disabled selected>Select Section</option>
+                                                                @foreach ($sections as $section)
     <option value="{{ $section }}">{{ $section }}
-                                                            </option>
+                                                                </option>
     @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div> -->
+                                                            </select>
+                                                        </div>
+                                                    </div> -->
 
                                                 <div class="text-center ">
                                                     <div class="d-flex justify-content-center">
@@ -192,7 +192,8 @@
                                                         <th>Student Name</th>
                                                         <th>Father Name</th>
                                                         <th>
-                                                            <label for="selectAllCheckbox" style="margin-bottom:0px;">Select All</label>
+                                                            <label for="selectAllCheckbox" style="margin-bottom:0px;">Select
+                                                                All</label>
                                                             <div class="form-check d-inline-block mx-2 mb-0">
                                                                 <input class="form-check-input mb-0" type="checkbox"
                                                                     id="selectAllCheckbox">
@@ -237,7 +238,20 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
         <script>
-            let table = new DataTable('#myTable');
+            let table = new DataTable('#myTable', {
+                lengthMenu: [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"]
+                ],
+                pageLength: 10,
+                order: [
+                    [0, 'desc']
+                ], // Set default sort on the first column (0-indexed) in descending order
+                columnDefs: [{
+                    targets: -1, // Targets the last column (checkbox column)
+                    orderable: false // Disable sorting on this column
+                }]
+            });
         </script>
         <!-- Include SweetAlert2 CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -347,7 +361,7 @@
                                 });
                             } else {
                                 html =
-                                '<tr><td colspan="4" class="text-center">No students found</td></tr>';
+                                    '<tr><td colspan="4" class="text-center">No students found</td></tr>';
                             }
 
                             $('table tbody').html(html);

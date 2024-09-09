@@ -99,13 +99,40 @@
                                                         @endforeach --}}
                                                     </select>
                                                 </div>
-                                                <div class="d-flex align-items-center col-md-12 mt-2">
-                                                    <label for="filterSelector" class="col-2">Filter By:</label>
-                                                    <select id="filterSelector" class="form-select col-10">
+                                                <div class="d-flex align-items-center col-md-4 mt-2">
+                                                    <label for="filterSelector" class="col-3">Filter By:</label>
+                                                    <select id="filterSelector" class="form-select col-9">
                                                         <option value="" selected disabled>--Select Filter--</option>
                                                         <option value="all">All Data</option>
                                                         <option value="today">Today</option>
                                                         <option value="monthly">This Month</option>
+                                                    </select>
+                                                </div>
+                                                <div class="d-flex align-items-center col-md-4 mt-2">
+                                                    <label for="monthFilter" class="col-4">Month By:</label>
+                                                    <select id="monthFilter" class="form-select col-8">
+                                                        <option value="" selected disabled>--Select Month--</option>
+                                                        <option value="01">January</option>
+                                                        <option value="02">February</option>
+                                                        <option value="03">March</option>
+                                                        <option value="04">April</option>
+                                                        <option value="05">May</option>
+                                                        <option value="06">June</option>
+                                                        <option value="07">July</option>
+                                                        <option value="08">August</option>
+                                                        <option value="09">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
+                                                    </select>
+                                                </div>
+                                                <div class="d-flex align-items-center col-md-4 mt-2">
+                                                    <label for="yearFilter" class="col-3">Year By:</label>
+                                                    <select id="yearFilter" class="form-select col-9">
+                                                        <option value="" selected disabled>--Select Year--</option>
+                                                        <option value="2024">2024</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2022">2022</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -1168,7 +1195,9 @@
                         [10, 25, 50, 100, "All"]
                     ],
                     pageLength: 10,
-                    order: [[0, 'desc']], // Set default sort on the first column (0-indexed) in descending order
+                    order: [
+                        [0, 'desc']
+                    ], // Set default sort on the first column (0-indexed) in descending order
                     buttons: [{
                             extend: 'pdfHtml5',
                             orientation: 'portrait', // 'portrait' or 'landscape'
@@ -1254,6 +1283,11 @@
 
                         $('#btnExportVouchersToPDF').on('click', function() {
                             exportVouchersToPDF();
+                        });
+
+                        // Listen to both month and year filter changes
+                        $('#monthFilter, #yearFilter').on('change', function() {
+                            applyFilters();
                         });
                     }
                 });
@@ -5175,6 +5209,21 @@
                     }
                 }
 
+                // Function to apply the filters
+                function applyFilters() {
+                    var selectedMonth = $('#monthFilter').val();
+                    var selectedYear = $('#yearFilter').val();
+                    var combinedValue = '';
+
+                    // If both month and year are selected, combine them in 'YYYY-MM' format
+                    if (selectedMonth && selectedYear) {
+                        combinedValue = selectedYear + '-' + selectedMonth;
+                    }
+
+                    // Apply the filter to the 'month_year' column (assuming it's the 3rd column, index 2)
+                    table.column(2).search(combinedValue).draw();
+                }
+
                 function deleteFeeVoucher(id) {
                     Swal.fire({
                         title: "Are you sure?",
@@ -5209,7 +5258,7 @@
                                     } else {
                                         Toast.fire({
                                             icon: "success",
-                                            title: "Fee Receipts Delete Successfully"
+                                            title: "Class Fee Voucher Deleted Successfully"
                                         });
                                         fetchData("all");
                                     }

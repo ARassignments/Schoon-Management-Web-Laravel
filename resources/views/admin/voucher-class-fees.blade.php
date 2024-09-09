@@ -54,7 +54,7 @@
                                     color: black;
                                     font-family: sans-serif;"
                                     class="col-4">Class</p>
-                                <span>{{ $voucher->class }}</span>
+                                <span>{{ $voucher->students_add->current_class }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
                                 <p style="margin: 0;
@@ -63,7 +63,7 @@
                                     color: black;
                                     font-family: sans-serif;"
                                     class="col-4">Section</p>
-                                <span>{{ $voucher->section }}</span>
+                                <span>{{ $voucher->students_add->section }}</span>
                             </div>
                         </div>
 
@@ -275,7 +275,7 @@
                                     color: black;
                                     font-family: sans-serif;"
                                     class="col-4">Class</p>
-                                <span>{{ $voucher->class }}</span>
+                                <span>{{ $voucher->students_add->current_class }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
                                 <p style="margin: 0;
@@ -284,7 +284,7 @@
                                     color: black;
                                     font-family: sans-serif;"
                                     class="col-4">Section</p>
-                                <span>{{ $voucher->section }}</span>
+                                <span>{{ $voucher->students_add->section }}</span>
                             </div>
                         </div>
 
@@ -489,7 +489,7 @@
                                     color: black;
                                     font-family: sans-serif;"
                                     class="col-4">Class</p>
-                                <span>{{ $voucher->class }}</span>
+                                <span>{{ $voucher->students_add->current_class }}</span>
                             </div>
                             <div class="d-flex justify-content-start">
                                 <p style="margin: 0;
@@ -498,7 +498,7 @@
                                     color: black;
                                     font-family: sans-serif;"
                                     class="col-4">Section</p>
-                                <span>{{ $voucher->section }}</span>
+                                <span>{{ $voucher->students_add->section }}</span>
                             </div>
                         </div>
 

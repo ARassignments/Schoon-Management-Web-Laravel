@@ -51,7 +51,7 @@
                                                     @foreach ($add as $addmission)
                                                         <tr class="text-center">
                                                             <td class="text-start">{{ $i++}}</td>
-                                                            <td>{{ $addmission->class }}</td>
+                                                            <td>{{ $addmission->current_class }}</td>
                                                             <td class="text-end">{{ $addmission->total }}</td>
                                                             
                                                         </tr>
@@ -80,6 +80,8 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     <script>
+        console.log(@json($add));
+        
         $(document).ready(function() {
             // Initialize DataTable
             var table = new DataTable('#myTable', {

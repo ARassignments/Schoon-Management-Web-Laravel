@@ -162,5 +162,24 @@
             ageInput.value = age;
         });
     });
+    $(document).ready(function() {
+        $('select[name="current_class"]').on('change', function() {
+            var currentClass = $(this).val();
+
+            if (currentClass) {
+                $.ajax({
+                    url: "{{ url('/getTuitionFee') }}",
+                    type: "POST",
+                    data: {
+                        current_class: currentClass,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $('input[name="fees"]').val(response.tuition_fee);
+                    }
+                });
+            }
+        });
+    });
 </script>
 @endsection

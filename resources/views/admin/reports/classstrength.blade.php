@@ -60,7 +60,7 @@
                                                     @foreach ($add as $addmission)
                                                         <tr class="text-center">
                                                             <td>{{ $i++ }}</td>
-                                                            <td>{{ $addmission->class }}</td>
+                                                            <td>{{ $addmission->current_class }}</td>
                                                             <td>{{ $addmission->section }}</td>
                                                             <td>{{ $addmission->total }}</td>
                                                         </tr>

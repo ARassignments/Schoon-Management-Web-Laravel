@@ -8,6 +8,7 @@ use App\Models\Admissionform;
 use App\Models\Classes;
 use App\Models\contactfom;
 use App\Models\FeeReceipt;
+use App\Models\Fees;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -115,6 +116,14 @@ class admin_controller extends Controller
         return response()->json(['error' => 'Failed to update status.'], 400);
     }
 
+    public function getTuitionFee(Request $request)
+    {
+        $class = $request->input('current_class');
+        $tuitionFee = Fees::where('class', $class)->pluck('tution')->first();
+
+        return response()->json(['tuition_fee' => $tuitionFee]);
+    }
+
     public function adminprofile()
     {
         $notificationCount = contactfom::where('is_new', true)->count(); // Count only unread notifications
@@ -127,7 +136,8 @@ class admin_controller extends Controller
         return view('admin.addstudentpromotion');
     }
 
-    public function storeaddmissionform(Request $request){
+    public function storeaddmissionform(Request $request)
+    {
         $request->validate([
             'gr_number' => 'required|string|max:255',
             'student_name' => 'required|string|max:255',

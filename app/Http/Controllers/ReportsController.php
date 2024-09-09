@@ -40,7 +40,7 @@ class ReportsController extends Controller
     }
     public function strengthstudents()
     {
-        $add = AdmissionForm::select('class', \DB::raw('count(*) as total'))->groupBy('class')->get();
+        $add = AdmissionForm::select('current_class', \DB::raw('count(*) as total'))->groupBy('current_class')->get();
         $contacts = contactfom::all();
         $notificationCount = contactfom::where('is_new', true)->count();
         $classes = Classes::all();
@@ -48,7 +48,7 @@ class ReportsController extends Controller
     }
     public function classstrength()
     {
-        $add = AdmissionForm::select('class', 'section', \DB::raw('count(*) as total'))->groupBy('class', 'section')->get();
+        $add = AdmissionForm::select('current_class', 'section', \DB::raw('count(*) as total'))->groupBy('current_class', 'section')->get();
         $contacts = contactfom::all();
         $notificationCount = contactfom::where('is_new', true)->count();
         $classes = Classes::all();

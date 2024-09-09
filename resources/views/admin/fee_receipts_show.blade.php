@@ -340,7 +340,7 @@
                                 <td>
                                     <select class="form-select form-control-sm fs-5 m-auto"
                                         style="width:80px" id="paymentMethod${i}" onchange="updatePayType('paymentMethod${i}',${response[i].id})">
-                                        <option selected ${!selectedPaymentMethod ? 'selected' : ''} value=""></option>
+                                        <option selected ${!selectedPaymentMethod ? 'selected' : ''} value="" disabled>-</option>
                                         <option value="bank" ${selectedPaymentMethod === 'bank' ? 'selected' : ''}>Bank</option>
                                         <option value="cash" ${selectedPaymentMethod === 'cash' ? 'selected' : ''}>Cash</option>
                                     </select>
@@ -356,14 +356,14 @@
                                     <input type="text"
                                         class="form-control form-control-sm fs-5 text-center m-auto"
                                         style="width:80px" value="${response[i].receipts}" id="receipt${i}"
-                                        maxlength="5"
+                                        maxlength="6"
                                         onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateReceipt('receipt${i}',${response[i].id},'balance${i}')">
                                 </td>
                                 <td>
                                     <input type="text"
                                         class="form-control form-control-sm fs-5 text-center m-auto" id="balance${i}"
                                         style="width:80px" value="${response[i].balance}"
-                                        maxlength="5"
+                                        maxlength="6"
                                         onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateBalance('balance${i}',${response[i].id})">
                                 </td>
                                 <td>
@@ -414,7 +414,7 @@
                             <td>${response[i].total}</td>
                             <td>
                                 <select class="form-select form-control-sm fs-5 m-auto" style="width:80px" id="paymentMethod${i}" onchange="updatePayType('paymentMethod${i}',${response[i].id})">
-                                    <option value="" ${!selectedPaymentMethod ? 'selected' : ''}></option>
+                                    <option value="" ${!selectedPaymentMethod ? 'selected' : ''} disabled>-</option>
                                     <option value="bank" ${selectedPaymentMethod === 'bank' ? 'selected' : ''}>Bank</option>
                                     <option value="cash" ${selectedPaymentMethod === 'cash' ? 'selected' : ''}>Cash</option>
                                 </select>
@@ -423,10 +423,10 @@
                                 <input type="text" class="form-control form-control-sm fs-5 text-center m-auto" style="width:80px" value="${response[i].discount}" id="discount${i}" maxlength="2" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateDiscount('discount${i}',${response[i].id})">
                             </td>
                             <td>
-                                <input type="text" class="form-control form-control-sm fs-5 text-center m-auto" style="width:80px" value="${response[i].receipts}" id="receipt${i}" maxlength="5" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateReceipt('receipt${i}',${response[i].id}, 'balance${i}')">
+                                <input type="text" class="form-control form-control-sm fs-5 text-center m-auto" style="width:80px" value="${response[i].receipts}" id="receipt${i}" maxlength="6" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateReceipt('receipt${i}',${response[i].id}, 'balance${i}')">
                             </td>
                             <td>
-                                <input type="text" class="form-control form-control-sm fs-5 text-center m-auto" id="balance${i}" style="width:80px" value="${response[i].balance}" maxlength="5" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateBalance('balance${i}',${response[i].id})">
+                                <input type="text" class="form-control form-control-sm fs-5 text-center m-auto" id="balance${i}" style="width:80px" value="${response[i].balance}" maxlength="6" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" onchange="updateBalance('balance${i}',${response[i].id})">
                             </td>
                             <td>
                                 <a href="#" class="btn btn-danger btn-sm" onclick="deleteFeeReceipts(${response[i].id})">Delete</a>
