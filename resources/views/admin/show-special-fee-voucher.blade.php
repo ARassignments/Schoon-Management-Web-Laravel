@@ -47,13 +47,13 @@
 
                                     <!-- Searchbar Start -->
                                     <!-- <div class="app-search ms-3">
-                                                                <form>
-                                                                    <div class="input-group">
-                                                                        <input type="search" class="form-control" placeholder="Search...">
-                                                                        <span class="ri-search-line search-icon text-muted"></span>
-                                                                    </div>
-                                                                </form>
-                                                            </div> -->
+                                                                    <form>
+                                                                        <div class="input-group">
+                                                                            <input type="search" class="form-control" placeholder="Search...">
+                                                                            <span class="ri-search-line search-icon text-muted"></span>
+                                                                        </div>
+                                                                    </form>
+                                                                </div> -->
                                     <form class="app-search" action="" method="GET">
                                         {{-- <input class="search-input" name="search" placeholder="Search..." type="search" value="{{ $search }}"> --}}
 
@@ -287,12 +287,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
-
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
-        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> --}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>

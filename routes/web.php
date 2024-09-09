@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
+Route::middleware(['auth', 'verified','isadmin','nocache'])->group(function () {
     Route::get('/dashboard', [admin_controller::class, 'index'])->name('dashboard');
     //------------admission management------------//
     Route::get('/show-addmissionform', [admin_controller::class, 'addmissionform'])->name('show-addmissionform');
@@ -145,7 +145,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/clear-notification', [contactform::class, 'clearNotification'])->name('clear-notification');
     Route::post('/clear-all-notifications', [contactform::class, 'clearAllNotifications'])->name('clear-all-notifications');
 
-// });
+});
 
 //------------User Managment-----------//
 Route::get('/', [User_Controller::class, 'index']);

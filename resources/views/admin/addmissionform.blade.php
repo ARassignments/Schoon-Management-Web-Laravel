@@ -21,249 +21,271 @@
                         <!-- Todo-->
                         <div class="">
                             <div class="card-body p-0">
-                                <div class="card-body-container p-3 d-flex align-items-center justify-content-end shadow rounded mt-4">
+                                <div
+                                    class="card-body-container p-3 d-flex align-items-center justify-content-end shadow rounded mt-4">
                                     <h5 class="header-title mb-0 me-auto text-white">Admission Form</h5>
-                                   
+
                                     <!-- Searchbar End -->
                                 </div>
-                                    @if (session('success'))
-                                        <div id="successMessage" class="alert alert-success fade show mt-3 text-center"
-                                            role="alert">
-                                            {{ session('success') }}
+                                @if (session('success'))
+                                    <div id="successMessage" class="alert alert-success fade show mt-3 text-center"
+                                        role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                @if (session('successdelete'))
+                                    <div id="successMessage" class="alert alert-danger fade show mt-3 text-center"
+                                        role="alert">
+                                        {{ session('successdelete') }}
+                                    </div>
+                                @endif
+                                {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        var successMessage = document.getElementById('successMessage');
+                                        if (successMessage) {
+                                            setTimeout(function() {
+                                                var bsAlert = new bootstrap.Alert(successMessage);
+                                                bsAlert.close(); // This will trigger the fade-out animation
+                                            }, 3000); // Display duration
+                                        }
+                                    });
+                                </script>
+                                <div class="feeallcard feeallshadow">
+                                    <div id="yearly-sales-collapse" class="collapse show mt-4">
+                                        <div class="d-flex flex-wrap pt-3 px-2">
+                                            <div class="d-flex align-items-center col-md-6">
+                                                <label for="classFilter" class="col-3">Class By:</label>
+                                                <select id="classFilter" class="form-select col-9">
+                                                    <option value="">All</option>
+                                                    {{-- @foreach ($classes as $class)
+                                                        <option value="{{ $class->class_name }}">{{ $class->class_name }}
+                                                        </option>
+                                                    @endforeach --}}
+                                                </select>
+                                            </div>
+                                            <div class="d-flex align-items-center col-md-6">
+                                                <label for="sectionFilter" class="col-3">Section By:</label>
+                                                <select id="sectionFilter" class="form-select col-9">
+                                                    <option value="">All</option>
+                                                    {{-- @foreach ($classes as $class)
+                                                        <option value="{{ $class->section_name }}">
+                                                            {{ $class->section_name }}</option>
+                                                    @endforeach --}}
+                                                </select>
+                                            </div>
                                         </div>
-                                    @endif
-                                    @if (session('successdelete'))
-                                        <div id="successMessage" class="alert alert-danger fade show mt-3 text-center"
-                                            role="alert">
-                                            {{ session('successdelete') }}
-                                        </div>
-                                    @endif
-                                     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
-                                    <script>
-                                        document.addEventListener('DOMContentLoaded', function() {
-                                            var successMessage = document.getElementById('successMessage');
-                                            if (successMessage) {
-                                                setTimeout(function() {
-                                                    var bsAlert = new bootstrap.Alert(successMessage);
-                                                    bsAlert.close(); // This will trigger the fade-out animation
-                                                }, 3000); // Display duration
-                                            }
-                                        });
-                                    </script>
-                                    <div class="feeallcard feeallshadow">
-                                        <div id="yearly-sales-collapse" class="collapse show mt-4">
+                                        <div class="table-responsive">
+                                            <table class="table table-nowrap table-hover mb-0" id="myTable">
+                                                <thead>
+                                                    <tr class="text-center">
+                                                        <th>Id</th>
+                                                        <th>GR Number</th>
+                                                        <th>Student Name</th>
+                                                        <th>Father Name</th>
+                                                        <th>Student Age</th>
+                                                        <th>Mobile Number</th>
+                                                        <th>Class</th>
+                                                        <th>Current Class</th>
+                                                        <th>Section</th>
+                                                        <th>Last Institute</th>
+                                                        <th>Fees</th>
+                                                        <th>Date Of Addmission</th>
+                                                        <th>Date Of Birth</th>
+                                                        <th>Religion</th>
+                                                        <th>Address</th>
+                                                        <th>Created Date</th>
+                                                        <th>Updated Date</th>
+                                                        <th>Status</th>
+                                                        <th>Edit/Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                                            <div class="table-responsive">
-                                                <table class="table table-nowrap table-hover mb-0" id="myTable">
-                                                    <thead>
+                                                    @foreach ($add as $addmission)
                                                         <tr class="text-center">
-                                                            <th>Id</th>
-                                                            <th>GR Number</th>
-                                                            <th>Student Name</th>
-                                                            <th>Father Name</th>
-                                                            <th>Student Age</th>
-                                                            <th>Mobile Number</th>
-                                                            <th>Class</th>
-                                                            <th>Current Class</th>
-                                                            <th>Section</th>
-                                                            <th>Last Institute</th>
-                                                            <th>Fees</th>
-                                                            <th>Date Of Addmission</th>
-                                                            <th>Date Of Birth</th>
-                                                            <th>Religion</th>
-                                                            <th>Address</th>
-                                                            <th>Created Date</th>
-                                                            <th>Updated Date</th>
-                                                            <th>Status</th>
-                                                            <th>Edit/Delete</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
+                                                            <td>{{ $addmission->id }}</td>
+                                                            <td>{{ $addmission->gr_number }}</td>
+                                                            <td>{{ $addmission->student_name }}</td>
+                                                            <td>{{ $addmission->father_name }}</td>
+                                                            <td>{{ $addmission->student_age }}</td>
+                                                            <td>{{ $addmission->mobile_number }}</td>
+                                                            <td>{{ $addmission->class }}</td>
+                                                            <td>{{ $addmission->current_class }}</td>
+                                                            <td>{{ $addmission->section }}</td>
+                                                            <td>{{ $addmission->last_institute }}</td>
+                                                            <td>{{ $addmission->fees }}</td>
+                                                            <td>{{ $addmission->date_of_addmission }}</td>
+                                                            <td>{{ $addmission->date_of_birth }}</td>
+                                                            <td>{{ $addmission->religion }}</td>
+                                                            <td>{{ $addmission->address }}</td>
+                                                            <td>{{ $addmission->created_at }}</td>
+                                                            <td>{{ $addmission->updated_at }}</td>
+                                                            <td>
+                                                                <button type="button"
+                                                                    class="btn btn-sm our-color-1 rounded-2 shadow"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#statusModal{{ $addmission->id }}">
+                                                                    Change Status
+                                                                </button>
 
-                                                        @foreach ($add as $addmission)
-                                                            <tr class="text-center">
-                                                                <td>{{ $addmission->id }}</td>
-                                                                <td>{{ $addmission->gr_number }}</td>
-                                                                <td>{{ $addmission->student_name }}</td>
-                                                                <td>{{ $addmission->father_name }}</td>
-                                                                <td>{{ $addmission->student_age }}</td>
-                                                                <td>{{ $addmission->mobile_number }}</td>
-                                                                <td>{{ $addmission->class }}</td>
-                                                                <td>{{ $addmission->current_class }}</td>
-                                                                <td>{{ $addmission->section }}</td>
-                                                                <td>{{ $addmission->last_institute }}</td>
-                                                                <td>{{ $addmission->fees }}</td>
-                                                                <td>{{ $addmission->date_of_addmission }}</td>
-                                                                <td>{{ $addmission->date_of_birth }}</td>
-                                                                <td>{{ $addmission->religion }}</td>
-                                                                <td>{{ $addmission->address }}</td>
-                                                                <td>{{ $addmission->created_at }}</td>
-                                                                <td>{{ $addmission->updated_at }}</td>
-                                                                <td>
-                                                                    <button type="button"
-                                                                        class="btn btn-sm our-color-1 rounded-2 shadow"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#statusModal{{ $addmission->id }}">
-                                                                        Change Status
-                                                                    </button>
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ url('edit-admissionform', $addmission->id) }}"
+                                                                    class="btn btn-sm our-color-1 rounded-2 shadow">Edit</a>
+                                                                <!-- Delete Button -->
+                                                                <button type="button" class="btn btn-sm btn-danger mx-2"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#deleteConfirmationModal{{ $addmission->id }}">Delete</button>
 
-                                                                </td>
-                                                                <td>
-                                                                    <a href="{{ url('edit-admissionform', $addmission->id) }}"
-                                                                        class="btn btn-sm our-color-1 rounded-2 shadow">Edit</a>
-                                                                    <!-- Delete Button -->
-                                                                    <button type="button" class="btn btn-sm btn-danger mx-2"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#deleteConfirmationModal{{ $addmission->id }}">Delete</button>
-
-                                                                    <!-- Delete Confirmation Modal -->
-                                                                    <div class="modal fade"
-                                                                        id="deleteConfirmationModal{{ $addmission->id }}"
-                                                                        tabindex="-1"
-                                                                        aria-labelledby="deleteConfirmationLabel{{ $addmission->id }}"
-                                                                        aria-hidden="true">
-                                                                        <div class="modal-dialog modal-dialog-centered">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header bg-danger text-white">
-                                                                                    <h5 class="modal-title"
-                                                                                        id="deleteConfirmationLabel{{ $addmission->id }}">
-                                                                                        Confirm Delete</h5>
-                                                                                    <button type="button"
-                                                                                        class="btn-close btn-close-white"
-                                                                                        data-bs-dismiss="modal"
-                                                                                        aria-label="Close"></button>
-                                                                                </div>
-                                                                                <div class="modal-body ">
-                                                                                    <p class="fs-5">"Are you sure you want to
-                                                                                        delete the record for
-                                                                                        {{ $addmission->student_name }}
-                                                                                        {{ $addmission->father_name }}?"</p>
-                                                                                </div>
-                                                                                <div class="modal-footer">
-                                                                                    <button type="button"
-                                                                                        class="btn btn-secondary"
-                                                                                        data-bs-dismiss="modal">Cancel</button>
-                                                                                    <form method="get"
-                                                                                        action="{{ url('delete-addmissionform', $addmission->id) }}">
-                                                                                        @csrf
-                                                                                        <button type="submit"
-                                                                                            class="btn btn-danger">Delete</button>
-                                                                                    </form>
-                                                                                </div>
+                                                                <!-- Delete Confirmation Modal -->
+                                                                <div class="modal fade"
+                                                                    id="deleteConfirmationModal{{ $addmission->id }}"
+                                                                    tabindex="-1"
+                                                                    aria-labelledby="deleteConfirmationLabel{{ $addmission->id }}"
+                                                                    aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header bg-danger text-white">
+                                                                                <h5 class="modal-title"
+                                                                                    id="deleteConfirmationLabel{{ $addmission->id }}">
+                                                                                    Confirm Delete</h5>
+                                                                                <button type="button"
+                                                                                    class="btn-close btn-close-white"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    aria-label="Close"></button>
+                                                                            </div>
+                                                                            <div class="modal-body ">
+                                                                                <p class="fs-5">"Are you sure you want to
+                                                                                    delete the record for
+                                                                                    {{ $addmission->student_name }}
+                                                                                    {{ $addmission->father_name }}?"</p>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button"
+                                                                                    class="btn btn-secondary"
+                                                                                    data-bs-dismiss="modal">Cancel</button>
+                                                                                <form method="get"
+                                                                                    action="{{ url('delete-addmissionform', $addmission->id) }}">
+                                                                                    @csrf
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-danger">Delete</button>
+                                                                                </form>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                </div>
 
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
 
-                                                        <style>
-                                                            /* Modal Styles */
-                                                            .modal-header {
-                                                                background-color: #0C2B4B;
-                                                                border-bottom: none;
-                                                            }
+                                                    <style>
+                                                        /* Modal Styles */
+                                                        .modal-header {
+                                                            background-color: #0C2B4B;
+                                                            border-bottom: none;
+                                                        }
 
-                                                            .modal-body {
-                                                                background-color: #0C2B4B;
-                                                                border-top: 3px solid #0097b2;
-                                                            }
+                                                        .modal-body {
+                                                            background-color: #0C2B4B;
+                                                            border-top: 3px solid #0097b2;
+                                                        }
 
-                                                            .modal-footer {
-                                                                background-color: #0C2B4B;
-                                                                border-top: none;
-                                                            }
+                                                        .modal-footer {
+                                                            background-color: #0C2B4B;
+                                                            border-top: none;
+                                                        }
 
-                                                            /* Dropdown Styles */
-                                                            .form-select {
-                                                                font-size: 1.1rem;
-                                                                color: #092139;
-                                                                transition: background-color 0.3s, color 0.3s;
-                                                            }
+                                                        /* Dropdown Styles */
+                                                        .form-select {
+                                                            font-size: 1.1rem;
+                                                            color: #092139;
+                                                            transition: background-color 0.3s, color 0.3s;
+                                                        }
 
-                                                            .form-select:hover,
-                                                            .form-select:focus {
-                                                                background-color: #0097b2;
-                                                                color: #ffffff;
-                                                            }
+                                                        .form-select:hover,
+                                                        .form-select:focus {
+                                                            background-color: #0097b2;
+                                                            color: #ffffff;
+                                                        }
 
-                                                            .form-select option {
-                                                                background-color: #ffffff;
-                                                                color: #092139;
-                                                            }
+                                                        .form-select option {
+                                                            background-color: #ffffff;
+                                                            color: #092139;
+                                                        }
 
-                                                            .form-select option:hover {
-                                                                background-color: red;
-                                                                color: #ffffff;
-                                                            }
-                                                        </style>
+                                                        .form-select option:hover {
+                                                            background-color: red;
+                                                            color: #ffffff;
+                                                        }
+                                                    </style>
 
-                                                        @foreach ($add as $addmission)
-                                                            <div class="modal fade" id="statusModal{{ $addmission->id }}"
-                                                                tabindex="-1" aria-labelledby="exampleModalLabel"
-                                                                aria-hidden="true">
-                                                                <div
-                                                                    class="modal-dialog modal-dialog-centered d-flex justify-content-center">
-                                                                    <div class="modal-content rounded-4 shadow-lg">
-                                                                        <div class="modal-header align-items-center text-white">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">
-                                                                                <b>Change Status</b>
-                                                                            </h5>
-                                                                            <button type="button"
-                                                                                class="btn-close btn-close-white"
-                                                                                data-bs-dismiss="modal"
-                                                                                aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body py-3 px-3 text-center">
-                                                                            <form id="statusForm{{ $addmission->id }}"
-                                                                                data-id="{{ $addmission->id }}">
-                                                                                @csrf
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="statusSelect{{ $addmission->id }}"
-                                                                                        class="text-white fw-bold mb-2"
-                                                                                        style="font-size: 1.1rem;">Select
-                                                                                        Status</label>
-                                                                                    <select
-                                                                                        id="statusSelect{{ $addmission->id }}"
-                                                                                        name="status"
-                                                                                        class="form-select text-center fw-bold border-0">
-                                                                                        <option value="" disabled
-                                                                                            selected>Select status</option>
-                                                                                        <option value="Current">Current
-                                                                                        </option>
-                                                                                        <option value="Left Out">Left Out
-                                                                                        </option>
-                                                                                        <option value="Pass Out">Pass Out
-                                                                                        </option>
-                                                                                    </select>
-                                                                                    <input type="hidden" name="id"
-                                                                                        value="{{ $addmission->id }}">
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button"
-                                                                                class="btn btn-danger rounded-pill"
-                                                                                data-bs-dismiss="modal">Close</button>
-                                                                            <button type="button"
-                                                                                class="btn btn-success rounded-pill save-status"
-                                                                                data-id="{{ $addmission->id }}"
-                                                                                data-student-name="{{ $addmission->student_name }}"
-                                                                                data-father-name="{{ $addmission->father_name }}">Update
-                                                                                Status</button>
-                                                                        </div>
+                                                    @foreach ($add as $addmission)
+                                                        <div class="modal fade" id="statusModal{{ $addmission->id }}"
+                                                            tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                            aria-hidden="true">
+                                                            <div
+                                                                class="modal-dialog modal-dialog-centered d-flex justify-content-center">
+                                                                <div class="modal-content rounded-4 shadow-lg">
+                                                                    <div class="modal-header align-items-center text-white">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                                            <b>Change Status</b>
+                                                                        </h5>
+                                                                        <button type="button"
+                                                                            class="btn-close btn-close-white"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body py-3 px-3 text-center">
+                                                                        <form id="statusForm{{ $addmission->id }}"
+                                                                            data-id="{{ $addmission->id }}">
+                                                                            @csrf
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    for="statusSelect{{ $addmission->id }}"
+                                                                                    class="text-white fw-bold mb-2"
+                                                                                    style="font-size: 1.1rem;">Select
+                                                                                    Status</label>
+                                                                                <select
+                                                                                    id="statusSelect{{ $addmission->id }}"
+                                                                                    name="status"
+                                                                                    class="form-select text-center fw-bold border-0">
+                                                                                    <option value="" disabled
+                                                                                        selected>Select status</option>
+                                                                                    <option value="Current">Current
+                                                                                    </option>
+                                                                                    <option value="Left Out">Left Out
+                                                                                    </option>
+                                                                                    <option value="Pass Out">Pass Out
+                                                                                    </option>
+                                                                                </select>
+                                                                                <input type="hidden" name="id"
+                                                                                    value="{{ $addmission->id }}">
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                            class="btn btn-danger rounded-pill"
+                                                                            data-bs-dismiss="modal">Close</button>
+                                                                        <button type="button"
+                                                                            class="btn btn-success rounded-pill save-status"
+                                                                            data-id="{{ $addmission->id }}"
+                                                                            data-student-name="{{ $addmission->student_name }}"
+                                                                            data-father-name="{{ $addmission->father_name }}">Update
+                                                                            Status</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        @endforeach
+                                                        </div>
+                                                    @endforeach
 
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
+                                </div>
                             </div>
                         </div> <!-- end card-->
                     </div> <!-- end col-->
@@ -273,12 +295,42 @@
             </div>
             <!-- container -->
         </div>
-   
+
         <!-- content -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
         <script>
-            let table = new DataTable('#myTable');
+            var table = new DataTable('#myTable', {
+                lengthMenu: [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"]
+                ],
+                pageLength: 10,
+                order: [
+                    [0, 'desc']
+                ]
+            });
+            // Populate the Class filter dropdown
+            var uniqueClasses = [...new Set(table.column(7).data().toArray())];
+                uniqueClasses.forEach(function(className) {
+                    $('#classFilter').append(new Option(className, className));
+                });
+
+                // Filter function for class
+                $('#classFilter').on('change', function() {
+                    table.column(7).search(this.value).draw();
+                });
+
+                // Populate the Section filter dropdown
+                var uniqueSections = [...new Set(table.column(8).data().toArray())];
+                uniqueSections.forEach(function(sectionName) {
+                    $('#sectionFilter').append(new Option(sectionName, sectionName));
+                });
+
+                // Filter function for section
+                $('#sectionFilter').on('change', function() {
+                    table.column(8).search(this.value).draw();
+                });
         </script>
         <!-- Include SweetAlert2 JS -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>

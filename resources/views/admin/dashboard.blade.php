@@ -29,8 +29,8 @@
                         <div class="card widget-flat text-bg-white shadow">
                             <div class="card-body dashboard-card">
                                 <!-- <div class="float-end">
-                                <i class="ri-eye-line widget-icon"></i>
-                            </div> -->
+                                    <i class="ri-eye-line widget-icon"></i>
+                                </div> -->
                                 <h6 class="text-uppercase mt-0 our-color-2" title="Customers"><b>Total Students</b></h6>
                                 <hr>
                                 <h2 class="my-2 our-color">{{ $addC }}</h2>
@@ -44,8 +44,8 @@
                         <div class="card widget-flat text-bg-white shadow">
                             <div class="card-body dashboard-card">
                                 <!-- <div class="float-end">
-                                <i class="ri-wallet-2-line widget-icon"></i>
-                            </div> -->
+                                    <i class="ri-wallet-2-line widget-icon"></i>
+                                </div> -->
                                 <h6 class="text-uppercase mt-0 our-color-2" title="Customers"><b> Total Classes</b></h6>
                                 <hr>
                                 <h2 class="my-2 our-color">{{ $class }}</h2>
@@ -58,7 +58,7 @@
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="card widget-flat text-bg-white shadow">
                             <div class="card-body dashboard-card">
-                            <h6 class="text-uppercase mt-0 our-color-2" title="Customers"><b>Today Fee Receipt</b></h6>
+                                <h6 class="text-uppercase mt-0 our-color-2" title="Customers"><b>Today Fee Receipt</b></h6>
                                 <hr>
                                 <h2 class="my-2 our-color">{{ $feeReceiptsCount }}</h2>
                                 <p class="mb-0">
@@ -71,9 +71,10 @@
                         <div class="card widget-flat text-bg-white shadow">
                             <div class="card-body dashboard-card">
                                 <!-- <div class="float-end">
-                                <i class="ri-shopping-basket-line widget-icon"></i>
-                            </div> -->
-                            <h6 class="text-uppercase mt-0 our-color-2" title="Customers"><b>Monthly Fee Receipt</b></h6>
+                                    <i class="ri-shopping-basket-line widget-icon"></i>
+                                </div> -->
+                                <h6 class="text-uppercase mt-0 our-color-2" title="Customers"><b>Monthly Fee Receipt</b>
+                                </h6>
                                 <hr>
                                 <h2 class="my-2 our-color">{{ $feeReceiptsCountMonthly }}</h2>
                                 <p class="mb-0">
@@ -99,7 +100,7 @@
                                     <!-- Searchbar End -->
                                 </div>
 
-                                
+
 
                                 <div class="feeallcard feeallshadow">
                                     <div id="yearly-sales-collapse" class="collapse show mt-4">
@@ -216,30 +217,39 @@
         <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
         <script>
             $(document).ready(function() {
-            var table = new DataTable('#myTable');
+                var table = new DataTable('#myTable', {
+                    lengthMenu: [
+                        [10, 25, 50, 100, -1],
+                        [10, 25, 50, 100, "All"]
+                    ],
+                    pageLength: 10,
+                    order: [
+                        [0, 'desc']
+                    ]
+                });
 
-            // Populate the Class filter dropdown
-            var uniqueClasses = [...new Set(table.column(4).data().toArray())];
-            uniqueClasses.forEach(function(className) {
-                $('#classFilter').append(new Option(className, className));
-            });
+                // Populate the Class filter dropdown
+                var uniqueClasses = [...new Set(table.column(4).data().toArray())];
+                uniqueClasses.forEach(function(className) {
+                    $('#classFilter').append(new Option(className, className));
+                });
 
-            // Filter function for class
-            $('#classFilter').on('change', function() {
-                table.column(4).search(this.value).draw();
-            });
-            
-            // Populate the Section filter dropdown
-            var uniqueSections = [...new Set(table.column(5).data().toArray())];
-            uniqueSections.forEach(function(sectionName) {
-                $('#sectionFilter').append(new Option(sectionName, sectionName));
-            });
+                // Filter function for class
+                $('#classFilter').on('change', function() {
+                    table.column(4).search(this.value).draw();
+                });
 
-            // Filter function for section
-            $('#sectionFilter').on('change', function() {
-                table.column(5).search(this.value).draw();
-            });
+                // Populate the Section filter dropdown
+                var uniqueSections = [...new Set(table.column(5).data().toArray())];
+                uniqueSections.forEach(function(sectionName) {
+                    $('#sectionFilter').append(new Option(sectionName, sectionName));
+                });
 
-        });
+                // Filter function for section
+                $('#sectionFilter').on('change', function() {
+                    table.column(5).search(this.value).draw();
+                });
+
+            });
         </script>
     @endsection
