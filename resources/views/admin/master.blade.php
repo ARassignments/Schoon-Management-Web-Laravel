@@ -24,7 +24,7 @@
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
     <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet" type="text/css" id="app-style" />
 
-    <link rel="stylesheet" href="_sidenav.scss">
+    {{-- <link rel="stylesheet" href="_sidenav.scss"> --}}
 
     <!-- Icons css -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
@@ -33,7 +33,7 @@
     <!-------------------- form link --------------->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
 
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    {{-- <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css"> --}}
 
     <link rel="stylesheet" href="{{ asset('assets/css/adminlte.min2167.css') }}">
 
@@ -56,7 +56,121 @@
     <!-- Flatpickr Timepicker css -->
     <link href="{{ asset('assets/vendor/flatpickr/flatpickr.min.css')}}" rel="stylesheet" type="text/css" />
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <style>
+        #myTable_wrapper .dt-search,
+        #myTable_wrapper .dt-info,
+        #myTable_wrapper .dt-paging,
+        #myTable_wrapper .dt-length {
+            padding-left: 0.6rem;
+            padding-right: 0.6rem;
+        }
+        #myTable_wrapper .dt-length,
+        #myTable_wrapper .dt-search{
+            padding-top: 0.6rem; 
+        }
+
+        #myTable_wrapper .dt-paging{
+            padding-bottom: 0.6rem;
+        }
+
+        #myTable_wrapper .dt-length label {
+            margin-left: 0.5rem;
+            text-transform: capitalize;
+        }
+
+        #myTable_wrapper .dt-input {
+            outline: none;
+        }
+        #myTable_wrapper .dataTable {
+            margin-bottom: 0rem !important;
+        }
+        #myTable_wrapper .dt-layout-full {
+            display: block;
+            width: calc(100% - 1.6rem) !important;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0 0.8rem;
+        }
+
+        #myTable_wrapper .dt-layout-full::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        #myTable_wrapper .dt-layout-full::-webkit-scrollbar {
+            height: 15px;
+        }
+
+        #myTable_wrapper .dt-layout-full::-webkit-scrollbar-thumb {
+            border: 4px solid #fff;
+            border-radius: 10px;
+            background-color: rgba(108, 117, 125, 0.3);
+            transition: all 0.3s ease;
+        }
+        #myTable_wrapper .dt-layout-full::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(108, 117, 125, 0.5);
+            cursor: all-scroll;
+        }
+        #myTable_wrapper:has(.magicButton){
+            position: relative !important;
+        }
+        /* #myTable_wrapper .dt-layout-full:has(.magicButton){
+            position: relative !important;
+        } */
+        #myTable_wrapper .dt-layout-full tr td{
+            text-align: center !important;
+        }
+        #myTable_wrapper .dt-layout-full tr td .magicButton{
+            position: absolute;
+            right: 2.2rem;
+            transform: translateY(-4px);
+        }
+        .extras #myTable_wrapper .dt-layout-full tr td .magicButton{
+            position: absolute;
+            right: 7.9rem;
+            transform: translateY(-4px);
+        }
+        .extras #myTable_wrapper .dt-layout-full tr td .magicButton2{
+            position: absolute;
+            right: 5.0rem;
+            transform: translateY(-4px);
+        }
+        .extras #myTable_wrapper .dt-layout-full tr td .magicButton3{
+            position: absolute;
+            right: 1.2rem;
+            transform: translateY(-4px);
+        }
+
+        .extras #myTable_wrapper .dt-layout-full tr td:has(.magicButton)::before{
+            content: '';
+            width: 8.0rem !important;
+            display: inline-block;
+            height: 100%;
+            color: transparent !important;
+        }
+
+        #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer{
+            margin-left: 0rem;
+            padding-right: 1.0rem;
+            display: none !important;
+        }
+
+        .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer{
+            display: inline-block !important;
+        }
+
+        .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer button:nth-child(1),
+        .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer button:nth-child(2),
+        .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer button:nth-child(3),
+        .extras #myTable_wrapper .dt-layout-row:nth-child(1) .dt-layout-end .buttonsContainer button:nth-child(5){
+            display: none !important;
+        }
+
+        .feeallcard {
+            background: white;
+        }
+    </style>
 
 
 
@@ -79,7 +193,7 @@
                         <a href="index.html" class="logo-light">
                             <span class="logo-lg">
                                 {{-- <img src="assets/images/logo.png" alt="logo"> --}}
-<h2>IQRA</h2>
+                                <h2>IQRA</h2>
                             </span>
                             <span class="logo-sm">
                                 {{-- <img src="assets/images/logo-sm.png" alt="small logo"> --}}
@@ -309,7 +423,7 @@
                     <li class="dropdown">
                         <a class="nav-link dropdown-toggle arrow-none nav-user" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <span class="account-user-avatar">
-                                <img src="assets/images/users/avatar-1.jpg" alt="user-image" width="32" class="rounded-circle">
+                                <img src="{{asset('assets/images/users/avatar-1.jpg')}}" alt="user-image" width="32" class="rounded-circle">
                             </span>
                             <span class="d-lg-block d-none">
                                 <h5 class="my-0 fw-normal">MedAir Tech</h5>
@@ -346,7 +460,7 @@
                             </a>
 
                             <!-- item-->
-                            <a href="auth-logout-2.html" class="dropdown-item">
+                            <a href="{{route('logout')}}" class="dropdown-item">
                                 <i class="ri-logout-box-line fs-18 align-middle me-1"></i>
                                 <span>Logout</span>
                             </a>
@@ -399,7 +513,7 @@
                     <li class="side-nav-item mb-1">
                         <a href="{{ url('show-addmissionform') }}" class="side-nav-link">
                             <i class="ri-dashboard-3-line"></i>
-                            <span> Addmission Form </span>
+                            <span> Admission Form </span>
                         </a>
                     </li>
 
@@ -428,9 +542,7 @@
                         </a>
                         <div class="collapse" id="sidebarExtendedUI" data-bs-parent="#sidebarMenu1">
                             <ul class="side-nav-item">
-                                <li>
-                                    <!-- <a class="side-nav-link ps-4" href="{{ url('fee') }}">Fees Name</a> -->
-                                </li>
+                               
                                 <li>
                                     <a class="side-nav-link ps-4" href="{{ url('feeallocation') }}">Fees Allocation</a>
                                 </li>
@@ -450,59 +562,119 @@
                         <div class="collapse" id="sidebarExtendedUI1" data-bs-parent="#sidebarMenu2">
                             <ul class="side-nav-item">
                                 <li>
-                                    <a class="side-nav-link ps-4" href="classfeesgenerate">Class Fees Generate</a>
+                                    <a class="side-nav-link ps-4" href="{{url('classfeesgenerate')}}">Class Fees Generate</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="showclassfees">Show Class Fees</a>
+                                    <a class="side-nav-link ps-4" href="{{url('showclassfees')}}">Show Class Fees</a>
                                 </li>
                                 <li>
-                                    <a class="side-nav-link ps-4" href="specialfeesgenerate">Special Fees Generate</a>
+                                    <a class="side-nav-link ps-4" href="{{url('specialfeesgenerate')}}">Special Fees Generate</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('showSpecialFees')}}">Show Special Fees</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
-
                     <li class="side-nav-item mb-1">
                         <a href="{{ url('showFeeReceipts') }}" class="side-nav-link">
                             <i class="ri-book-3-line"></i>
-
+                            
                             <span> Fee Receipts </span>
                         </a>
                     </li>
-
-
-
-
-
-                    {{-- <li class="side-nav-item mb-1">
-                        <a data-bs-toggle="collapse" href="#sidebarLayouts" aria-expanded="false"
-                            aria-controls="sidebarLayouts" class="side-nav-link">
-                            <i class="ri-layout-line"></i>
-
-                            <span> Student ledger </span>
+                 
+                    <li class="side-nav-item mb-1">
+                        <a data-bs-toggle="collapse" href="#sidebarExtendedUI2" class="side-nav-link side-nav-link-dropdown">
+                            <i class="ri-compasses-2-line"></i>
+                            <span>General Register Reports</span>
+                            <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarLayouts">
-
+                        <div class="collapse" id="sidebarExtendedUI2" data-bs-parent="#sidebarMenu3">
+                            <ul class="side-nav-item">
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('students-report')}}">All Students</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('removed-students')}}">Remove Students</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('notremoved-students')}}">Not Removed Students</a>
+                                </li>
+                            </ul>
                         </div>
                     </li>
-
-
                     <li class="side-nav-item mb-1">
-                        <a data-bs-toggle="collapse" href="#sidebarLayouts" aria-expanded="false"
-                            aria-controls="sidebarLayouts" class="side-nav-link">
-                            <i class="ri-layout-line"></i>
-
-                            <span> Fee Entry Form </span>
+                        <a data-bs-toggle="collapse" href="#sidebarExtendedUI3" class="side-nav-link side-nav-link-dropdown">
+                            <i class="ri-compasses-2-line"></i>
+                            <span>Students Strength Reports</span>
+                            <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarLayouts">
-
+                        <div class="collapse" id="sidebarExtendedUI3" data-bs-parent="#sidebarMenu4">
+                            <ul class="side-nav-item">
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('all-students')}}">All Students</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('class-students')}}">Class</a>
+                                </li>
+                            </ul>
                         </div>
-                    </li> --}}
-
-
+                    </li>
+                    <li class="side-nav-item mb-1">
+                        <a data-bs-toggle="collapse" href="#sidebarExtendedUI4" class="side-nav-link side-nav-link-dropdown">
+                            <i class="ri-compasses-2-line"></i>
+                            <span>Students Record Reports</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarExtendedUI4" data-bs-parent="#sidebarMenu5">
+                            <ul class="side-nav-item">
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('all-students-record')}}">All Students</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('left-students-record')}}">Left Out Students</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('pass-students-record')}}">Pass Out Students</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('current-students-record')}}">Current Students</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="side-nav-item mb-1">
+                        <a data-bs-toggle="collapse" href="#sidebarExtendedUI5" class="side-nav-link side-nav-link-dropdown">
+                            <i class="ri-compasses-2-line"></i>
+                            <span>All Record Reports</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarExtendedUI5" data-bs-parent="#sidebarMenu6">
+                            <ul class="side-nav-item">
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('defaulter-students')}}">Defaulters</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('students-ledger')}}">Students Ledger</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('allstudents-list')}}">Students List</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('individual-students')}}">Individual Reports</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('receipt-details')}}">Receipt Details</a>
+                                </li>
+                                <li>
+                                    <a class="side-nav-link ps-4" href="{{url('receipt-reports')}}">Receipt Reports</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
                 <!--- End Sidemenu -->
-
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -729,14 +901,14 @@
     <script src="{{asset('assets/vendor/daterangepicker/daterangepicker.js')}}"></script>
 
     <!-- Apex Charts js -->
-    <script src="{{asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script>
+    {{-- <script src="{{asset('assets/vendor/apexcharts/apexcharts.min.js')}}"></script> --}}
 
     <!-- Vector Map js -->
     <script src="{{asset('assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
     <script src="{{asset('assets/vendor/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js')}}"></script>
 
     <!-- Dashboard App js -->
-    <script src="{{asset('assets/js/pages/dashboard.js')}}"></script>
+    {{-- <script src="{{asset('assets/js/pages/dashboard.js')}}"></script> --}}
 
 
     <!-- App js -->

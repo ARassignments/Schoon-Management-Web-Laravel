@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="">
                     <div class="card-header  our-color-1 text-center add-addmission shadow">
-                        <h4 class="header-title ">Add Addmission Form</h4>
+                        <h4 class="header-title ">Add Admission Form</h4>
                     </div>
                     <form action="{{url('storeaddmissionform')}}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -111,6 +111,14 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-3"></div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Discount (%)</label>
+                                        <input type="number" name="discount" class="form-control" placeholder="Discount">
+                                    </div>
+                                </div>
+                                <div class="col-3"></div>
                             </div>
                         </div>
                         <input type="submit" class="btn our-color-1 w-25 justify-content-center d-flex mb-4 container">
@@ -152,6 +160,25 @@
             }
 
             ageInput.value = age;
+        });
+    });
+    $(document).ready(function() {
+        $('select[name="current_class"]').on('change', function() {
+            var currentClass = $(this).val();
+
+            if (currentClass) {
+                $.ajax({
+                    url: "{{ url('/getTuitionFee') }}",
+                    type: "POST",
+                    data: {
+                        current_class: currentClass,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $('input[name="fees"]').val(response.tuition_fee);
+                    }
+                });
+            }
         });
     });
 </script>

@@ -49,19 +49,24 @@
                                         </p>
 
                                         <!-- form -->
-                                        <form action="#">
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
                                             <div class="mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
                                                 <input class="form-control" type="email" id="emailaddress"
-                                                    required="" placeholder="Enter your email">
+                                                name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="Enter your email">
+                                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                             </div>
                                             <div class="mb-3">
                                                 <a href="auth-forgotpw.html" class="text-muted float-end"><small>Forgot
                                                         your
                                                         password?</small></a>
                                                 <label for="password" class="form-label">Password</label>
-                                                <input class="form-control" type="password" required=""
+                                                <input class="form-control" type="password" name="password"
+                                                required autocomplete="current-password" 
                                                     id="password" placeholder="Enter your password">
+                                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+
                                             </div>
                                             <div class="mb-3">
                                                 <div class="form-check">

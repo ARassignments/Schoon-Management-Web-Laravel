@@ -17,14 +17,14 @@ class Classes_Controller extends Controller
         $search = $request->input('search') ?? "";
         if ($search != "") {
             //where
-            $class  = Classes::where('class_name', 'LIKE', "%$search%")->orWhere('section_name', 'LIKE', "%$search%")->orWhere('created_at', 'LIKE', "%$search%")->orWhere('updated_at', 'LIKE', "%$search%")->get();
+            $class = Classes::where('class_name', 'LIKE', "%$search%")->orWhere('section_name', 'LIKE', "%$search%")->orWhere('created_at', 'LIKE', "%$search%")->orWhere('updated_at', 'LIKE', "%$search%")->get();
         } else {
-            $class  = Classes::all();
+            $class = Classes::all();
         }
 
         $notificationCount = contactfom::where('is_new', true)->count(); // Count only unread notifications
         $contacts = contactfom::all();
-        $class  = compact('class', 'search', 'notificationCount', 'contacts');
+        $class = compact('class', 'search', 'notificationCount', 'contacts');
         return view('admin.class')->with($class);
     }
 
@@ -42,47 +42,20 @@ class Classes_Controller extends Controller
             'section_name' => 'required|string|max:255',
         ]);
 
+        $existingClass = Classes::where('class_name', $request->class_name)
+            ->where('section_name', $request->section_name)
+            ->first();
+
+        if ($existingClass) {
+            return redirect()->back()->with('error', "Class $request->class_name and section $request->section_name already exists.");
+        }
+
         $class = new Classes();
         $class->class_name = $request->class_name;
         $class->section_name = $request->section_name;
-        $class_name = $class->class_name;
-        $section_name = $class->section_name;
         $class->save();
 
-        return redirect('class')->with('success', "The record has been submitted successfully! Class $class_name and section $section_name have been submitted.");
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return redirect('class')->with('success', "The record has been submitted successfully! Class $request->class_name and section $request->section_name have been submitted.");
     }
 
     public function editclass(string $id)

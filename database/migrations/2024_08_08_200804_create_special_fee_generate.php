@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('class_fees_generate', function (Blueprint $table) {
+        Schema::create('special_fee_generates', function (Blueprint $table) {
             $table->id();
             $table->integer('gr_number');
             $table->string('month_year');
-            $table->date('transaction_date');
-            $table->date('issued_date');
-            $table->date('due_date');
+            $table->string('transaction_date');
+            $table->string('issued_date');
+            $table->string('due_date');
             $table->string('session');
             $table->integer('admission')->default(0);
             $table->integer('tution')->default(0);
@@ -33,21 +33,20 @@ return new class extends Migration
             $table->integer('previous_dues')->default(0);
             $table->integer('total_payable_within_due_date')->default(0);
             $table->integer('total_payable_after_due_date')->default(0);
-            $table->string('class');
-            $table->string('section');
+            $table->string('class')->nullable(true);
+            $table->string('section')->nullable(true);
+            $table->string('note_01')->nullable(true);
+            $table->string('note_02')->nullable(true);
             $table->timestamps();
-            
-            // Adding unique constraint for combination of gr_number and month_year
-            $table->unique(['gr_number', 'month_year']);
         });
-        
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('special_fee_generate');
     }
 };

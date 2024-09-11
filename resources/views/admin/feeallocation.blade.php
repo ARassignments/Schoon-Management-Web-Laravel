@@ -42,7 +42,7 @@
                                                                 </div>
                                                             </form>
                                                         </div> -->
-                                <input class="search-input" name="text" placeholder="Search..." type="search">
+                                {{-- <input class="search-input" name="text" placeholder="Search..." type="search"> --}}
                                 <!-- Searchbar End -->
                             </div>
                             <div class="feeallcard feeallshadow">
@@ -128,7 +128,7 @@
                                             {{ session('successupdate') }}
                                         </div>
                                         @endif
-                                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                                                                            {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
                                         <script>
                                             document.addEventListener('DOMContentLoaded', function() {
                                                 var successMessage = document.getElementById('successMessage');

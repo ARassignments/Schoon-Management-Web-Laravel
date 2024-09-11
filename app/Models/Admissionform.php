@@ -17,4 +17,8 @@ class Admissionform extends Model
     {
         return $this->hasMany(ClassFeeVoucher::class, 'gr_number', 'gr_number');
     }
+    public function feeVouchers()
+    {
+        return $this->hasMany(ClassFeeVoucher::class, 'gr_number', 'gr_number');
+    }
 }

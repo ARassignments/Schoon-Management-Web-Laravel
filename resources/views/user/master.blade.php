@@ -120,10 +120,23 @@
                 <a href="{{ url('contactform') }}"
                     class="nav-item nav-link {{ Request::is('contactform') ? 'active' : '' }}">Contact</a>
                 {{-- ======================Auth-Login-&-Register========================== --}}
-                <button type="button" class="btn btn-light"
-                    onclick="navigateTo('{{ url('auth-logins') }}')">Login</button>
-                <button type="button" class="btn btn-dark"
-                    onclick="navigateTo('{{ url('auth-registers') }}')">Register</button>
+                @if(!Auth::check())
+                    <button type="button" class="btn btn-light"
+                        onclick="navigateTo('{{ route('login') }}')">Login</button>
+                    <button type="button" class="btn btn-dark"
+                        onclick="navigateTo('{{ route('register') }}')">Register</button>
+
+                @else
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+        
+                    <button :href="route('logout')" class="btn btn-dark h-100"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </button>
+                </form>
+                @endif
                 <script>
                     function navigateTo(url) {
                         window.location.href = url;

@@ -52,26 +52,40 @@
                                         </a>
                                     </div>
                                     <div class="p-4 my-auto">
-                                        <h4 class="fs-20">Resgitration</h4>
+                                        <h4 class="fs-20">Registration</h4>
                                         <p class="text-muted mb-3">Enter your email address and password to access
                                             account.</p>
 
                                         <!-- form -->
-                                        <form action="#">
+                                        <form action="{{ route('register') }}">
+                                            @csrf
                                             <div class="mb-3">
                                                 <label for="fullname" class="form-label">Full Name</label>
                                                 <input class="form-control" type="text" id="fullname"
-                                                    placeholder="Enter your name" required="">
+                                                    placeholder="Enter your name" name="name" :value="old('name')" required autofocus autocomplete="name">
+                                                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                             </div>
                                             <div class="mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
-                                                <input class="form-control" type="email" id="emailaddress" required=""
-                                                    placeholder="Enter your email">
+                                                <input class="form-control" type="email" id="emailaddress" 
+                                                    placeholder="Enter your email" name="email" :value="old('email')" required autocomplete="username">
+                                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+
                                             </div>
                                             <div class="mb-3">
                                                 <label for="password" class="form-label">Password</label>
-                                                <input class="form-control" type="password" required="" id="password"
-                                                    placeholder="Enter your password">
+                                                <input class="form-control" type="password" id="password"
+                                                    placeholder="Enter your password" name="password"
+                                                    required autocomplete="new-password">
+                                                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="password" class="form-label">Confirm Password</label>
+                                                <input class="form-control" type="password" id="password"
+                                                    placeholder="Enter your password" name="password_confirmation" required autocomplete="new-password">
+                                                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+
                                             </div>
                                             <div class="mb-3">
                                                 <div class="form-check">
@@ -112,7 +126,7 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="text-dark-emphasis">Already have account? <a href="auth-login.html"
+                    <p class="text-dark-emphasis">Already have account? <a href="{{ route('login') }}"
                             class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Log In</b></a>
                     </p>
                 </div> <!-- end col -->
